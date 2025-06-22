@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body, html {
   height: 100%;
   margin: 0;
@@ -50,4 +51,58 @@ i {
   max-height: 60px;
   height: auto;
   width: auto;
+=======
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: cursive;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+header {
+  background: transparent;
+  height: 5vh;
+  display: flex;
+  justify-content: end;
+  padding: 1.5rem;
+}
+
+.podio-img {
+    max-width: 150px;
+}
+
+.boton-volver {
+  background-color: #03920f;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 2rem;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.boton-volver:hover {
+  background-color: #002403;
+}
+
+i {
+  color: #03920f;
+  font-size: 1.5rem;
+}
+
+.logo-macrohard {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  z-index: 10;
+}
+
+.logo-macrohard img {
+  max-height: 60px;
+  height: auto;
+  width: auto;
+>>>>>>> master
 }

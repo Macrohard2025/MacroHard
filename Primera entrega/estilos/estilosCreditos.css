@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body, html {
   height: 100%;
   margin: 0;
@@ -67,4 +68,75 @@ li {
 
 .carta-creditos h2 {
     color: #03920f;
+=======
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: cursive;
+  background: url('../recursos/img/fondoCreditos.png') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed; 
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+header {
+  background: transparent;
+  height: 5vh;
+  display: flex;
+  justify-content: end;
+  padding: 1.5rem;
+}
+
+.boton-volver {
+  background-color: #03920f;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 2rem;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.boton-volver:hover {
+  background-color: #002403;
+}
+
+.logo-macrohard {
+  display: flex;
+  align-items: center;
+  bottom: 10px;
+  left: 20px;
+  z-index: 10;
+  padding: 3rem;
+  justify-content: center;
+}
+
+.logo-macrohard img {
+  max-height: 130px;
+  height: auto;
+  margin: 1rem;
+  width: auto;
+}
+
+.carta-creditos {
+    margin-top: 5rem;
+    font-size: large;
+    border: 2px solid #03920f;
+}
+
+p {
+    color: #03920f;
+}
+
+li {
+    color: #03920f;
+    font-size: 1.2rem;
+}
+
+.carta-creditos h2 {
+    color: #03920f;
+>>>>>>> master
 }
