@@ -1,10 +1,11 @@
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
   font-family: cursive;
   background: url('../recursos/img/fondoCreditos.png') no-repeat center center;
   background-size: cover;
-  background-attachment: fixed; 
+  background-attachment: fixed;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -51,20 +52,20 @@ header {
 }
 
 .carta-creditos {
-    margin-top: 5rem;
-    font-size: large;
-    border: 2px solid #03920f;
+  margin-top: 5rem;
+  font-size: large;
+  border: 2px solid #03920f;
 }
 
 p {
-    color: #03920f;
+  color: #03920f;
 }
 
 li {
-    color: #03920f;
-    font-size: 1.2rem;
+  color: #03920f;
+  font-size: 1.2rem;
 }
 
 .carta-creditos h2 {
-    color: #03920f;
+  color: #03920f;
 }

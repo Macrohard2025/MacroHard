@@ -1,10 +1,11 @@
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
   font-family: cursive;
   background: url('../recursos/img/fondoTutorial.png') no-repeat center center;
   background-size: 90%;
-  background-attachment: fixed; 
+  background-attachment: fixed;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -49,12 +50,12 @@ header {
 }
 
 .logo-macrohard div {
-    padding: 0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 19rem;
-    margin-right: 12rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 19rem;
+  margin-right: 12rem;
 }
 
 .logo-macrohard a {
@@ -68,13 +69,13 @@ header {
   margin-left: 1rem;
 }
 
-.pizarron{
-    color: #03920f;
-    margin-top: 12rem;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-left: 25.5rem;
-    padding: 3rem;
-    font-size: 18px;
+.pizarron {
+  color: #03920f;
+  margin-top: 12rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25.5rem;
+  padding: 3rem;
+  font-size: 18px;
 }

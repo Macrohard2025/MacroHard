@@ -1,0 +1,122 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala de juego</title>
+    <link rel="stylesheet" href="../estilos/estilosSala.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="icon" href="../recursos/img/draftosaurus-logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="../index.html" class="boton-volver">Volver al inicio</a>
+        </nav>
+    </header>
+
+    <main>
+        <button id="botonSolo"> Modo un jugador </button>
+        <button id="botonMulti"> Modo multijugador </button>
+        <button onclick="window.location.href='historial.html'"> Historial de partidas </button>
+    </main>
+
+    <footer class="logo-macrohard">
+        <img src="../recursos/img/LogoMH2.png">
+    </footer>
+
+    <article class="article-partida" id="article-partida">
+        <div class="div-partida">
+            <p class="pregunta">¿Qué tablero desea usar?</p>
+            <p class="aclarar">(Cada tablero tiene sus propias reglas)</p>
+            <div class="botones-tablero">
+                <button id="tablero-invierno" class="boton-invierno">Invierno</button>
+                <button id="tablero-verano" class="boton-verano">Verano</button>
+            </div>
+            <button id="cancelar" class="cancelar"> Cancelar </button>
+        </div>
+    </article>
+
+    <article class="article-partida" id="article-partida2">
+        <div class="div-partida">
+            <p class="pregunta">¿Cuántos jugadores habrá?</p>
+            <select id="select-jugadores" class="select-jugadores">
+                <option value="" disabled selected>Elija una opción</option>
+                <option value="2">2 jugadores</option>
+                <option value="3">3 jugadores</option>
+                <option value="4">4 jugadores</option>
+                <option value="5">5 jugadores</option>
+                <option value="6">6 jugadores</option>
+            </select>
+            <button class="boton-listo" id="boton-listo">Listo</button>
+            <button id="cancelar" class="cancelar"> Cancelar </button>
+        </div>
+    </article>
+
+    <script>
+
+        const botonSolo = document.getElementById('botonSolo');
+        const botonMulti = document.getElementById('botonMulti');
+        const articlePartida = document.getElementById('article-partida');
+        const botonCancelar = document.querySelectorAll('#cancelar');
+        const botonInvierno = document.getElementById('tablero-invierno');
+        const botonVerano = document.getElementById('tablero-verano');
+        const articlePartida2 = document.getElementById('article-partida2');
+        const selectJugadores = document.getElementById('select-jugadores');
+        const botonListo = document.getElementById('boton-listo');
+        let modo = 0;
+        let tablero = 0;
+        let cantidadJugadores = 0;
+
+        botonListo.addEventListener("click", function (e) {
+            e.preventDefault();
+            if (cantidadJugadores == 0) {
+                alert("Por favor, seleccione la cantidad de jugadores.");
+            } else {
+                articlePartida2.style.display = "none";
+                articlePartida.style.display = "flex";
+            }
+        });
+
+        selectJugadores.addEventListener("change", function () {
+            cantidadJugadores = selectJugadores.value;
+        });
+
+        botonInvierno.addEventListener("click", function (e) {
+            e.preventDefault();
+            tablero = 1;
+        });
+
+        botonVerano.addEventListener("click", function (e) {
+            e.preventDefault();
+            tablero = 2;
+        });
+
+        botonCancelar.forEach(boton => {
+            boton.addEventListener("click", function (e) {
+                e.preventDefault();
+                articlePartida.style.display = "none";
+                articlePartida2.style.display = "none";
+            });
+        });
+
+        botonSolo.addEventListener("click", function (e) {
+            e.preventDefault();
+            modo = 1;
+            articlePartida.style.display = "flex";
+        });
+
+        botonMulti.addEventListener("click", function (e) {
+            e.preventDefault();
+            modo = 2;
+            articlePartida2.style.display = "flex";
+        });
+
+    </script>
+
+</body>
+
+</html>

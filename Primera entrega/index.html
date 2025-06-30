@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,139 +10,141 @@
   <link rel="stylesheet" href="estilos/estilos.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 </head>
+
 <body>
 
   <header>
     <nav>
-        <button class="boton-login">Iniciar sesión</button>
-        <button class="boton-registro ">Registrarse</button>
+      <button class="boton-login">Iniciar sesión</button>
+      <button class="boton-registro ">Registrarse</button>
     </nav>
   </header>
   <main>
-    
+
     <aside class="menu-flotante">
       <ul>
         <li>
-          <a href="sala.html" class="menu-boton">
+          <a href="paginas/sala.html" class="menu-boton">
             <span>
-            <i class="bi bi-controller"></i>
-            </span> 
+              <i class="bi bi-controller"></i>
+            </span>
             <p>Sala de juego</p>
           </a>
         </li>
         <li>
-          <a href="estadisticas.html" class="menu-boton">
+          <a href="paginas/estadisticas.html" class="menu-boton">
             <span>
-            <i class="bi bi-file-earmark-bar-graph-fill"></i>
+              <i class="bi bi-file-earmark-bar-graph-fill"></i>
             </span>
             <p>Estadísticas</p>
           </a>
         </li>
-        <li> 
-          <a href="tutorial.html" class="menu-boton">
+        <li>
+          <a href="paginas/tutorial.html" class="menu-boton">
             <span>
-            <i class="bi bi-journal-text"></i>
+              <i class="bi bi-journal-text"></i>
             </span>
             <p>Tutorial</p>
           </a>
         </li>
         <li>
-          <a href="configuracion.html" class="menu-boton">
+          <a href="paginas/configuracion.html" class="menu-boton">
             <span>
-            <i class="bi bi-sliders"></i>
+              <i class="bi bi-sliders"></i>
             </span>
             <p>Configuración</p>
           </a>
         </li>
-        <li> 
-        <a href="creditos.html" class="menu-boton">
-          <span> 
-          <i class="bi bi-suit-heart-fill"></i>
-          </span>
-          <p>Créditos</p>
-        </a>
+        <li>
+          <a href="paginas/creditos.html" class="menu-boton">
+            <span>
+              <i class="bi bi-suit-heart-fill"></i>
+            </span>
+            <p>Créditos</p>
+          </a>
         </li>
       </ul>
     </aside>
 
-    <section  class="titulo-juego">
-        <img src="recursos/img/draftosaurus-logo2.png">
+    <section class="titulo-juego">
+      <img src="recursos/img/draftosaurus-logo2.png">
     </section>
 
   </main>
 
-    <footer class="logo-macrohard">
-      <img src="recursos/img/LogoMH2.png">
-    </footer>
+  <footer class="logo-macrohard">
+    <img src="recursos/img/LogoMH2.png">
+  </footer>
 
-<article class="formularios" id="formContainer">
+  <article class="formularios" id="formContainer">
 
-  <form class="formulario-login" id="formLogin">
-    <label for="usuario">Nombre de usuario</label>
-    <input type="text" placeholder="Ingrese su nombre de usuario." required>
-    <label for="contrasena">Contraseña</label>
-    <input type="password" placeholder="Ingrese su contraseña." required>
-    <div class="botones-formulario">
-    <button class="botonSalir">Salir</button>
-    <button class="botonEntrar">Entrar</button>
-    </div>
-  </form>
+    <form class="formulario-login" id="formLogin">
+      <label for="usuario">Nombre de usuario</label>
+      <input type="text" placeholder="Ingrese su nombre de usuario." required>
+      <label for="contrasena">Contraseña</label>
+      <input type="password" placeholder="Ingrese su contraseña." required>
+      <div class="botones-formulario">
+        <button class="botonSalir">Salir</button>
+        <button class="botonEntrar">Entrar</button>
+      </div>
+    </form>
 
-  <form class="formulario-registro" id="formRegistro">
-    <label for="usuario">Nombre de usuario</label>
-    <input type="text" placeholder="Ingrese su nombre de usuario." required>
-    <label for="correo">Correo electrónico</label>
-    <input type="email" placeholder="Ingrese su correo electrónico." required>
-    <label for="edad">Edad</label>
-    <input type="number" placeholder="Ingrese su edad." required>
-    <label for="contrasena">Contraseña</label>
-    <input type="password" placeholder="Ingrese su contraseña." required>
-    <label for="confirmar-contrasena">Confirmar contraseña</label>
-    <input type="password" placeholder="Confirme su contraseña." required>
-    <div class="botones-formulario">
-    <button class="botonSalir">Salir</button>
-    <button class="botonEntrar">Registrarse</button>
-    </div>
-  </form>
+    <form class="formulario-registro" id="formRegistro">
+      <label for="usuario">Nombre de usuario</label>
+      <input type="text" placeholder="Ingrese su nombre de usuario." required>
+      <label for="correo">Correo electrónico</label>
+      <input type="email" placeholder="Ingrese su correo electrónico." required>
+      <label for="edad">Edad</label>
+      <input type="number" placeholder="Ingrese su edad." required>
+      <label for="contrasena">Contraseña</label>
+      <input type="password" placeholder="Ingrese su contraseña." required>
+      <label for="confirmar-contrasena">Confirmar contraseña</label>
+      <input type="password" placeholder="Confirme su contraseña." required>
+      <div class="botones-formulario">
+        <button class="botonSalir">Salir</button>
+        <button class="botonEntrar">Registrarse</button>
+      </div>
+    </form>
 
-</article>
+  </article>
 
-<script>
-  const formContainer = document.getElementById("formContainer");
-  const formLogin = document.getElementById("formLogin");
-  const formRegistro = document.getElementById("formRegistro");
+  <script>
+    const formContainer = document.getElementById("formContainer");
+    const formLogin = document.getElementById("formLogin");
+    const formRegistro = document.getElementById("formRegistro");
 
-  document.querySelector(".boton-login").addEventListener("click", function(e) {
-    e.preventDefault();
-    formContainer.style.display = "flex";
-    formLogin.style.display = "block";
+    document.querySelector(".boton-login").addEventListener("click", function (e) {
+      e.preventDefault();
+      formContainer.style.display = "flex";
+      formLogin.style.display = "block";
     });
 
-  document.querySelector(".boton-registro").addEventListener("click", function(e) {
-    e.preventDefault();
-    formContainer.style.display = "flex";
-    formRegistro.style.display = "block";
-  });
-  
-  document.querySelectorAll(".botonEntrar").forEach(function(boton) {
-        boton.addEventListener("click", function() {
-          alert("Funcionalidad de inicio de sesión y registro aún no implementada.");
-              formContainer.style.display = "none";
-              formRegistro.style.display = "none";
-              formLogin.style.display = "none";
-        });
-      });
+    document.querySelector(".boton-registro").addEventListener("click", function (e) {
+      e.preventDefault();
+      formContainer.style.display = "flex";
+      formRegistro.style.display = "block";
+    });
 
-      document.querySelectorAll(".botonSalir").forEach(function(boton) {
-        boton.addEventListener("click", function() {
-          formContainer.style.display = "none";
-          formRegistro.style.display = "none";
-          formLogin.style.display = "none";
-        });
+    document.querySelectorAll(".botonEntrar").forEach(function (boton) {
+      boton.addEventListener("click", function () {
+        alert("Funcionalidad de inicio de sesión y registro aún no implementada.");
+        formContainer.style.display = "none";
+        formRegistro.style.display = "none";
+        formLogin.style.display = "none";
       });
+    });
 
-</script>
+    document.querySelectorAll(".botonSalir").forEach(function (boton) {
+      boton.addEventListener("click", function () {
+        formContainer.style.display = "none";
+        formRegistro.style.display = "none";
+        formLogin.style.display = "none";
+      });
+    });
+
+  </script>
 
 
 </body>
+
 </html>

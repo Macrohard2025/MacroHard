@@ -1,0 +1,178 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: cursive;
+  background: url('../recursos/img/FondoSala.png') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+header {
+  background: transparent;
+  height: 5vh;
+  display: flex;
+  justify-content: end;
+  padding: 1.5rem;
+}
+
+.boton-volver {
+  background-color: #03920f;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 2rem;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.boton-volver:hover {
+  background-color: #002403;
+}
+
+.logo-macrohard {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  z-index: 10;
+}
+
+.logo-macrohard img {
+  max-height: 60px;
+  height: auto;
+  width: auto;
+}
+
+main {
+  width: 100dvw;
+  height: 95dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+main button {
+  background-color: #03920f;
+  color: white;
+  padding: 1.6rem 3.2rem;
+  border-radius: 4rem;
+  transition: background-color 0.3s ease;
+  font-size: 2rem;
+  border: none;
+  margin-bottom: 2rem;
+  width: 30%;
+}
+
+main button:hover {
+  background-color: #002403;
+}
+
+.article-partida {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-partida {
+  background-color: rgba(255, 255, 255, 0.89);
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 30vw;
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.botones-tablero {
+  flex-direction: row;
+}
+
+.boton-verano {
+  background-color: #ff5656;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 2rem;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  border: none;
+}
+
+.boton-verano:hover {
+  background-color: #5e0303;
+}
+
+.boton-invierno {
+  background-color: #1366ff;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 2rem;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  border: none;
+}
+
+.boton-invierno:hover {
+  background-color: #032e7e;
+}
+
+p {
+  font-family: cursive;
+}
+
+.pregunta {
+  font-size: 2rem;
+}
+
+.aclarar {
+  color: #7c7c7c;
+}
+
+.cancelar {
+  border: none;
+  margin-top: 1rem;
+  color: #5e0303;
+  background-color: transparent;
+}
+
+.select-jugadores {
+  background-color: white;
+  color: #03920f;
+  border: solid 1.5px #03920f;
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 60%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.boton-listo {
+  background-color: #03920f;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 2rem;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  border: none;
+  margin: 1rem;
+}
+
+.boton-listo:hover {
+  background-color: #002403;
+}
