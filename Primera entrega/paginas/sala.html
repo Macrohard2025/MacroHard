@@ -14,50 +14,122 @@
 
     <header>
         <nav>
-            <a href="../index.html" class="boton-volver">Volver al inicio</a>
+            <a href="../index.html" class="boton-volver" id="boton-volver">Volver al inicio</a>
         </nav>
     </header>
 
-    <main>
-        <button id="botonSolo"> Modo un jugador </button>
-        <button id="botonMulti"> Modo multijugador </button>
-        <button onclick="window.location.href='historial.html'"> Historial de partidas </button>
-    </main>
+    <div id="container-cantidad-jugadores" class="container-cantidad-jugadores">
+        <p id="cantidad-jugadores" class="cantidad-jugadores"></p>
+    </div>
+
+    <section id="sala">
+
+        <main>
+            <button id="botonSolo"> Modo un jugador </button>
+            <button id="botonMulti"> Modo multijugador </button>
+            <button onclick="window.location.href='historial.html'"> Historial de partidas </button>
+        </main>
+
+        <article class="article-partida" id="article-partida">
+            <div class="div-partida">
+                <p class="pregunta">¿Qué tablero desea usar?</p>
+                <p class="aclarar">(Cada tablero tiene sus propias reglas)</p>
+                <div class="botones-tablero">
+                    <button id="tablero-invierno" class="boton-invierno">Invierno</button>
+                    <button id="tablero-verano" class="boton-verano">Verano</button>
+                </div>
+                <button id="cancelar" class="cancelar"> Cancelar </button>
+            </div>
+        </article>
+
+        <article class="article-partida" id="article-partida2">
+            <div class="div-partida">
+                <p class="pregunta">¿Cuántos jugadores habrá?</p>
+                <select id="select-jugadores" class="select-jugadores">
+                    <option value="" disabled selected>Elija una opción</option>
+                    <option value="2">2 jugadores</option>
+                    <option value="3">3 jugadores</option>
+                    <option value="4">4 jugadores</option>
+                    <option value="5">5 jugadores</option>
+                </select>
+                <button class="boton-listo" id="boton-listo">Listo</button>
+                <button id="cancelar" class="cancelar"> Cancelar </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="container-formulario-jugador" id="formulario-jugador">
+        <form action="submit" class="formulario-jugador">
+            <p>Ingrese los datos de uno de los jugadores</p>
+            <input type="text" name="nombre-jugador" id="nombre-jugador" placeholder="Nombre de usuario" required>
+            <input type="tex" name="contrasena-jugador" id="contrasena-jugador" placeholder="Contraseña" required>
+            <button type="submit" class="btn btn-primary">Unirse a la sala</button>
+            <button id="cancelar-form" class="btn btn-secondary">Cancelar</button>
+        </form>
+    </section>
+
+    <div id="tablero-mostrar" class="tablero-mostrar">
+        <img id="tablero-imagen-mostrar" src="../recursos/img/tableroInvierno.png">
+    </div>
 
     <footer class="logo-macrohard">
         <img src="../recursos/img/LogoMH2.png">
     </footer>
 
-    <article class="article-partida" id="article-partida">
-        <div class="div-partida">
-            <p class="pregunta">¿Qué tablero desea usar?</p>
-            <p class="aclarar">(Cada tablero tiene sus propias reglas)</p>
-            <div class="botones-tablero">
-                <button id="tablero-invierno" class="boton-invierno">Invierno</button>
-                <button id="tablero-verano" class="boton-verano">Verano</button>
-            </div>
-            <button id="cancelar" class="cancelar"> Cancelar </button>
+    <section id="comienzo-partida" class="comienzo-partida">
+        <div class="container-partida">
+            <img id="imagen-tablero" class="imagen-tablero" src="../recursos/img/tableroInvierno.png">
+            <img class="bolsa-dinosaurios" id="bolsa-dinosaurios" src="../recursos/img/dinosauriosBolsa.png">
         </div>
-    </article>
+        <div class="funcionalidades-partida">
+            <img id="dado-imagen" src="../recursos/img/dado/lado0.png">
+            <p class="turno-jugador" id="turno-jugador">Turno de Juan Torres</p>
+            <button class="btn btn-danger">Finalizar partida</button>
+        </div>
+    </section>
 
-    <article class="article-partida" id="article-partida2">
-        <div class="div-partida">
-            <p class="pregunta">¿Cuántos jugadores habrá?</p>
-            <select id="select-jugadores" class="select-jugadores">
-                <option value="" disabled selected>Elija una opción</option>
-                <option value="2">2 jugadores</option>
-                <option value="3">3 jugadores</option>
-                <option value="4">4 jugadores</option>
-                <option value="5">5 jugadores</option>
-                <option value="6">6 jugadores</option>
-            </select>
-            <button class="boton-listo" id="boton-listo">Listo</button>
-            <button id="cancelar" class="cancelar"> Cancelar </button>
+    <article class="container-bolsa-dinosaurios" id="bolsa-dinosaurios-container">
+        <div class="grid-dinos container my-4">
+            <div class="text-center mb-4">
+                <h2>Elige un dinosaurio</h2>
+            </div>
+            <div class="row g-3">
+                <div class="col-6 col-md-4">
+                    <img src="../recursos/img/dinos/rex.png" class="img-fluid rounded" alt="T-Rex">
+                </div>
+                <div class="col-6 col-md-4">
+                    <img src="../recursos/img/dinos/trike.png" class="img-fluid rounded" alt="Trike">
+                </div>
+                <div class="col-6 col-md-4">
+                    <img src="../recursos/img/dinos/bronto.png" class="img-fluid rounded" alt="Bronto">
+                </div>
+                <div class="col-6 col-md-4">
+                    <img src="../recursos/img/dinos/plesio.png" class="img-fluid rounded" alt="Plesio">
+                </div>
+                <div class="col-6 col-md-4">
+                    <img src="../recursos/img/dinos/tera.png" class="img-fluid rounded" alt="Ptera">
+                </div>
+                <div class="col-6 col-md-4">
+                    <img src="../recursos/img/dinos/stego.png" class="img-fluid rounded" alt="Estego">
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button id="boton-cancelar-bolsa" class="btn btn-success">Cancelar</button>
+            </div>
         </div>
     </article>
 
     <script>
 
+        const dadoImagen = document.getElementById("dado-imagen");
+        const bolsaBoton = document.getElementById("boton-cancelar-bolsa");
+        const bolsaDinosaurios = document.getElementById('bolsa-dinosaurios');
+        const turnoJugador = document.getElementById('turno-jugador');
+        const comienzoPartida = document.getElementById('comienzo-partida');
+        const imagenTablero = document.getElementById('imagen-tablero');
+        const cantidadJugadoresTexto = document.getElementById('cantidad-jugadores');
+        const containerCantidadJugadores = document.getElementById('container-cantidad-jugadores');
+        const sala = document.getElementById('sala');
         const botonSolo = document.getElementById('botonSolo');
         const botonMulti = document.getElementById('botonMulti');
         const articlePartida = document.getElementById('article-partida');
@@ -67,32 +139,74 @@
         const articlePartida2 = document.getElementById('article-partida2');
         const selectJugadores = document.getElementById('select-jugadores');
         const botonListo = document.getElementById('boton-listo');
-        let modo = 0;
+        const botonVolver = document.getElementById('boton-volver');
+        const bolsaDinosauriosContainer = document.getElementById('bolsa-dinosaurios-container');
+        const imagenTableroMostrar = document.getElementById('tablero-imagen-mostrar');
+        const tableroMostrar = document.getElementById('tablero-mostrar');
+        const formularioJugador = document.getElementById('formulario-jugador');
+        const cancelarForm = document.getElementById('cancelar-form');
+        const inputNombreJugador = document.getElementById('nombre-jugador');
+        const inputContrasenaJugador = document.getElementById('contrasena-jugador');
         let tablero = 0;
         let cantidadJugadores = 0;
+        let randomNumber = 0;
+        let cantidadJugadoresSeleccionados = 0;
 
-        botonListo.addEventListener("click", function (e) {
+        cancelarForm.addEventListener("click", function (e) {
             e.preventDefault();
-            if (cantidadJugadores == 0) {
-                alert("Por favor, seleccione la cantidad de jugadores.");
+            formularioJugador.style.display = "none";
+        });
+
+        dadoImagen.addEventListener("click", function () {
+            randomNumber = Math.floor(Math.random() * 6 + 1);
+            dadoImagen.src = "../recursos/img/dado/lado" + randomNumber + ".png";
+        });
+
+        bolsaBoton.addEventListener("click", function () {
+            bolsaDinosauriosContainer.style.display = "none";
+        });
+
+        bolsaDinosaurios.addEventListener("click", function () {
+            bolsaDinosauriosContainer.style.display = "flex";
+        });
+
+        formularioJugador.addEventListener("submit", function (e) {
+            e.preventDefault();
+            cantidadJugadoresSeleccionados--;
+            if (cantidadJugadoresSeleccionados > 1) {
+                inputContrasenaJugador.value = "";
+                inputNombreJugador.value = "";
             } else {
-                articlePartida2.style.display = "none";
                 articlePartida.style.display = "flex";
+                formularioJugador.style.display = "none";
+                inputContrasenaJugador.value = "";
+                inputNombreJugador.value = "";
             }
         });
 
-        selectJugadores.addEventListener("change", function () {
-            cantidadJugadores = selectJugadores.value;
+        botonListo.addEventListener("click", function (e) {
+            e.preventDefault();
+            if (selectJugadores.value == 0) {
+                alert("Por favor, seleccione la cantidad de jugadores.");
+            } else {
+                articlePartida2.style.display = "none";
+                cantidadJugadores = selectJugadores.value;
+                cantidadJugadoresSeleccionados = cantidadJugadores;
+                selectJugadores.value = "";
+                formularioJugador.style.display = "flex";
+            }
         });
 
         botonInvierno.addEventListener("click", function (e) {
             e.preventDefault();
             tablero = 1;
+            comenzarpartida();
         });
 
         botonVerano.addEventListener("click", function (e) {
             e.preventDefault();
             tablero = 2;
+            comenzarpartida();
         });
 
         botonCancelar.forEach(boton => {
@@ -105,15 +219,48 @@
 
         botonSolo.addEventListener("click", function (e) {
             e.preventDefault();
-            modo = 1;
+            cantidadJugadores = 1;
             articlePartida.style.display = "flex";
         });
 
         botonMulti.addEventListener("click", function (e) {
             e.preventDefault();
-            modo = 2;
             articlePartida2.style.display = "flex";
         });
+
+        imagenTablero.addEventListener("click", function () {
+            tableroMostrar.style.display = "flex";
+            if (tablero == 1) {
+                imagenTableroMostrar.src = "../recursos/img/tableroInvierno.png";
+            } else if (tablero == 2) {
+                imagenTableroMostrar.src = "../recursos/img/tableroVerano.png";
+            }
+        });
+
+        imagenTableroMostrar.addEventListener("click", function () {
+            tableroMostrar.style.display = "none";
+        });
+
+        function comenzarpartida() {
+            sala.innerHTML = "";
+            botonVolver.innerText = "Abandonar";
+            botonVolver.href = "sala.html";
+            if (cantidadJugadores != 1) {
+                containerCantidadJugadores.style.display = "flex";
+                cantidadJugadoresTexto.innerText = "Cantidad de jugadores: " + cantidadJugadores;
+                turnoJugador.style.display = "flex";
+            }
+            if (tablero == 1) {
+                document.body.style.backgroundImage = "none";
+                document.body.style.backgroundColor = "#defafa";
+                imagenTablero.src = "../recursos/img/tableroInvierno.png";
+            } else if (tablero == 2) {
+                document.body.style.backgroundImage = "none";
+                document.body.style.backgroundColor = "#dffade";
+                imagenTablero.src = "../recursos/img/tableroVerano.png";
+            }
+            comienzoPartida.style.display = "flex";
+        }
 
     </script>
 
