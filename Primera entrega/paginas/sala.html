@@ -27,7 +27,7 @@
         <main>
             <button id="botonSolo"> Modo un jugador </button>
             <button id="botonMulti"> Modo multijugador </button>
-            <button onclick="window.location.href='historial.html'"> Historial de partidas </button>
+            <button id="botonHistorial"> Historial de partidas </button>
         </main>
 
         <article class="article-partida" id="article-partida">
@@ -84,9 +84,171 @@
         <div class="funcionalidades-partida">
             <img id="dado-imagen" src="../recursos/img/dado/lado0.png">
             <p class="turno-jugador" id="turno-jugador">Turno de Juan Torres</p>
-            <button class="btn btn-danger">Finalizar partida</button>
+            <button id="botonFinalizarPartida" class="btn btn-danger">Finalizar partida</button>
         </div>
     </section>
+
+    <main id="historialMostrar" class="historialMostrar container text-center">
+
+        <div class="tituloHistorial">
+            <p>Historial de partidas</p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-success text-center">
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha</th>
+                        <th>Modo</th>
+                        <th>Ganador</th>
+                        <th>Puntos del ganador</th>
+                        <th>Tu posición</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr>
+                        <td>1</td>
+                        <td>22/10/2024</td>
+                        <td>Multijugador - Invierno</td>
+                        <td>Juan Torres</td>
+                        <td>300</td>
+                        <td>#3</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>15/11/2024</td>
+                        <td>Un jugador - Verano</td>
+                        <td>Mateo Más</td>
+                        <td>240</td>
+                        <td>#1</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>30/11/2024</td>
+                        <td>Multijugador - Invierno</td>
+                        <td>Andrés López</td>
+                        <td>330</td>
+                        <td>#2</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>02/12/2024</td>
+                        <td>Multijugador - Verano</td>
+                        <td>María Rodríguez</td>
+                        <td>230</td>
+                        <td>#4</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>10/12/2024</td>
+                        <td>Multijugador - Verano</td>
+                        <td>Facundo Silva</td>
+                        <td>260</td>
+                        <td>#5</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>18/12/2024</td>
+                        <td>Un jugador - Invierno</td>
+                        <td>Mateo Más</td>
+                        <td>175</td>
+                        <td>#1</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>22/12/2024</td>
+                        <td>Multijugador - Invierno</td>
+                        <td>Martín Ferreira</td>
+                        <td>250</td>
+                        <td>#3</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>04/01/2025</td>
+                        <td>Un jugador - Verano</td>
+                        <td>Mateo Más</td>
+                        <td>140</td>
+                        <td>#1</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>10/01/2025</td>
+                        <td>Multijugador - Invierno</td>
+                        <td>Diego Castro</td>
+                        <td>120</td>
+                        <td>#4</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>15/01/2025</td>
+                        <td>Multijugador - Verano</td>
+                        <td>Florencia Díaz</td>
+                        <td>165</td>
+                        <td>#2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button class="btn btn-primary" id="botonVolverHistorial">Volver</button>
+
+    </main>
+
+    <main id="finalMostrar" class="finalMostrar container text-center">
+
+        <div class="tituloFinal">
+            <p>¡Felicidades Juan Torres!</p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-success text-center">
+                    <tr>
+                        <th>#</th>
+                        <th>Foto</th>
+                        <th>Jugador</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr>
+                        <td>1</td>
+                        <td><i class="bi bi-person-circle"></i></td>
+                        <td>Juan Torres</td>
+                        <td>278</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><i class="bi bi-person-circle"></i></td>
+                        <td>Mateo Más</td>
+                        <td>270</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><i class="bi bi-person-circle"></i></td>
+                        <td>Andrés López</td>
+                        <td>234</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><i class="bi bi-person-circle"></i></td>
+                        <td>María Rodríguez</td>
+                        <td>230</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><i class="bi bi-person-circle"></i></td>
+                        <td>Facundo Silva</td>
+                        <td>220</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button class="btn btn-primary" id="botonVolverFinal">Volver</button>
+
+    </main>
 
     <article class="container-bolsa-dinosaurios" id="bolsa-dinosaurios-container">
         <div class="grid-dinos container my-4">
@@ -121,6 +283,11 @@
 
     <script>
 
+        const botonVolverFinal = document.getElementById('botonVolverFinal');
+        const botonFinalizarPartida = document.getElementById('botonFinalizarPartida');
+        const botonVolverHistorial = document.getElementById('botonVolverHistorial');
+        const historialMostrar = document.getElementById('historialMostrar');
+        const botonHistorial = document.getElementById('botonHistorial');
         const dadoImagen = document.getElementById("dado-imagen");
         const bolsaBoton = document.getElementById("boton-cancelar-bolsa");
         const bolsaDinosaurios = document.getElementById('bolsa-dinosaurios');
@@ -151,6 +318,38 @@
         let cantidadJugadores = 0;
         let randomNumber = 0;
         let cantidadJugadoresSeleccionados = 0;
+
+        botonVolverFinal.addEventListener("click", function (e) {
+            e.preventDefault();
+            finalMostrar.style.display = "none";
+            articlePartida.style.display = "none";
+            sala.style.display = "flex";
+            document.body.style.backgroundImage = "url('../recursos/img/fondoSala.png')";
+        });
+
+        botonFinalizarPartida.addEventListener("click", function (e) {
+            e.preventDefault();
+            document.body.style.backgroundImage = "url('../recursos/img/fondoFinal.png')";
+            comienzoPartida.style.display = "none";
+            containerCantidadJugadores.style.display = "none";
+            finalMostrar.style.display = "flex";
+        });
+
+        botonVolverHistorial.addEventListener("click", function (e) {
+            e.preventDefault();
+            historialMostrar.style.display = "none";
+            sala.style.display = "flex";
+        });
+
+        botonHistorial.addEventListener("click", function (e) {
+            e.preventDefault();
+            sala.style.display = "none";
+            mostrarHistorial();
+        });
+
+        function mostrarHistorial() {
+            historialMostrar.style.display = "flex";
+        }
 
         cancelarForm.addEventListener("click", function (e) {
             e.preventDefault();
@@ -242,7 +441,7 @@
         });
 
         function comenzarpartida() {
-            sala.innerHTML = "";
+            sala.style.display = "none";
             botonVolver.innerText = "Abandonar";
             botonVolver.href = "sala.html";
             if (cantidadJugadores != 1) {
