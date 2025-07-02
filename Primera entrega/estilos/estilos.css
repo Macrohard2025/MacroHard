@@ -1,181 +1,372 @@
-body,
-html {
-  height: 100%;
-  margin: 0;
-  font-family: cursive;
-  background: url('../recursos/img/FondoInicio.png') no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  position: relative;
-}
+  body,
+  html {
+    font-family: cursive;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: rgb(250, 235, 215);
+  }
 
-header {
-  background: transparent;
-  height: 5vh;
-  display: flex;
-  justify-content: end;
-  padding: 1.5rem;
-}
+  header {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.boton-login,
-.boton-registro {
-  background-color: #03920f;
-  color: white;
-  padding: 0.8rem 1.6rem;
-  border-radius: 2rem;
-  transition: background-color 0.3s ease;
-  font-size: 1rem;
-  border: none;
-}
+  header div {
+    justify-content: space-around;
+  }
 
-.boton-login:hover,
-.boton-registro:hover {
-  background-color: #002403;
-}
+  header button {
+    background-color: #03920f;
+    color: white;
+    border-radius: 2rem;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    border: none;
+    padding: 0.8rem 1.6rem;
+  }
 
-.logo-macrohard {
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
-  z-index: 10;
-}
+  .titulo-juego {
+    display: none;
+  }
 
-.logo-macrohard img {
-  max-height: 60px;
-  height: auto;
-  width: auto;
-}
+  .logo-macrohard {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
 
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 95vh;
-  width: 100%;
-}
+  .logo-macrohard img {
+    max-height: 70px;
+  }
 
-.menu-flotante {
-  position: absolute;
-  top: 10%;
-  left: 15px;
-  z-index: 5;
-  display: grid;
-  grid-template-columns: 1fr;
-  width: fit-content;
-}
+  .formulario-login,
+  .formulario-registro {
+    display: none;
+  }
 
-ul {
-  width: 100%;
-  list-style-type: none;
-}
+  main {
+    height: 75vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-li {
-  margin: 3rem;
-}
+  .menu-flotante {
+    z-index: 5;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 80dvw;
+    justify-content: center;
+    margin-right: 1rem;
+  }
 
-a {
-  display: flex;
-  flex-direction: row;
-  column-gap: 1.5rem;
-  align-items: center;
-  width: 65px;
-  height: 65px;
-  background: green;
-  border-radius: 500px;
-  overflow: hidden;
-  transition: width 300ms ease-in;
-  padding: 1.5rem 1.5rem;
-  color: white;
-  text-decoration: none;
-}
+  ul {
+    width: 100%;
+    list-style-type: none;
+  }
 
-a:hover {
-  width: 100%;
-  background-color: #002403;
-}
+  .textoPaginas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+  }
 
-i {
-  font-size: 1.3rem;
-}
+  li {
+    margin: 1rem;
+  }
 
-.menu-flotante p {
-  margin-top: 15px;
-}
+  a {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1.5rem;
+    align-items: center;
+    width: 100%;
+    height: 65px;
+    background: green;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: width 300ms ease-in;
+    padding: 1.5rem 1.5rem;
+    color: white;
+    text-decoration: none;
+  }
 
-.titulo-juego {
-  position: absolute;
-  bottom: 55%;
-  left: 30%;
-}
+  a:hover {
+    background-color: #002403;
+  }
 
-.formularios {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
-}
+  i {
+    font-size: 1.3rem;
+    width: 20%;
+  }
 
-.formulario-login {
-  background-color: rgba(255, 255, 255, 0.89);
-  padding: 2rem;
-  border-radius: 1rem;
-  width: 40vw;
-  height: 40vh;
-  display: none;
-}
+  .menu-flotante p {
+    margin-top: 15px;
+  }
 
-.formulario-registro {
-  background-color: rgba(255, 255, 255, 0.89);
-  padding: 2rem;
-  border-radius: 1rem;
-  width: 40vw;
-  height: 65vh;
-  display: none;
-}
+  .formularios {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
 
-.formularios form label {
-  display: block;
-  margin-top: 1rem;
-}
+  .formulario-login {
+    background-color: rgba(255, 255, 255, 0.89);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90vw;
+    height: 60vh;
+    display: none;
+  }
 
-.formularios form input {
-  width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.2rem;
-}
+  .formulario-registro {
+    background-color: rgba(255, 255, 255, 0.89);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 90vw;
+    height: 95vh;
+    display: none;
+  }
 
-.botonEntrar,
-.botonSalir {
-  margin-top: 1rem;
-  width: 45%;
-  padding: 0.7rem;
-  background-color: #03920f;
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-}
+  .formularios form label {
+    display: block;
+    margin-top: 1rem;
+  }
 
-.botonSalir {
-  background-color: #c0392b;
-}
+  .formularios form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.2rem;
+  }
 
-.botonEntrar:hover {
-  background-color: #026c0b;
-}
+  .botonEntrar,
+  .botonSalir {
+    width: 55%;
+    padding: 0.7rem;
+    background-color: #03920f;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
 
-.botones-formulario {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 1rem;
-  padding: 1rem;
-}
+  .botonSalir {
+    background-color: #c0392b;
+  }
+
+  .botonEntrar:hover {
+    background-color: #026c0b;
+  }
+
+  .botones-formulario {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+
+  @media (min-width: 577px) {
+
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+      background: url('../recursos/img/FondoInicio.png') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    .textoPaginas {
+      width: auto;
+    }
+
+    header {
+      height: 5vh;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    header div {
+      justify-content: end;
+    }
+
+    .boton-login,
+    .boton-registro {
+      background-color: #03920f;
+      color: white;
+      padding: 0.8rem 1.6rem;
+      border-radius: 2rem;
+      transition: background-color 0.3s ease;
+      font-size: 1rem;
+      border: none;
+      height: 5vh;
+    }
+
+    .boton-login:hover,
+    .boton-registro:hover {
+      background-color: #002403;
+    }
+
+    .logo-macrohard {
+      position: absolute;
+      bottom: 10px;
+      left: 1%;
+      z-index: 10;
+      transform: none;
+    }
+
+    .logo-macrohard img {
+      max-height: 60px;
+      height: auto;
+      width: auto;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 95vh;
+      width: 100%;
+    }
+
+    .menu-flotante {
+      position: absolute;
+      top: 10%;
+      left: 15px;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr;
+      width: fit-content;
+    }
+
+    ul {
+      width: 100%;
+      list-style-type: none;
+    }
+
+    li {
+      margin: 3rem;
+    }
+
+    a {
+      display: flex;
+      flex-direction: row;
+      column-gap: 1.5rem;
+      align-items: center;
+      width: 65px;
+      height: 65px;
+      background: green;
+      border-radius: 500px;
+      overflow: hidden;
+      transition: width 300ms ease-in;
+      padding: 1.5rem 1.5rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      width: 100%;
+      background-color: #002403;
+    }
+
+    i {
+      font-size: 1.3rem;
+    }
+
+    .menu-flotante p {
+      margin-top: 15px;
+    }
+
+    .titulo-juego {
+      display: flex;
+      position: absolute;
+      bottom: 55%;
+      left: 30%;
+    }
+
+    .formularios {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .formulario-login {
+      background-color: rgba(255, 255, 255, 0.89);
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 40vw;
+      height: 40vh;
+      display: none;
+    }
+
+    .formulario-registro {
+      background-color: rgba(255, 255, 255, 0.89);
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 40vw;
+      height: 65vh;
+      display: none;
+    }
+
+    .formularios form label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    .formularios form input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.2rem;
+    }
+
+    .botonEntrar,
+    .botonSalir {
+      margin-top: 1rem;
+      width: 45%;
+      padding: 0.7rem;
+      background-color: #03920f;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    .botonSalir {
+      background-color: #c0392b;
+    }
+
+    .botonEntrar:hover {
+      background-color: #026c0b;
+    }
+
+    .botones-formulario {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1rem;
+      padding: 1rem;
+    }
+
+  }
