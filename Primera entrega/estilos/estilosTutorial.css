@@ -3,9 +3,6 @@ html {
   height: 100%;
   margin: 0;
   font-family: cursive;
-  background: url('../recursos/img/fondoTutorial.png') no-repeat center center;
-  background-size: 90%;
-  background-attachment: fixed;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -16,7 +13,7 @@ header {
   background: transparent;
   height: 5vh;
   display: flex;
-  justify-content: end;
+  justify-content: center;
   padding: 1.5rem;
 }
 
@@ -36,46 +33,105 @@ header {
 
 .logo-macrohard {
   z-index: 10;
+  height: 10dvh;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 10px;
   display: flex;
   flex-direction: column;
 }
 
 .logo-macrohard img {
   max-height: 60px;
-  height: auto;
-  width: auto;
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
 }
 
-.logo-macrohard div {
+.botones-diapositivas {
+  position: absolute;
+  bottom: 15dvh;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 19rem;
-  margin-right: 12rem;
 }
 
-.logo-macrohard a {
+.botones-diapositivas button {
   background-color: #03920f;
   color: white;
   padding: 0.8rem 1.6rem;
   border-radius: 2rem;
   transition: background-color 0.3s ease;
-  text-decoration: none;
   font-size: 1rem;
   margin-left: 1rem;
+  border: none;
+}
+
+.botones-diapositivas button:hover {
+  background-color: #002403;
 }
 
 .pizarron {
-  color: #03920f;
-  margin-top: 12rem;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-left: 25.5rem;
-  padding: 3rem;
-  font-size: 18px;
+  background-color: #2d4d32;
+  border: 12px solid #5e3c0b;
+  border-radius: 12px;
+  height: 60dvh;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  width: 95dvw;
+  color: white;
+  font-family: cursive;
+  font-size: 20px;
+  padding: 2.5rem 3rem;
+  margin: auto;
+  margin-top: 5vh;
+  background-size: 30px 30px;
+  box-sizing: border-box;
+}
+
+.pizarron p {
+  margin: 0;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+}
+
+@media (min-width: 577px) {
+
+  body {
+    background-image: url('../recursos/img/fondoTutorial.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  .logo-macrohard {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    transform: none;
+    height: 10dvh;
+  }
+
+  .pizarron {
+    width: 60dvw;
+    height: 70dvh;
+    padding: 3rem 4rem;
+    position: absolute;
+    top: 7dvh;
+    left: 5%;
+  }
+
+  .pizarron p {
+    font-size: 2rem;
+  }
+
+  .botones-diapositivas {
+    bottom: 6dvh;
+  }
+
+  header {
+    justify-content: end;
+  }
+
 }

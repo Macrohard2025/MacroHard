@@ -19,30 +19,91 @@
   </header>
 
   <section class="pizarron">
-    <h2>¡Bienvenido!</h2>
-    <p>
-      ¡Hola! Soy el profesor <strong>Cuernitos</strong>
-      y hoy te estaré enseñando cómo jugar <strong>Draftosaurus</strong>.
-    </p>
-    <p>
-      Acomodate en tu silla, sacá el snack y preparate para explorar el maravilloso mundo de los
-      <strong>dinosaurios</strong>.
-    </p>
-    <h4><strong>¡Comencemos!</strong></h4>
+    <p id="texto-pizarron"></p>
   </section>
+
+  <article class="botones-diapositivas">
+    <button style="display: none;" id="boton-anterior">Anterior</button>
+    <button style="display: none;" id="boton-siguiente">Siguiente</button>
+  </article>
 
   <footer class="logo-macrohard">
     <img src="../recursos/img/LogoMH2.png">
-    <div class="botones-footer">
-      <a href="#">&lt;-- Anterior</a>
-      <a href="#">Siguiente --&gt;</a>
-    </div>
   </footer>
 
   <script>
-    document.querySelector(".botones-footer").addEventListener("click", function () {
-      alert("¡Hola, soy el profe Cuernitos y aprobé JavaScript! Sin embargo, todavía tengo que hacer que los botones funcionen. ¡Disculpa las molestias!");
-    });
+
+    const textoPizarron = document.getElementById('texto-pizarron');
+    const botonAnterior = document.getElementById('boton-anterior');
+    const botonSiguiente = document.getElementById('boton-siguiente');
+
+const mensajes = [
+  "¡Hola! Soy el profesor <strong>Cuernitos</strong> y hoy te estaré enseñando cómo jugar <strong>Draftosaurus</strong>. <br> Acomodate en tu silla, sacá el snack y preparate para explorar el maravilloso mundo de los <strong>dinosaurios</strong>.",
+  
+  "<strong>Partida:</strong><br>Cada partida se divide en <strong>2 rondas</strong> de <strong>6 turnos</strong> cada una. Al inicio de cada ronda, todos agarran 6 dinosaurios al azar y los mantienen ocultos.",
+
+  "<strong>Ronda 1:</strong><br>El jugador más joven lanza el dado.<br>Todos eligen 1 dinosaurio y lo colocan en su parque.<br>Solo el jugador con el dado puede ignorar su regla.<br>Luego, pasan sus dinosaurios restantes a la izquierda, y también el dado.",
+
+  "<strong>Ronda 2:</strong><br>Empieza cuando todos tienen 6 dinos en su parque.<br>Se juega igual que la ronda 1.<br><br><strong>Final de la partida:</strong><br>Se suman los puntos. Gana quien tenga más.<br>Empate: gana quien tenga menos T-Rex. Si persiste, comparten la victoria.",
+
+  "<strong>Recintos:</strong><br>Tu parque tiene <strong>6 recintos</strong>, cada uno con reglas distintas para colocar dinosaurios y obtener puntos.<br>Además, existe el <strong>río</strong>, que no es un recinto, pero también sirve para ubicar dinosaurios.",
+
+  "<strong>El Bosque de la Semejanza:</strong><br>Solo acepta dinosaurios de <strong>la misma especie</strong>.<br>Se llena de izquierda a derecha sin dejar espacios.",
+
+  "<strong>El Prado de la Diferencia:</strong><br>Solo acepta dinosaurios de <strong>especies distintas</strong>.<br>También se llena de izquierda a derecha sin espacios.",
+
+  "<strong>La Pradera del Amor:</strong><br>Permite cualquier especie.<br><strong>5 puntos</strong> por cada <strong>pareja</strong> de la misma especie.<br>Los que no formen pareja no puntúan.",
+
+  "<strong>El Trío Frondoso:</strong><br>Solo da puntos si tiene <strong>exactamente 3 dinosaurios</strong>.<br>Menos o más: <strong>0 puntos</strong>.",
+
+  "<strong>El Rey de la Selva:</strong><br>Solo 1 dinosaurio.<br><strong>7 puntos</strong> si tenés más dinos de esa especie que los demás.<br>Empate: también ganás los puntos.",
+
+  "<strong>La Isla Solitaria:</strong><br>Solo 1 dinosaurio.<br><strong>7 puntos</strong> si es el único de su especie en tu parque.<br>Si hay otro igual en tu parque: 0 puntos.",
+
+  "<strong>El Río:</strong><br>No es un recinto.<br>Cada dinosaurio en el río vale <strong>1 punto</strong>, sin importar su especie.",
+
+  "<strong>T-Rex:</strong><br>Cada recinto con al menos 1 T-Rex da <strong>1 punto extra</strong>.<br>No importa si hay más de uno, siempre suma solo 1 extra por recinto.",
+
+  "<strong>El Dado:</strong><br>En cada turno, alguien lanza el dado.<br>La regla del dado se aplica a todos <strong>menos a quien lo tiró</strong>.",
+
+  "<strong>Caras del Dado:</strong><br>• <strong>Bosque:</strong> Colocar en recintos del área de bosque.<br>• <strong>Llanura:</strong> Colocar en recintos del área de llanura.<br>• <strong>Baños:</strong> Solo a la derecha del río.<br>• <strong>Cafetería:</strong> Solo a la izquierda del río.<br>• <strong>Recinto vacío:</strong> Solo en recintos sin dinosaurios.<br>• <strong>¡Cuidado con el T-Rex!:</strong> No se puede colocar en un recinto que ya tenga T-Rex."
+];
+
+    let indiceMensaje = 0;
+
+    function actualizarTexto() {
+      textoPizarron.innerHTML = mensajes[indiceMensaje];
+      if (indiceMensaje == 0) {
+        botonAnterior.style.display = 'none';
+      } else {
+        botonAnterior.style.display = 'flex';
+      }
+      if (indiceMensaje == mensajes.length - 1) {
+        botonSiguiente.style.display = 'none';
+      } else {
+        botonSiguiente.style.display = 'flex';
+      }
+    }
+
+    function mostrarSiguienteMensaje() {
+      if (indiceMensaje < mensajes.length - 1) {
+        indiceMensaje++;
+        actualizarTexto();
+      }
+    }
+
+    function mostrarMensajeAnterior() {
+      if (indiceMensaje > 0) {
+        indiceMensaje--;
+        actualizarTexto();
+      }
+    }
+
+    botonSiguiente.addEventListener('click', mostrarSiguienteMensaje);
+    botonAnterior.addEventListener('click', mostrarMensajeAnterior);
+
+    actualizarTexto();
+
   </script>
 
 </body>
