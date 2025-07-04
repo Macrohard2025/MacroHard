@@ -22,7 +22,7 @@ No necesita instalación compleja. Solo sigue una de estas opciones:
 
 1. Descargá o cloná el repositorio por terminal:
    ```bash
-   git clone https://github.com/Macrohard2025/MacroHard/tree/main/Primera%20entrega
+   git clone https://github.com/Macrohard2025/MacroHard.git
 Ingresá a la carpeta del proyecto.
 
 2. Descargá el repositorio usando la interfaz visual de GitHub:
