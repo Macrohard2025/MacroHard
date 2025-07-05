@@ -324,12 +324,17 @@
             finalMostrar.style.display = "none";
             articlePartida.style.display = "none";
             sala.style.display = "flex";
-            document.body.style.backgroundImage = "url('../recursos/img/fondoSala.png')";
+            if (window.innerWidth > 576) {
+                document.body.style.backgroundImage = "url('../recursos/img/fondoSala.png')";
+            }
+            document.body.style.backgroundColor = "#f0f0f0";
         });
 
         botonFinalizarPartida.addEventListener("click", function (e) {
             e.preventDefault();
-            document.body.style.backgroundImage = "url('../recursos/img/fondoFinal.png')";
+            if (window.innerWidth > 576) {
+                document.body.style.backgroundImage = "url('../recursos/img/fondoFinal.png')";
+            }
             comienzoPartida.style.display = "none";
             containerCantidadJugadores.style.display = "none";
             finalMostrar.style.display = "flex";

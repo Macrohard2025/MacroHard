@@ -3,12 +3,8 @@ html {
   height: 100%;
   margin: 0;
   font-family: cursive;
-  background: url('../recursos/img/FondoSala.png') no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
   position: relative;
 }
 
@@ -42,7 +38,7 @@ header {
 }
 
 .logo-macrohard img {
-  max-height: 60px;
+  max-height: 40px;
   height: auto;
   width: auto;
 }
@@ -54,6 +50,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
 }
 
 main button {
@@ -62,10 +59,10 @@ main button {
   padding: 1.6rem 3.2rem;
   border-radius: 4rem;
   transition: background-color 0.3s ease;
-  font-size: 2rem;
+  font-size: 1rem;
   border: none;
-  margin-bottom: 2rem;
-  width: 30%;
+  margin-bottom: 1rem;
+  width: 80%;
 }
 
 main button:hover {
@@ -89,8 +86,8 @@ main button:hover {
   background-color: rgba(255, 255, 255, 0.89);
   padding: 2rem;
   border-radius: 1rem;
-  width: 30vw;
-  height: 35vh;
+  width: 95vw;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -134,7 +131,7 @@ p {
 }
 
 .pregunta {
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .aclarar {
@@ -152,12 +149,12 @@ p {
   background-color: white;
   color: #03920f;
   border: solid 1.5px #03920f;
-  font-size: 1.6rem;
+  font-size: 1rem;
   padding: 1rem 2rem;
   border-radius: 2rem;
   outline: none;
   transition: all 0.3s ease;
-  width: 60%;
+  width: 90%;
   text-align: center;
   cursor: pointer;
 }
@@ -179,22 +176,24 @@ p {
 
 .container-cantidad-jugadores {
   position: absolute;
-  top: 10px;
-  left: 35%;
+  top: 11dvh;
+  left: 50%;
+  transform: translateX(-50%);
   display: none;
   justify-content: center;
   background-color: #03920f;
   color: white;
-  width: 30dvw;
+  width: 80dvw;
   height: 8vh;
   padding: 0.8rem 1.6rem;
   border-radius: 2rem;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .comienzo-partida {
   position: absolute;
-  left: 12%;
+  left: 50%;
+  transform: translateX(-50%);
   top: 20%;
   display: none;
   flex-direction: column;
@@ -203,20 +202,20 @@ p {
 }
 
 .imagen-tablero {
-  width: 50dvw;
+  width: 80dvw;
   height: auto;
 }
 
 .bolsa-dinosaurios {
-  width: 20dvw;
+  width: 60dvw;
   height: auto;
-  margin-left: 6rem;
 }
 
 .container-partida {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .turno-jugador {
@@ -225,11 +224,11 @@ p {
   justify-content: center;
   background-color: #03920f;
   color: white;
-  width: 30dvw;
+  width: 80dvw;
   height: 8vh;
   padding: 0.8rem 1.6rem;
   border-radius: 2rem;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .container-bolsa-dinosaurios {
@@ -261,7 +260,7 @@ p {
 }
 
 .grid-dinos img {
-  width: 70%;
+  width: 40%;
   height: auto;
 }
 
@@ -301,17 +300,22 @@ p {
   align-items: center;
 }
 
+.tablero-mostrar img {
+  width: 95dvw;
+}
+
 .funcionalidades-partida {
   display: flex;
   width: 100%;
   justify-content: space-around;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .funcionalidades-partida img {
-  width: 10vw;
+  width: 35vw;
   height: auto;
+  margin-bottom: 1rem;
   margin-top: 1rem;
 }
 
@@ -334,7 +338,7 @@ p {
   border: solid 3px #03920f;
   border-radius: 2rem;
   padding: 2rem 3rem;
-  width: 35vw;
+  width: 90vw;
   max-width: 500px;
   display: flex;
   flex-direction: column;
@@ -345,7 +349,7 @@ p {
 }
 
 .formulario-jugador p {
-  font-size: 1.6rem;
+  font-size: 1rem;
   color: #03920f;
   font-weight: bold;
   text-align: center;
@@ -357,7 +361,7 @@ p {
   padding: 0.8rem 1rem;
   border-radius: 1.5rem;
   border: 1.5px solid #03920f;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-family: cursive;
   outline: none;
   transition: border-color 0.3s ease;
@@ -403,11 +407,16 @@ p {
 .historialMostrar button {
   background-color: #03920f;
   border: #03920f;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .historialMostrar table {
   border: solid 3px #03920f;
+}
+
+th,
+td {
+  font-size: 0.5rem;
 }
 
 .historialMostrar button:hover {
@@ -416,7 +425,6 @@ p {
 }
 
 .historialMostrar p {
-  font-size: 2rem;
   margin-top: 1rem;
   color: white;
   font-family: cursive;
@@ -427,10 +435,10 @@ p {
   justify-content: center;
   align-items: center;
   background-color: #03920f;
-  margin-bottom: 3rem;
+  margin: 1rem;
   border-radius: 100px;
   padding: 1rem;
-  height: 4rem;
+  height: 5dvh;
 }
 
 .finalMostrar button {
@@ -443,13 +451,18 @@ p {
   border: solid 3px #03920f;
 }
 
+.finalMostrar th,
+.finalMostrar td {
+  font-size: 1rem;
+}
+
 .finalMostrar button:hover {
   background-color: #002403;
   border: #002403;
 }
 
 .finalMostrar p {
-  font-size: 2rem;
+  font-size: 1rem;
   margin-top: 1rem;
   color: white;
   font-family: cursive;
@@ -468,4 +481,125 @@ p {
   border-radius: 100px;
   padding: 1rem;
   height: 4rem;
+}
+
+@media (min-width: 577px) {
+
+  body {
+    background: url('../recursos/img/FondoSala.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+  }
+
+  .logo-macrohard img {
+    max-height: 60px;
+  }
+
+  main button {
+    width: 30%;
+    font-size: 2rem;
+  }
+
+  .div-partida {
+    width: 35vw;
+    height: 40vh;
+    font-size: 1.5rem;
+  }
+
+  .pregunta {
+    font-size: 2rem;
+  }
+
+  .select-jugadores {
+    width: 80%;
+    font-size: 2rem;
+  }
+
+  .formulario-jugador p {
+    font-size: 2rem;
+  }
+
+  .formulario-jugador input {
+    font-size: 1.5rem;
+  }
+
+  .formulario-jugador {
+    width: 40vw;
+    max-width: none;
+  }
+
+  td,
+  th {
+    font-size: 1rem;
+  }
+
+  .tituloHistorial {
+    font-size: 2rem;
+    margin: 2rem;
+    padding: 2rem;
+  }
+
+  .container-partida {
+    flex-direction: row;
+  }
+
+  .imagen-tablero {
+    width: 40vw;
+    height: auto;
+  }
+
+  .bolsa-dinosaurios {
+    width: 25vw;
+    height: auto;
+  }
+
+  .grid-dinos img {
+    width: 50%;
+    height: auto;
+  }
+
+  .funcionalidades-partida {
+    flex-direction: row;
+    margin-top: 2rem;
+  }
+
+  .funcionalidades-partida img {
+    width: 10vw;
+    height: auto;
+  }
+
+  .tablero-mostrar img {
+    width: 80vw;
+  }
+
+  .turno-jugador {
+    width: 20vw;
+    font-size: 2rem;
+  }
+
+  .finalMostrar p {
+    font-size: 2rem;
+  }
+
+  .container-cantidad-jugadores {
+    width: 30vw;
+    font-size: 2rem;
+    top: 10px;
+  }
+
+  .finalMostrar th,
+  .finalMostrar td {
+    font-size: 2rem;
+  }
+
+  .finalMostrar button {
+    width: 20vw;
+    font-size: 2rem;
+  }
+
+  .finalMostrar p {
+    font-size: 2rem;
+  }
+
 }
