@@ -19,6 +19,7 @@ header {
 .boton-volver {
   background-color: #03920f;
   color: white;
+  font-family: cursive;
   padding: 0.8rem 1.6rem;
   border-radius: 2rem;
   transition: background-color 0.3s ease;
@@ -60,6 +61,7 @@ main button {
   border-radius: 4rem;
   transition: background-color 0.3s ease;
   font-size: 1rem;
+  font-family: cursive;
   border: none;
   margin-bottom: 1rem;
   width: 80%;
@@ -70,6 +72,19 @@ main button:hover {
 }
 
 .article-partida {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.eleccionModoDeJuego {
   display: none;
   position: fixed;
   top: 0;
@@ -96,6 +111,7 @@ main button:hover {
 
 .botones-tablero {
   flex-direction: row;
+  display: flex;
 }
 
 .boton-verano {
@@ -106,6 +122,7 @@ main button:hover {
   transition: background-color 0.3s ease;
   font-size: 1rem;
   border: none;
+  font-family: cursive;
 }
 
 .boton-verano:hover {
@@ -120,6 +137,7 @@ main button:hover {
   transition: background-color 0.3s ease;
   font-size: 1rem;
   border: none;
+  font-family: cursive;
 }
 
 .boton-invierno:hover {
@@ -142,6 +160,7 @@ p {
   border: none;
   margin-top: 1rem;
   color: #5e0303;
+  font-family: cursive;
   background-color: transparent;
 }
 
@@ -157,9 +176,11 @@ p {
   width: 90%;
   text-align: center;
   cursor: pointer;
+  font-family: cursive;
 }
 
 .boton-listo {
+  font-family: cursive;
   background-color: #03920f;
   color: white;
   padding: 0.8rem 1.6rem;
@@ -309,6 +330,7 @@ p {
   width: 100%;
   justify-content: space-around;
   align-items: center;
+  font-family: cursive;
   flex-direction: column;
 }
 
@@ -483,6 +505,25 @@ td {
   height: 4rem;
 }
 
+.jugadores-control-tableros {
+  display: none;
+  flex-direction: column;
+  margin: 2dvh;
+}
+
+.boton-jugador-control {
+  display: none;
+  font-family: cursive;
+  background-color: white;
+  color: #03920f;
+  padding: 0.8rem 1.6rem;
+  border: solid 1.5px #03920f;
+  border-radius: 2rem;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  margin-bottom: 3dvh;
+}
+
 @media (min-width: 577px) {
 
   body {
@@ -600,6 +641,10 @@ td {
 
   .finalMostrar p {
     font-size: 2rem;
+  }
+
+  .jugadores-control-tableros {
+    flex-direction: row;
   }
 
 }
