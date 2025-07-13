@@ -223,8 +223,8 @@ p {
 }
 
 .imagen-tablero {
-  width: 80dvw;
-  height: auto;
+  width: auto;
+  height: 70dvh;
 }
 
 .bolsa-dinosaurios {
@@ -319,10 +319,13 @@ p {
   z-index: 1000;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .tablero-mostrar img {
-  width: 95dvw;
+  height: 80dvh;
+  width: auto;
+  overflow: hidden;
 }
 
 .funcionalidades-partida {
@@ -339,6 +342,7 @@ p {
   height: auto;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  border: 3px solid black;
 }
 
 .container-formulario-jugador {
@@ -586,8 +590,8 @@ td {
   }
 
   .imagen-tablero {
-    width: 40vw;
-    height: auto;
+    width: auto;
+    height: 50dvh;
   }
 
   .bolsa-dinosaurios {
@@ -611,7 +615,8 @@ td {
   }
 
   .tablero-mostrar img {
-    width: 80vw;
+    height: 45vw;
+    width: auto;
   }
 
   .turno-jugador {

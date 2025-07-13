@@ -188,6 +188,9 @@ botonMulti.addEventListener("click", function (e) {
 
 imagenTablero.addEventListener("click", function () {
     tableroMostrar.style.display = "flex";
+    if (window.innerWidth <= 576) {
+        document.body.style.overflow = "hidden";
+    }
     if (tablero == 1) {
         imagenTableroMostrar.src = "../recursos/img/tableroInvierno.png";
     } else if (tablero == 2) {
@@ -197,6 +200,9 @@ imagenTablero.addEventListener("click", function () {
 
 imagenTableroMostrar.addEventListener("click", function () {
     tableroMostrar.style.display = "none";
+    if (window.innerWidth <= 576) {
+        document.body.style.overflow = "auto";
+    }
 });
 
 function comenzarpartida() {
