@@ -1,0 +1,82 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: cursive;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+header {
+  background: transparent;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.podio-img {
+  display: none;
+  max-width: 150px;
+}
+
+.boton-volver {
+  background-color: #03920f;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 2rem;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.boton-volver:hover {
+  background-color: #002403;
+}
+
+i {
+  color: #03920f;
+  font-size: 1.5rem;
+}
+
+.logo-macrohard {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  z-index: 10;
+  padding: 1rem;
+}
+
+.logo-macrohard img {
+  max-height: 60px;
+  height: auto;
+  width: auto;
+}
+
+@media (min-width: 577px) {
+
+  .podio-img {
+    display: flex;
+  }
+
+  header {
+    justify-content: end;
+  }
+
+  .logo-macrohard {
+    position: absolute;
+    left: 1%;
+    top: 10px;
+    z-index: 10;
+    transform: none;
+  }
+
+  .container-titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+}
