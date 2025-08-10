@@ -1,15 +1,9 @@
 body,
 html {
-  height: 100%;
-  margin: 0;
-  font-family: cursive;
   background: url('../../recursos/img/fondoCreditos.png') no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
-  height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
-  position: relative;
+  overflow: auto;
 }
 
 header {
@@ -18,20 +12,6 @@ header {
   display: flex;
   justify-content: center;
   padding: 1.5rem;
-}
-
-.boton-volver {
-  background-color: #03920f;
-  color: white;
-  padding: 0.8rem 1.6rem;
-  border-radius: 2rem;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-  font-size: 1rem;
-}
-
-.boton-volver:hover {
-  background-color: #002403;
 }
 
 .logo-macrohard {
@@ -71,13 +51,13 @@ li {
   color: #03920f;
 }
 
-@media (min-width: 577px) {
+@media (min-width: 993px) {
   .logo-macrohard {
     flex-direction: row;
   }
 
   .logo-macrohard img {
-    max-height: 120px;
+    max-height: 100px;
   }
 
   header {
