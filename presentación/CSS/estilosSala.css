@@ -531,7 +531,7 @@ td {
 @media (min-width: 577px) {
 
   body {
-    background: url('../recursos/img/FondoSala.png') no-repeat center center;
+    background: url('../../recursos/img/FondoSala.png') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     overflow: hidden;

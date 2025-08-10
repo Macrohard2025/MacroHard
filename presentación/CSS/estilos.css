@@ -186,7 +186,7 @@
     html {
       height: 100%;
       margin: 0;
-      background: url('../recursos/img/FondoInicio.png') no-repeat center center;
+      background: url('../../recursos/img/FondoInicio.png') no-repeat center center;
       background-size: cover;
       background-attachment: fixed;
       position: relative;

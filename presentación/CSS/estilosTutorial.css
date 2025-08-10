@@ -98,7 +98,7 @@ header {
 @media (min-width: 577px) {
 
   body {
-    background-image: url('../recursos/img/fondoTutorial.png');
+    background-image: url('../../recursos/img/fondoTutorial.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;

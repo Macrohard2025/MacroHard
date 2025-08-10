@@ -3,7 +3,7 @@ html {
   height: 100%;
   margin: 0;
   font-family: cursive;
-  background: url('../recursos/img/fondoCreditos.png') no-repeat center center;
+  background: url('../../recursos/img/fondoCreditos.png') no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
   height: 100vh;

@@ -16,7 +16,6 @@ document.querySelector(".boton-registro").addEventListener("click", function (e)
 
 document.querySelectorAll(".botonEntrar").forEach(function (boton) {
     boton.addEventListener("click", function () {
-        alert("Funcionalidad de inicio de sesión y registro aún no implementada.");
         formContainer.style.display = "none";
         formRegistro.style.display = "none";
         formLogin.style.display = "none";

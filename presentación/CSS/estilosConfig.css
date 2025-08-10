@@ -204,7 +204,7 @@
 
     body,
     html {
-      background: url('../recursos/img/fondoConfig.png') no-repeat center center;
+      background: url('../../recursos/img/fondoConfig.png') no-repeat center center;
       background-size: cover;
       background-attachment: fixed;
     }
