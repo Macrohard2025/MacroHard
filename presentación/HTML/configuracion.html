@@ -26,10 +26,9 @@
     </header>
     <article class="profile">
       <section class="profile-card">
-        <i class="bi bi-person-circle"></i>
         <article class="profile-info">
-          <h2>Juan Torres</h2>
-          <p>juancitogamer@gmail.com</p>
+          <h2 id="nombre-usuario"> Registrarse en inicio </h2>
+          <p id="mail-usuario"></p>
         </article>
       </section>
       <button id="botonEditar">Editar Perfil</button>
@@ -47,6 +46,23 @@
       </section>
     </article>
   </section>
+
+  <article class="formularios" id="formContainer">
+
+    <form class="formulario-editar" id="formEditar">
+      <label for="usuario">Nombre de usuario</label>
+      <input type="text" placeholder="Ingrese su nuevo nombre" id="inputNom" required>
+      <label for="correo">Correo electrónico</label>
+      <input type="email" placeholder="Ingrese su nuevo mail" id="inputMail" required>
+      <label for="edad">Edad</label>
+      <input type="date" id="inputEdad" required>
+      <div class="botones-formulario">
+        <button class="btn btn-success boton botonSalir">Salir</button>
+        <button class="btn btn-success boton botonConfirm">Confirmar</button>
+      </div>
+    </form>
+
+  </article>
 
   <footer class="logo-macrohard">
     <img src="../../recursos/img/LogoMH2.png">
