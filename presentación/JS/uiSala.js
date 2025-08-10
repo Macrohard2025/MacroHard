@@ -69,7 +69,7 @@ botonVolverFinal.addEventListener("click", function (e) {
     articlePartida.style.display = "none";
     sala.style.display = "flex";
     if (window.innerWidth > 576) {
-        document.body.style.backgroundImage = "url('../recursos/img/fondoSala.png')";
+        document.body.style.backgroundImage = "url('../../recursos/img/fondoSala.png')";
     }
     document.body.style.backgroundColor = "#f0f0f0";
     location.reload();
@@ -78,7 +78,7 @@ botonVolverFinal.addEventListener("click", function (e) {
 botonFinalizarPartida.addEventListener("click", function (e) {
     e.preventDefault();
     if (window.innerWidth > 576) {
-        document.body.style.backgroundImage = "url('../recursos/img/fondoFinal.png')";
+        document.body.style.backgroundImage = "url('../../recursos/img/fondoFinal.png')";
     }
     comienzoPartida.style.display = "none";
     containerCantidadJugadores.style.display = "none";
@@ -108,7 +108,7 @@ cancelarForm.addEventListener("click", function (e) {
 
 dadoImagen.addEventListener("click", function () {
     randomNumber = Math.floor(Math.random() * 6 + 1);
-    dadoImagen.src = "../recursos/img/dado/lado" + randomNumber + ".png";
+    dadoImagen.src = "../../recursos/img/dado/lado" + randomNumber + ".png";
 });
 
 bolsaBoton.addEventListener("click", function () {
@@ -192,9 +192,9 @@ imagenTablero.addEventListener("click", function () {
         document.body.style.overflow = "hidden";
     }
     if (tablero == 1) {
-        imagenTableroMostrar.src = "../recursos/img/tableroInvierno.png";
+        imagenTableroMostrar.src = "../../recursos/img/tableroInvierno.png";
     } else if (tablero == 2) {
-        imagenTableroMostrar.src = "../recursos/img/tableroVerano.png";
+        imagenTableroMostrar.src = "../../recursos/img/tableroVerano.png";
     }
 });
 
@@ -217,11 +217,11 @@ function comenzarpartida() {
     if (tablero == 1) {
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundColor = "#defafa";
-        imagenTablero.src = "../recursos/img/tableroInvierno.png";
+        imagenTablero.src = "../../recursos/img/tableroInvierno.png";
     } else if (tablero == 2) {
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundColor = "#dffade";
-        imagenTablero.src = "../recursos/img/tableroVerano.png";
+        imagenTablero.src = "../../recursos/img/tableroVerano.png";
     }
     comienzoPartida.style.display = "flex";
 }
@@ -257,11 +257,11 @@ function comenzarControlPartidas() {
     if (tablero == 1) {
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundColor = "#defafa";
-        imagenTablero.src = "../recursos/img/tableroInvierno.png";
+        imagenTablero.src = "../../recursos/img/tableroInvierno.png";
     } else if (tablero == 2) {
         document.body.style.backgroundImage = "none";
         document.body.style.backgroundColor = "#dffade";
-        imagenTablero.src = "../recursos/img/tableroVerano.png";
+        imagenTablero.src = "../../recursos/img/tableroVerano.png";
     }
     comienzoPartida.style.display = "flex";
     dadoImagen.style.display = "none";
