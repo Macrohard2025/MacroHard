@@ -16,6 +16,12 @@ html {
     background-color: #002403;
 }
 
+.logo-macrohard img {
+    max-height: 70px;
+    height: auto;
+    width: auto;
+}
+
 @media (min-width: 993px) {
 
     .boton {

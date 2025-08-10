@@ -24,10 +24,6 @@ header {
   z-index: 10;
 }
 
-.logo-macrohard img {
-  max-height: 70px;
-}
-
 main {
   height: 75vh;
   width: 100%;
