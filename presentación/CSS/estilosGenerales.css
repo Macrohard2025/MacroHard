@@ -1,0 +1,25 @@
+body,
+html {
+    font-family: cursive;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: rgb(250, 235, 215);
+}
+
+.boton {
+    background-color: #03920f;
+    border: none;
+}
+
+.boton:hover {
+    background-color: #002403;
+}
+
+@media (min-width: 993px) {
+
+    .boton {
+        border-radius: 100px;
+    }
+
+}
