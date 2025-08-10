@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Primera%20entrega/recursos/img/encabezadoREADME.png" width="1000">
+  <img src="recursos/img/encabezadoREADME.png" width="1000">
 </p>
 
 # 🦖 S.I.G.P.D.  

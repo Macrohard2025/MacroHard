@@ -1,0 +1,68 @@
+body,
+html {
+  overflow: auto;
+}
+
+header {
+  background: transparent;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.logo-macrohard {
+  display: flex;
+  align-items: center;
+  bottom: 10px;
+  left: 20px;
+  z-index: 10;
+  padding: 3rem;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo-macrohard img {
+  margin: 1rem;
+}
+
+.carta-creditos {
+  margin-top: 5rem;
+  font-size: large;
+  border: 2px solid #03920f;
+}
+
+p {
+  color: #03920f;
+}
+
+li {
+  color: #03920f;
+  font-size: 1.2rem;
+}
+
+.carta-creditos h2 {
+  color: #03920f;
+}
+
+@media (min-width: 993px) {
+
+  body,
+  html {
+    background: url('../../recursos/img/fondoCreditos.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  .logo-macrohard {
+    flex-direction: row;
+  }
+
+  .logo-macrohard img {
+    max-height: 100px;
+  }
+
+  header {
+    justify-content: end;
+  }
+}
