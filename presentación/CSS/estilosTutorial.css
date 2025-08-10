@@ -1,14 +1,3 @@
-body,
-html {
-  height: 100%;
-  margin: 0;
-  font-family: cursive;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  position: relative;
-}
-
 header {
   background: transparent;
   height: 5vh;
