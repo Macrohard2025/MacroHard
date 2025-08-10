@@ -1,8 +1,5 @@
 body,
 html {
-  background: url('../../recursos/img/fondoCreditos.png') no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
   overflow: auto;
 }
 
@@ -52,6 +49,14 @@ li {
 }
 
 @media (min-width: 993px) {
+
+  body,
+  html {
+    background: url('../../recursos/img/fondoCreditos.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
   .logo-macrohard {
     flex-direction: row;
   }
