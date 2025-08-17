@@ -35,8 +35,6 @@ Ingresá a la carpeta del proyecto.
 
     4- Abrí la carpeta Primera entrega.
 
-    5- Hacé doble clic en index.html para abrir la app en tu navegador.
-
 Abrí el archivo index.html con tu navegador.
 ¡Listo! Ya podés comenzar a jugar.
 
