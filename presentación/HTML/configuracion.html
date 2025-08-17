@@ -49,16 +49,26 @@
 
   <article class="formularios" id="formContainer">
 
-    <form class="formulario-editar" id="formEditar">
-      <label for="usuario">Nombre de usuario</label>
-      <input type="text" placeholder="Ingrese su nuevo nombre" id="inputNom" required>
-      <label for="correo">Correo electrónico</label>
-      <input type="email" placeholder="Ingrese su nuevo mail" id="inputMail" required>
-      <label for="edad">Edad</label>
-      <input type="date" id="inputEdad" required>
+    <form action="../../negocio/editarUsuario.php" method="post" class="formulario-editar" id="formEditar">
+      <label for="usuarioEditar">Nombre de usuario</label>
+      <input type="text" name="usuarioEditar" placeholder="Ingrese su nuevo nombre" id="inputNom" required>
+      <label for="correoEditar">Correo electrónico</label>
+      <input type="email" name="correoEditar" placeholder="Ingrese su nuevo mail" id="inputMail" required>
+      <label for="edadEditar">Edad</label>
+      <input type="date" name="edadEditar" id="inputEdad" required>
+      <label for="contraseñaEditar">Contraseña</label>
+      <input type="password" name="contraseñaEditar" placeholder="Ingrese su nueva contraseña" id="inputContraseña" required>
+      <label for="confirmarContraseñaEditar">Confirmar contraseña</label>
+      <input type="password" name="confirmarContraseñaEditar" placeholder="Confirme su nueva contraseña" id="inputConfirmarContraseña" required>
+      <input type="hidden" name="temaUsuario" id="inputTema" value="claro">
+      <input type="hidden" name="idiomaUsuario" id="inputIdioma" value="es">
+      <input type="hidden" name="destino" id="inputDestino" value="index">
       <div class="botones-formulario">
-        <button class="btn btn-success boton botonSalir">Salir</button>
+        <button class="btn btn-success boton botonSalir" id="botonSalir">Salir</button>
         <button class="btn btn-success boton botonConfirm">Confirmar</button>
+      </div>
+      <div class="botones-formulario" style="display: none;" id="divCerrarSesion">
+        <button class="btn btn-success boton botonCerrar" id="botonCerrar">Cerrar sesión</button>
       </div>
     </form>
 
