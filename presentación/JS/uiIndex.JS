@@ -13,9 +13,14 @@ const inputPreferenciasTema = document.getElementById("preferenciasTema");
 const inputPreferenciasIdioma = document.getElementById("preferenciasIdioma");
 
 const botonSalir = document.getElementById("botonSalir");
+const botonSalirLogin = document.getElementById("botonSalirLogin");
 const botonCerrar = document.getElementById("botonCerrar");
 
 botonSalir.addEventListener("click", function (e) {
+    e.preventDefault();
+});
+
+botonSalirLogin.addEventListener("click", function (e) {
     e.preventDefault();
 });
 
@@ -56,7 +61,6 @@ let preferenciasIdioma = "";
 
 addEventListener("DOMContentLoaded", function () {
 
-
     if (localStorage.registroUsuario) {
         const divCerrarSesion = document.getElementById("divCerrarSesion");
         divCerrarSesion.style.display = "flex";
@@ -71,6 +75,14 @@ addEventListener("DOMContentLoaded", function () {
                 contraseña = data.contraseña;
                 preferenciasTema = data.tema;
                 preferenciasIdioma = data.idioma;
+
+                localStorage.setItem("nombre", usuario);
+                localStorage.setItem("tema", preferenciasTema);
+                localStorage.setItem("idioma", preferenciasIdioma);
+
+                if (preferenciasTema === "oscuro") {
+                    aplicarTemaOscuro();
+                }
 
                 formRegistro.action = "negocio/editarUsuario.php";
 
@@ -89,15 +101,60 @@ addEventListener("DOMContentLoaded", function () {
                 inputContraseña.value = contraseña;
                 inputConfirmarContraseña.value = contraseña;
 
+                botonConfirmar.innerHTML = "Confirmar";
+
                 botonLogin.style.backgroundColor = "white";
                 botonLogin.style.color = "#03920f";
                 botonLogin.style.border = "1px solid #03920f";
                 botonLogin.innerHTML = usuario;
                 botonLogin.disabled = true;
+                if (preferenciasIdioma === "en") {
+                    aplicarIdiomaIngles();
+                }
             })
     }
 
 });
+
+function aplicarTemaOscuro() {
+    document.querySelectorAll("button").forEach(btn => {
+        btn.style.backgroundColor = "black";
+        btn.style.color = "white";
+        btn.style.border = "none";
+    });
+}
+
+const statsTexto = document.getElementById("statsTexto");
+const salaTexto = document.getElementById("salaTexto");
+const configTexto = document.getElementById("configTexto");
+const creditosTexto = document.getElementById("creditosTexto");
+const botonConfirmar = document.getElementById("botonConfirmar");
+const labelUser = document.getElementById("labelUser");
+const labelCorreo = document.getElementById("labelCorreo");
+const labelEdad = document.getElementById("labelEdad");
+const labelPsw = document.getElementById("labelPsw");
+const labelConfirmarPsw = document.getElementById("labelConfirmarPsw");
+function aplicarIdiomaIngles() {
+    botonRegistro.innerHTML = "Edit profile";
+    statsTexto.innerHTML = "Stats";
+    salaTexto.innerHTML = "PlayRoom";
+    configTexto.innerHTML = "Settings";
+    creditosTexto.innerHTML = "Credits";
+    labelUser.innerHTML = "Username";
+    labelCorreo.innerHTML = "Email";
+    labelEdad.innerHTML = "Age";
+    labelPsw.innerHTML = "Password";
+    labelConfirmarPsw.innerHTML = "Confirm Password";
+    botonSalir.innerHTML = "Exit";
+    botonConfirmar.innerHTML = "Confirm";
+    inputNombre.placeholder = "Username";
+    inputEmail.placeholder = "Email";
+    inputEdad.placeholder = "Age";
+    inputContraseña.placeholder = "Password";
+    inputConfirmarContraseña.placeholder = "Confirm Password";
+    botonCerrar.innerHTML = "Close session";
+
+}
 
 botonCerrar.addEventListener("click", function (e) {
     e.preventDefault();

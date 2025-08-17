@@ -15,13 +15,13 @@
 
   <header>
     <nav>
-      <a href="../../index.html" class="btn btn-success boton">Volver al inicio</a>
+      <a href="../../index.html" id="botonVolver" class="btn btn-success boton">Volver al inicio</a>
     </nav>
   </header>
 
   <section class="container shadow p-3 bg-light">
     <header class="header">
-      <h2>Configuración</h2>
+      <h2 id="titulo">Configuración</h2>
       <i class="bi bi-gear"></i>
     </header>
     <article class="profile">
@@ -35,7 +35,7 @@
     </article>
     <article class="settings">
       <section class="modoOscuro">
-        <label class="form-check-label" for="darkMode">Modo Oscuro</label>
+        <label class="form-check-label" id="textoOsc" for="darkMode">Modo Oscuro</label>
         <input class="form-check-input" type="checkbox" id="darkMode">
       </section>
       <section class="idioma">
@@ -50,22 +50,22 @@
   <article class="formularios" id="formContainer">
 
     <form action="../../negocio/editarUsuario.php" method="post" class="formulario-editar" id="formEditar">
-      <label for="usuarioEditar">Nombre de usuario</label>
+      <label for="usuarioEditar" id="labelUser">Nombre de usuario</label>
       <input type="text" name="usuarioEditar" placeholder="Ingrese su nuevo nombre" id="inputNom" required>
-      <label for="correoEditar">Correo electrónico</label>
+      <label for="correoEditar" id="labelCorreo">Correo electrónico</label>
       <input type="email" name="correoEditar" placeholder="Ingrese su nuevo mail" id="inputMail" required>
-      <label for="edadEditar">Edad</label>
+      <label for="edadEditar" id="labelEdad">Edad</label>
       <input type="date" name="edadEditar" id="inputEdad" required>
-      <label for="contraseñaEditar">Contraseña</label>
+      <label for="contraseñaEditar" id="labelPsw">Contraseña</label>
       <input type="password" name="contraseñaEditar" placeholder="Ingrese su nueva contraseña" id="inputContraseña" required>
-      <label for="confirmarContraseñaEditar">Confirmar contraseña</label>
+      <label for="confirmarContraseñaEditar" id="labelConfirmarPsw">Confirmar contraseña</label>
       <input type="password" name="confirmarContraseñaEditar" placeholder="Confirme su nueva contraseña" id="inputConfirmarContraseña" required>
       <input type="hidden" name="temaUsuario" id="inputTema" value="claro">
       <input type="hidden" name="idiomaUsuario" id="inputIdioma" value="es">
       <input type="hidden" name="destino" id="inputDestino" value="index">
       <div class="botones-formulario">
         <button class="btn btn-success boton botonSalir" id="botonSalir">Salir</button>
-        <button class="btn btn-success boton botonConfirm">Confirmar</button>
+        <button class="btn btn-success boton botonConfirm" id="botonConfirmar">Confirmar</button>
       </div>
       <div class="botones-formulario" style="display: none;" id="divCerrarSesion">
         <button class="btn btn-success boton botonCerrar" id="botonCerrar">Cerrar sesión</button>

@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const idioma = localStorage.getItem("idioma");
-    if (idioma === "en") {
+    if (idioma == "en") {
         enButton.style.color = 'white';
         enButton.style.backgroundColor = '#03920f';
         esButton.style.color = '#03920f';
@@ -118,6 +118,19 @@ if (localStorage.registroUsuario) {
             preferenciasTema = data.tema;
             preferenciasIdioma = data.idioma;
 
+            localStorage.setItem("nombre", usuario);
+            localStorage.setItem("tema", preferenciasTema);
+            localStorage.setItem("idioma", preferenciasIdioma);
+
+            if (preferenciasTema === "oscuro") {
+                checkbox.checked = true;
+                aplicarTemaOscuro();
+            }
+
+            if (preferenciasIdioma === "en") {
+                aplicarIdiomaIngles();
+            }
+
             nombreUsuarioContainer.innerText = nombre;
             mailUsuarioContainer.innerText = email;
 
@@ -145,4 +158,43 @@ if (localStorage.registroUsuario) {
     botonEditar.addEventListener('click', function () {
         window.location.href = '../../index.html';
     });
+}
+
+function aplicarTemaOscuro() {
+    document.querySelectorAll("button").forEach(btn => {
+        btn.style.backgroundColor = "black";
+        btn.style.color = "white";
+        btn.style.border = "none";
+    });
+}
+
+const botonVolver = document.getElementById("botonVolver");
+const textoOsc = document.getElementById("textoOsc");
+const botonConfirmar = document.getElementById("botonConfirmar");
+const labelUser = document.getElementById("labelUser");
+const labelCorreo = document.getElementById("labelCorreo");
+const labelEdad = document.getElementById("labelEdad");
+const labelPsw = document.getElementById("labelPsw");
+const labelConfirmarPsw = document.getElementById("labelConfirmarPsw");
+const titulo = document.getElementById("titulo");
+function aplicarIdiomaIngles() {
+    botonEditar.innerHTML = "Edit profile";
+    labelUser.innerHTML = "Username";
+    labelCorreo.innerHTML = "Email";
+    labelEdad.innerHTML = "Age";
+    labelPsw.innerHTML = "Password";
+    labelConfirmarPsw.innerHTML = "Confirm Password";
+    botonSalir.innerHTML = "Exit";
+    botonConfirmar.innerHTML = "Confirm";
+    inputNom.placeholder = "Username";
+    inputMail.placeholder = "Email";
+    inputEdad.placeholder = "Age";
+    inputContraseña.placeholder = "Password";
+    inputConfirmarContraseña.placeholder = "Confirm Password";
+    botonCerrar.innerHTML = "Close session";
+    titulo.innerHTML = "Settings";
+    textoOsc.innerHTML = "Dark Mode";
+    botonVolver.innerHTML = "Back to home";
+    esButton.innerHTML = "Spanish";
+    enButton.innerHTML = "English";
 }
