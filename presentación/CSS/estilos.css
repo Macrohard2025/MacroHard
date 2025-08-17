@@ -143,6 +143,16 @@ i {
   background-color: darkred;
 }
 
+.botonCerrar {
+  background-color: white;
+  border: 1px solid #03920f;
+  color: #03920f;
+}
+
+.botonCerrar:hover {
+  background-color: #00c510;
+}
+
 @media (min-width: 993px) {
 
   body,

@@ -88,31 +88,37 @@
 
   <article class="formularios" id="formContainer">
 
-    <form class="formulario-login" id="formLogin">
-      <label for="usuario">Nombre de usuario</label>
-      <input type="text" placeholder="Ingrese su nombre de usuario." required>
-      <label for="contrasena">Contraseña</label>
-      <input type="password" placeholder="Ingrese su contraseña." required>
+    <form action="negocio/validarLoginUsuario.php" method="post" class="formulario-login" id="formLogin">
+      <label for="nombreLogin">Nombre de usuario</label>
+      <input type="text" id="nombreLogin" name="nombreLogin" placeholder="Ingrese su nombre de usuario.">
+      <label for="contraseñaLogin">Contraseña</label>
+      <input type="password" id="contraseñaLogin" name="contraseñaLogin" placeholder="Ingrese su contraseña.">
       <div class="botones-formulario">
         <button class="btn btn-success boton botonSalir">Salir</button>
         <button class="btn btn-success boton botonEntrar">Entrar</button>
       </div>
     </form>
 
-    <form class="formulario-registro" id="formRegistro">
-      <label for="usuario">Nombre de usuario</label>
-      <input type="text" placeholder="Ingrese su nombre de usuario." required>
+    <form action="negocio/validarRegistroUsuario.php" method="post" class="formulario-registro" id="formRegistro">
+      <label for="nombre">Nombre de usuario</label>
+      <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre de usuario." required>
       <label for="correo">Correo electrónico</label>
-      <input type="email" placeholder="Ingrese su correo electrónico." required>
+      <input type="email" id="correo" name="correo" placeholder="Ingrese su correo electrónico." required>
       <label for="edad">Edad</label>
-      <input type="date" placeholder="Ingrese su edad." required>
-      <label for="contrasena">Contraseña</label>
-      <input type="password" placeholder="Ingrese su contraseña." required>
-      <label for="confirmar-contrasena">Confirmar contraseña</label>
-      <input type="password" placeholder="Confirme su contraseña." required>
+      <input type="date" id="edad" name="edad" placeholder="Ingrese su edad." required>
+      <label for="contraseña">Contraseña</label>
+      <input type="password" id="contraseña" name="contraseña" placeholder="Ingrese su contraseña." required>
+      <label for="confirmarContraseña">Confirmar contraseña</label>
+      <input type="password" name="confirmarContraseña" id="confirmarContraseña" placeholder="Confirme su contraseña."
+        required>
+      <input type="hidden" id="preferenciasIdioma" name="preferenciasIdioma" value="es">
+      <input type="hidden" id="preferenciasTema" name="preferenciasTema" value="claro">
       <div class="botones-formulario">
-        <button class="btn btn-success boton botonSalir">Salir</button>
+        <button class="btn btn-success boton botonSalir" id="botonSalir">Salir</button>
         <button class="btn btn-success boton botonEntrar">Registrarse</button>
+      </div>
+      <div class="botones-formulario" style="display: none;" id="divCerrarSesion">
+        <button class="btn btn-success boton botonCerrar" id="botonCerrar">Cerrar sesión</button>
       </div>
     </form>
 
