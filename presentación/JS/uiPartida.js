@@ -5,6 +5,8 @@ const dado = document.getElementById('dado');
 const tableroElemento = document.getElementById('tablero');
 const turnoJugador = document.getElementById('turnoJugador');
 const nombreJugadorElemento = document.getElementById('nombreJugador');
+const nombresString = localStorage.getItem('nombresUsuarios');
+const nombresArray = JSON.parse(nombresString);
 
 botonVolver.addEventListener('click', () => {
     if (confirm('¿Estás seguro de que deseas cancelar la partida?')) {
@@ -13,6 +15,18 @@ botonVolver.addEventListener('click', () => {
         formCancelarPartida.submit();
     }
 });
+
+function registrarJugada(dino, recinto) {
+    const recintoId = recinto.classList[1] || "rio"; 
+    console.log(`Jugador ${localStorage.jugadorActual} colocó ${dino.alt} en ${recintoId}`);
+
+    let indiceActual = nombresArray.indexOf(localStorage.jugadorActual);
+
+    let siguienteIndice = (indiceActual + 1) % nombresArray.length;
+
+    localStorage.jugadorActual = nombresArray[siguienteIndice];
+    nombreJugadorElemento.textContent = localStorage.jugadorActual;
+}
 
 
 addEventListener("DOMContentLoaded", () => {
@@ -23,7 +37,7 @@ addEventListener("DOMContentLoaded", () => {
             let modoJuego = data.modoJuego;
             let tablero = data.tablero;
             let numJugadores = data.numJugadores;
-            let jugadores = data.jugadores;
+            let idUsuario = data.jugadores;
 
             if (tablero === 'invierno') {
                 tableroElemento.style.backgroundImage = "url('../../../recursos/img/tableroInvierno.png')";
@@ -33,8 +47,6 @@ addEventListener("DOMContentLoaded", () => {
             if (modoJuego === 'Solo') {
                 turnoJugador.style.display = 'none';
             } else if (modoJuego === 'Control') {
-                const nombresString = localStorage.getItem('nombresUsuarios');
-                const nombresArray = JSON.parse(nombresString);
 
                 const colDerecha = document.querySelector('.col-derecha');
                 colDerecha.innerHTML = '';
@@ -59,7 +71,7 @@ addEventListener("DOMContentLoaded", () => {
                     colDerecha.appendChild(btn);
                 });
             } else {
-                nombreJugadorElemento.textContent = jugadores[0];
+                nombreJugadorElemento.textContent = nombresArray[0];
             }
 
             let dadoTirar = true;
