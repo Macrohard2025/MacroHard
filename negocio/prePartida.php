@@ -15,6 +15,34 @@ function validarLoginUsuario(string $nombre, string $contraseña): bool
     return buscarContraseñaUsuario(traerIdUsuario($nombre, $contraseña), $contraseña);
 }
 
+function traerEdadUsuario(int $id): DateTime
+{
+    return new DateTime('2000-01-01');
+}
+
+function ordenarJugadoresPorEdad(array $jugadores): array
+{
+    $jugadoresConInfo = [];
+
+    foreach ($jugadores as $jugadorId) {
+        if ($jugadorId != 0) {
+            $jugadoresConInfo[] = [
+                "id" => $jugadorId,
+                "nombre" => traerNombreUsuario($jugadorId),
+                "edad" => traerEdadUsuario($jugadorId)
+            ];
+        }
+    }
+
+    usort($jugadoresConInfo, function ($a, $b) {
+        return $b["edad"]->getTimestamp() <=> $a["edad"]->getTimestamp();
+    });
+
+    // Devuelve solo los nombres en orden
+    return array_column($jugadoresConInfo, "nombre");
+}
+
+
 function comenzarPartida($datos)
 {
     $modoJuego = $datos["modoJuego"];
@@ -33,15 +61,10 @@ function comenzarPartida($datos)
 
     // Aquí se simula el almacenamiento de la partida en la base de datos.
 
-    $nombresUsuarios = [];
-    foreach ($jugadores as $jugadorId) {
-        if ($jugadorId != 0) { 
-            $nombresUsuarios[] = traerNombreUsuario($jugadorId);
-        }
-    }
+    $nombresUsuarios = ordenarJugadoresPorEdad($jugadores);
 
     session_destroy();
-    echo "<script> localStorage.setItem('idPartida', " . traerIdPartida($partida->getFecha()) . "); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/partida.html'; </script>";
+    echo "<script> localStorage.setItem('idPartida', " . traerIdPartida($partida->getFecha()) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/partida.html'; </script>";
     return;
 }
 
@@ -63,15 +86,10 @@ function comenzarControl($datos)
 
     // Aquí se simula el almacenamiento de la partida en la base de datos.
 
-    $nombresUsuarios = [];
-    foreach ($jugadores as $jugadorId) {
-        if ($jugadorId != 0) { 
-            $nombresUsuarios[] = traerNombreUsuario($jugadorId);
-        }
-    }
+    $nombresUsuarios = ordenarJugadoresPorEdad($jugadores);
 
     session_destroy();
-    echo "<script> localStorage.setItem('idPartida', " . traerIdPartida($partida->getFecha()) . "); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/controlPartidas.html'; </script>";
+    echo "<script> localStorage.setItem('idPartida', " . traerIdPartida($partida->getFecha()) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/controlPartidas.html'; </script>";
     return;
 }
 

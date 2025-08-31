@@ -13,9 +13,9 @@ if (!isset($_GET['idPartida'])) {
     $partida = new Partida(
         new DateTime('2000-01-01'),
         "Multi",
-        'invierno',
+        'verano',
         '3',
-        ['Ana', 'Luis', 'María']
+        ['1', '2', '3']
     );
 
     $data = [
