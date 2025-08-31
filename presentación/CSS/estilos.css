@@ -172,12 +172,14 @@ i {
 
   .boton-index-login,
   .boton-index-registro {
-    width: 20%;
+    width: fit-content;
   }
 
   .logo-macrohard {
-    left: 10px;
+    left: 15px;
     transform: none;
+    top: 15px;
+    bottom: auto;
   }
 
   li {
@@ -186,7 +188,7 @@ i {
 
   .menu-flotante {
     position: absolute;
-    top: 10%;
+    top: 20%;
     left: 15px;
   }
 

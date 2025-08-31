@@ -76,7 +76,6 @@ addEventListener("DOMContentLoaded", function () {
                 preferenciasTema = data.tema;
                 preferenciasIdioma = data.idioma;
 
-                localStorage.setItem("nombre", usuario);
                 localStorage.setItem("tema", preferenciasTema);
                 localStorage.setItem("idioma", preferenciasIdioma);
 

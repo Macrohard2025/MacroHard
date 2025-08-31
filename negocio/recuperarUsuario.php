@@ -3,7 +3,7 @@
 include_once "Usuario.php";
 
 if (!isset($_GET['nombre'])) {
-    echo json_encode(['error' => 'No se proporcionó un nombre de usuario']);
+    echo "<script>alert('Ocurrió un error inesperado'); window.location.href = '../index.html';</script>";
     return;
 } else {
 
@@ -11,7 +11,7 @@ if (!isset($_GET['nombre'])) {
 
     // Aquí se simula la recuperación de un usuario de la base de datos.
     $usuario = new Usuario(
-        $nombre,
+        "Mario",
         'ejemplo@ejemplo.com',
         new DateTime('2000-01-01'),
         'contraseña123',
