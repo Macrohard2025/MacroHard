@@ -62,7 +62,7 @@ function comenzarPartida($datos)
     // Aquí se simula el almacenamiento de la partida en la base de datos.
 
     $nombresUsuarios = ordenarJugadoresPorEdad($jugadores);
-
+    
     session_destroy();
     echo "<script> localStorage.setItem('idPartida', " . traerIdPartida($partida->getFecha()) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/partida.html'; </script>";
     return;

@@ -1,20 +1,7 @@
 <?php
 
 include_once "Usuario.php";
-
-function validarUsuario(string $nombre, string $contraseña): bool
-{
-
-    // Verifica en la base de datos si el nombre de usuario con esa contraseña ya existe.
-
-    return true;
-}
-
-function traerIdUsuario(string $nombre, string $contraseña): int {
-
-    // Aquí se simula la obtención del ID del usuario desde la base de datos.
-    return 1;
-}
+include_once "../datos/solicitudes.php";
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
@@ -36,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
     echo "<script> window.location.href = '../index.html'; alert('Ingrese una contraseña válida.'); </script>";
     return;
-} else if (!validarUsuario($_POST["nombre"], $_POST["contraseña"])) {
+} else if (!validarUsuario($_POST["correo"])) {
 
     echo "<script> window.location.href = '../index.html'; alert('El usuario no está disponible.'); </script>";
     return;
@@ -50,9 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     $preferenciasTema = $_POST["preferenciasTema"];
 
     $usuario = new Usuario($nombre, $correo, $edad, $contraseña, $preferenciasIdioma, $preferenciasTema);
-    // Aquí se guardaría el usuario en la base de datos.
 
-    $registrado = true;
-    echo "<script> localStorage.setItem('idUsuario', " . json_encode(traerIdUsuario($usuario->getNombre(), $usuario->getContraseña())) . "); localStorage.setItem('registroUsuario', " . json_encode($registrado) . "); window.location.href = '../index.html'; </script>";
+    $registrado = guardarUsuario($usuario);
+    echo "<script> localStorage.setItem('idUsuario', " . json_encode(traerIdUsuario($usuario->getEmail())) . "); localStorage.setItem('registroUsuario', " . json_encode($registrado) . "); window.location.href = '../index.html'; </script>";
     return;
 }

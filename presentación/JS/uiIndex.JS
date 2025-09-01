@@ -3,6 +3,7 @@ const formLogin = document.getElementById("formLogin");
 const formRegistro = document.getElementById("formRegistro");
 const botonLogin = document.querySelector(".boton-index-login");
 const botonRegistro = document.querySelector(".boton-index-registro");
+const botonSalaEntrar = document.getElementById("botonSalaEntrar");
 
 const inputNombre = document.getElementById("nombre");
 const inputEmail = document.getElementById("correo");
@@ -15,6 +16,15 @@ const inputPreferenciasIdioma = document.getElementById("preferenciasIdioma");
 const botonSalir = document.getElementById("botonSalir");
 const botonSalirLogin = document.getElementById("botonSalirLogin");
 const botonCerrar = document.getElementById("botonCerrar");
+
+botonSalaEntrar.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (localStorage.registroUsuario) {
+        window.location.href = "presentación/HTML/Sala/menuSala.html";
+    } else {
+        alert("Debes iniciar sesión o registrarte para acceder a la sala.");
+    }
+});
 
 botonSalir.addEventListener("click", function (e) {
     e.preventDefault();
@@ -65,14 +75,13 @@ addEventListener("DOMContentLoaded", function () {
         const divCerrarSesion = document.getElementById("divCerrarSesion");
         divCerrarSesion.style.display = "flex";
 
-        let nombre = localStorage.nombre;
-        fetch(`negocio/recuperarUsuario.php?nombre=${encodeURIComponent(nombre)}`)
+        let idUsuario = localStorage.idUsuario;
+        fetch(`negocio/recuperarUsuario.php?idUsuario=${encodeURIComponent(idUsuario)}`)
             .then(res => res.json())
             .then(data => {
                 usuario = data.nombre;
                 email = data.email;
                 edad = data.edad;
-                contraseña = data.contraseña;
                 preferenciasTema = data.tema;
                 preferenciasIdioma = data.idioma;
 
@@ -97,8 +106,16 @@ addEventListener("DOMContentLoaded", function () {
                 inputNombre.value = usuario;
                 inputEmail.value = email;
                 inputEdad.value = edad;
-                inputContraseña.value = contraseña;
-                inputConfirmarContraseña.value = contraseña;
+
+                labelPsw.innerHTML = "Nueva contraseña";
+                labelConfirmarPsw.innerHTML = "Confirmar nueva contraseña";
+                inputContraseña.placeholder = "Nueva contraseña";
+                inputConfirmarContraseña.placeholder = "Confirmar nueva contraseña";
+
+                document.getElementById("idUsuario").value = idUsuario;
+
+                inputContraseña.required = false;
+                inputConfirmarContraseña.required = false;
 
                 botonConfirmar.innerHTML = "Confirmar";
 

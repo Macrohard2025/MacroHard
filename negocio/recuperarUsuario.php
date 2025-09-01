@@ -1,33 +1,27 @@
 <?php
+include_once "../datos/solicitudes.php";
 
-include_once "Usuario.php";
-
-if (!isset($_GET['nombre'])) {
+if (!isset($_GET['idUsuario'])) {
     echo "<script>alert('Ocurrió un error inesperado'); window.location.href = '../index.html';</script>";
     return;
-} else {
+}
 
-    $nombre = $_GET['nombre'];
+$idUsuario = (int) $_GET['idUsuario'];
 
-    // Aquí se simula la recuperación de un usuario de la base de datos.
-    $usuario = new Usuario(
-        "Mario",
-        'ejemplo@ejemplo.com',
-        new DateTime('2000-01-01'),
-        'contraseña123',
-        'es',
-        'claro'
-    );
+$usuario = recuperarUsuarioPorId($idUsuario);
 
-    $data = [
-        'nombre' => $usuario->getNombre(),
-        'email' => $usuario->getEmail(),
-        'edad' => $usuario->getEdad()->format('Y-m-d'),
-        'contraseña' => $usuario->getContraseña(),
-        'tema' => $usuario->getPreferenciasTema(),
-        'idioma' => $usuario->getPreferenciasIdioma()
-    ];
-
-    echo json_encode($data);
+if (!$usuario) {
+    echo "<script>alert('Usuario no encontrado'); window.location.href = '../index.html';</script>";
     return;
 }
+
+$data = [
+    'nombre' => $usuario->getNombre(),
+    'email' => $usuario->getEmail(),
+    'edad' => $usuario->getEdad()->format('Y-m-d'),
+    'idioma' => $usuario->getPreferenciasIdioma(),
+    'tema' => $usuario->getPreferenciasTema()
+];
+
+echo json_encode($data);
+?>

@@ -57,18 +57,22 @@
       <label for="edadEditar" id="labelEdad">Edad</label>
       <input type="date" name="edadEditar" id="inputEdad" required>
       <label for="contraseñaEditar" id="labelPsw">Contraseña</label>
-      <input type="password" name="contraseñaEditar" placeholder="Ingrese su nueva contraseña" id="inputContraseña" required>
+      <input type="password" name="contraseñaEditar" placeholder="Ingrese su nueva contraseña" id="inputContraseña"
+        required>
       <label for="confirmarContraseñaEditar" id="labelConfirmarPsw">Confirmar contraseña</label>
-      <input type="password" name="confirmarContraseñaEditar" placeholder="Confirme su nueva contraseña" id="inputConfirmarContraseña" required>
+      <input type="password" name="confirmarContraseñaEditar" placeholder="Confirme su nueva contraseña"
+        id="inputConfirmarContraseña" required>
       <input type="hidden" name="temaUsuario" id="inputTema" value="claro">
       <input type="hidden" name="idiomaUsuario" id="inputIdioma" value="es">
-      <input type="hidden" name="destino" id="inputDestino" value="index">
+      <input type="hidden" name="destino" id="inputDestino" value="config">
+      <input type="hidden" id="idUsuario" name="idUsuario" value="">
       <div class="botones-formulario">
         <button class="btn btn-success boton botonSalir" id="botonSalir">Salir</button>
         <button class="btn btn-success boton botonConfirm" id="botonConfirmar">Confirmar</button>
       </div>
       <div class="botones-formulario" style="display: none;" id="divCerrarSesion">
         <button class="btn btn-success boton botonCerrar" id="botonCerrar">Cerrar sesión</button>
+        <button class="btn btn-success boton botonSalir" id="botonBorrar">Borrar perfil</button>
       </div>
     </form>
 
