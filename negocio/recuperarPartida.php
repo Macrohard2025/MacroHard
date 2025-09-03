@@ -1,6 +1,7 @@
 <?php
 
 include_once "Partida.php";
+include_once "../datos/solicitudes.php";
 
 if (!isset($_GET['idPartida'])) {
     echo "<script>alert('Ocurrió un error inesperado'); window.location.href = '../presentación/HTML/Sala/menuSala.html';</script>";
@@ -9,14 +10,7 @@ if (!isset($_GET['idPartida'])) {
 
     $idPartida = $_GET['idPartida'];
 
-    // Aquí se simula la recuperación de una partida de la base de datos.
-    $partida = new Partida(
-        new DateTime('2000-01-01'),
-        "Multi",
-        'verano',
-        '3',
-        ['1', '2', '3']
-    );
+    $partida = recuperarPartida($idPartida);
 
     $data = [
         'fecha' => $partida->getFecha()->format('Y-m-d'),

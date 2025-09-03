@@ -2,6 +2,76 @@
 
 include_once "conexión.php";
 include_once "Usuario.php";
+include_once "Partida.php";
+
+function eliminarPartida(int $idPartida): bool
+{
+    global $conn;
+
+    $queryJugadores = "DELETE FROM Jugadores WHERE fk_partida_id = $idPartida";
+    mysqli_query($conn, $queryJugadores);
+
+    $queryPartida = "DELETE FROM Partida WHERE partida_id = $idPartida";
+    return mysqli_query($conn, $queryPartida);
+}
+
+function recuperarPartida(int $idPartida): Partida
+{
+    global $conn;
+
+    $query = "SELECT * FROM Partida WHERE partida_id = $idPartida";
+    $result = mysqli_query($conn, $query);
+
+    $row = mysqli_fetch_assoc($result);
+
+    $queryJugadores = "SELECT fk_usuario_id FROM Jugadores WHERE fk_partida_id = $idPartida";
+    $resultJugadores = mysqli_query($conn, $queryJugadores);
+
+    $jugadores = [];
+    while ($jugador = mysqli_fetch_assoc($resultJugadores)) {
+        $jugadores[] = (int)$jugador['fk_usuario_id'];
+    }
+
+    return new Partida(
+        new DateTime($row['fecha']),
+        $row['modo_juego'],
+        $row['tablero'],
+        (int)$row['cantidad_jugadores'],
+        $jugadores
+    );
+}
+
+function guardarPartida(object $partida): int
+{
+    global $conn;
+
+    $modoJuego = $partida->getModoJuego();
+    $tablero = $partida->getTablero();
+    $numJugadores = $partida->getNumJugadores();
+    $jugadores = $partida->getJugadores();
+    $fechaInicio = $partida->getFecha()->format('Y-m-d H:i:s');
+
+    $queryPartida = "
+        INSERT INTO Partida (fecha, cantidad_jugadores, modo_juego, tablero)
+        VALUES ('$fechaInicio', $numJugadores, '$modoJuego', '$tablero')
+    ";
+
+    mysqli_query($conn, $queryPartida);
+
+    $partidaId = mysqli_insert_id($conn);
+
+    foreach ($jugadores as $jugadorId) {
+        if ($jugadorId != null && $jugadorId != 0) {
+            $queryJugador = "
+                INSERT INTO Jugadores (fk_partida_id, fk_usuario_id, puntos_totales)
+                VALUES ($partidaId, $jugadorId, 0)
+            ";
+            mysqli_query($conn, $queryJugador);
+        }
+    }
+
+    return $partidaId;
+}
 
 function validarUsuario(string $email): bool
 {
@@ -29,10 +99,15 @@ function traerIdUsuario(string $email): int
 
     $query = "SELECT usuario_id FROM Usuario WHERE email='$email'";
     $result = mysqli_query($conn, $query);
-    $row = mysqli_fetch_assoc($result);
 
-    return (int)$row['usuario_id'];
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return (int)$row['usuario_id'];
+    }
+
+    return 0;
 }
+
 
 function guardarUsuario(Usuario $usuario): bool
 {
