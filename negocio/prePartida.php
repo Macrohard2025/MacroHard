@@ -1,23 +1,28 @@
 <?php
 
 include_once "Partida.php";
+include_once "../datos/solicitudes.php";
+include_once "Usuario.php";
+date_default_timezone_set('America/Montevideo');
 session_start();
 
 function traerNombreUsuario(int $id): string
 {
-    // Aquí se simula la obtención del nombre de usuario desde la base de datos.
-    return "Usuario" . $id;
+    $datosUsuario = recuperarUsuarioPorId($id);
+    $nombreUsuario = $datosUsuario->getNombre(); 
+    return "$nombreUsuario";
 }
 
-function validarLoginUsuario(string $nombre, string $contraseña): bool
+function validarLoginUsuario(string $correo, string $contraseña): bool
 {
-    include_once "Usuario.php";
-    return buscarContraseñaUsuario(traerIdUsuario($nombre, $contraseña), $contraseña);
+    return buscarContraseñaUsuario(traerIdUsuario($correo), $contraseña);
 }
 
 function traerEdadUsuario(int $id): DateTime
 {
-    return new DateTime('2000-01-01');
+    $datosUsuario = recuperarUsuarioPorId($id);
+    $edadUsuario = $datosUsuario->getEdad(); 
+    return new DateTime($edadUsuario->format('Y-m-d'));
 }
 
 function ordenarJugadoresPorEdad(array $jugadores): array
@@ -38,7 +43,6 @@ function ordenarJugadoresPorEdad(array $jugadores): array
         return $b["edad"]->getTimestamp() <=> $a["edad"]->getTimestamp();
     });
 
-    // Devuelve solo los nombres en orden
     return array_column($jugadoresConInfo, "nombre");
 }
 
@@ -59,12 +63,10 @@ function comenzarPartida($datos)
 
     $partida = new Partida(new DateTime(), $modoJuego, $tablero, $numJugadores, $jugadores);
 
-    // Aquí se simula el almacenamiento de la partida en la base de datos.
-
     $nombresUsuarios = ordenarJugadoresPorEdad($jugadores);
-
+    
     session_destroy();
-    echo "<script> localStorage.setItem('idPartida', " . traerIdPartida($partida->getFecha()) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/partida.html'; </script>";
+    echo "<script> localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/partida.html'; </script>";
     return;
 }
 
@@ -84,19 +86,11 @@ function comenzarControl($datos)
 
     $partida = new Partida(new DateTime(), $modoJuego, $tablero, $numJugadores, $jugadores);
 
-    // Aquí se simula el almacenamiento de la partida en la base de datos.
-
     $nombresUsuarios = ordenarJugadoresPorEdad($jugadores);
 
     session_destroy();
-    echo "<script> localStorage.setItem('idPartida', " . traerIdPartida($partida->getFecha()) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/controlPartidas.html'; </script>";
+    echo "<script> localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/controlPartidas.html'; </script>";
     return;
-}
-
-function traerIdPartida(DateTime $fecha): int
-{
-    // Aquí se simula la obtención del ID de la partida en la base de datos.
-    return 1;
 }
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -121,15 +115,15 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             comenzarControl($datos);
         }
     }
-} else if (isset($_POST["nombreLogin2"]) && !isset($_SESSION["form_data"]["jugador2"])) {
+} else if (isset($_POST["correoLogin2"]) && !isset($_SESSION["form_data"]["jugador2"])) {
 
-    if (!validarLoginUsuario($_POST["nombreLogin2"], $_POST["contraseñaLogin2"])) {
+    if (!validarLoginUsuario($_POST["correoLogin2"], $_POST["contraseñaLogin2"])) {
         echo "<script> alert('Credenciales inválidas. Ingrese de nuevo.'); </script>";
         pedirCredenciales(2);
         return;
     } else {
         $datos = $_SESSION["form_data"];
-        $datos["jugador2"] = $_POST["nombreLogin2"];
+        $datos["jugador2"] = traerIdUsuario($_POST["correoLogin2"]);
 
         if ($datos["numJugadores"] != "2") {
             $_SESSION["form_data"] = $datos;
@@ -145,15 +139,15 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             }
         }
     }
-} else if (isset($_POST["nombreLogin3"]) && !isset($_SESSION["form_data"]["jugador3"])) {
+} else if (isset($_POST["correoLogin3"]) && !isset($_SESSION["form_data"]["jugador3"])) {
 
-    if (!validarLoginUsuario($_POST["nombreLogin3"], $_POST["contraseñaLogin3"])) {
+    if (!validarLoginUsuario($_POST["correoLogin3"], $_POST["contraseñaLogin3"])) {
         echo "<script> alert('Credenciales inválidas. Ingrese de nuevo.'); </script>";
         pedirCredenciales(3);
         return;
     } else {
         $datos = $_SESSION["form_data"];
-        $datos["jugador3"] = $_POST["nombreLogin3"];
+        $datos["jugador3"] = traerIdUsuario($_POST["correoLogin3"]);
 
         if ($datos["numJugadores"] != "3") {
             $_SESSION["form_data"] = $datos;
@@ -168,15 +162,15 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             }
         }
     }
-} else if (isset($_POST["nombreLogin4"]) && !isset($_SESSION["form_data"]["jugador4"])) {
+} else if (isset($_POST["correoLogin4"]) && !isset($_SESSION["form_data"]["jugador4"])) {
 
-    if (!validarLoginUsuario($_POST["nombreLogin4"], $_POST["contraseñaLogin4"])) {
+    if (!validarLoginUsuario($_POST["correoLogin4"], $_POST["contraseñaLogin4"])) {
         echo "<script> alert('Credenciales inválidas. Ingrese de nuevo.'); </script>";
         pedirCredenciales(4);
         return;
     } else {
         $datos = $_SESSION["form_data"];
-        $datos["jugador4"] = $_POST["nombreLogin4"];
+        $datos["jugador4"] = traerIdUsuario($_POST["correoLogin4"]);
 
         if ($datos["numJugadores"] != "4") {
             $_SESSION["form_data"] = $datos;
@@ -190,15 +184,15 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
             }
         }
     }
-} else if (isset($_POST["nombreLogin5"]) && !isset($_SESSION["form_data"]["jugador5"])) {
+} else if (isset($_POST["correoLogin5"]) && !isset($_SESSION["form_data"]["jugador5"])) {
 
-    if (!validarLoginUsuario($_POST["nombreLogin5"], $_POST["contraseñaLogin5"])) {
+    if (!validarLoginUsuario($_POST["correoLogin5"], $_POST["contraseñaLogin5"])) {
         echo "<script> alert('Credenciales inválidas. Ingrese de nuevo.'); </script>";
         pedirCredenciales(5);
         return;
     } else {
         $datos = $_SESSION["form_data"];
-        $datos["jugador5"] = $_POST["nombreLogin5"];
+        $datos["jugador5"] = traerIdUsuario($_POST["correoLogin5"]);
         if ($datos["modoJuego"] != "Control") {
             comenzarPartida($datos);
         } else {
@@ -234,8 +228,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         <section class="container-formulario-jugador" id="formulario-jugador">
             <form action="" method="post" class="formulario-jugador">
                 <p>Ingrese los datos del jugador <?php echo $necesidad; ?></p>
-                <input type="text" name="nombreLogin<?php echo $necesidad; ?>" id="nombre-jugador" placeholder="Nombre de usuario" required>
-                <input type="text" name="contraseñaLogin<?php echo $necesidad; ?>" id="contrasena-jugador" placeholder="Contraseña" required>
+                <input type="email" name="correoLogin<?php echo $necesidad; ?>" id="nombre-jugador" placeholder="Correo electrónico" required>
+                <input type="password" name="contraseñaLogin<?php echo $necesidad; ?>" id="contrasena-jugador" placeholder="Contraseña" required>
                 <button type="submit" class="btn btn-primary">Unirse a la sala</button>
                 <button id="cancelar-form" type="button" onclick="window.location.href='cancelarSala.php'" class="btn btn-secondary">Cancelar</button>
             </form>

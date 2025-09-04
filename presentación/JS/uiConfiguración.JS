@@ -3,6 +3,20 @@ const botonEditar = document.getElementById('botonEditar');
 const botonCerrar = document.getElementById('botonCerrar');
 const inputTema = document.getElementById('inputTema');
 const inputDestino = document.getElementById('inputDestino');
+const botonBorrar = document.getElementById('botonBorrar');
+
+botonBorrar.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (confirm("¿Está seguro de que desea borrar su perfil? Esta acción no se puede deshacer.")) {
+    let idUsuario = localStorage.idUsuario;    
+    localStorage.clear();
+    fetch(`../../negocio/borrarUsuario.php?idUsuario=${encodeURIComponent(idUsuario)}`)
+        .then(res => res.text())
+        .then(data => {
+            window.location.reload();
+        });
+    }
+});
 
 const checkbox = document.getElementById('darkMode');
 checkbox.addEventListener("change", function () {
@@ -107,8 +121,8 @@ if (localStorage.registroUsuario) {
     const divCerrarSesion = document.getElementById("divCerrarSesion");
     divCerrarSesion.style.display = "flex";
 
-    let nombre = localStorage.nombre;
-    fetch(`../../negocio/recuperarUsuario.php?nombre=${encodeURIComponent(nombre)}`)
+    let idUsuario = localStorage.idUsuario;
+    fetch(`../../negocio/recuperarUsuario.php?idUsuario=${encodeURIComponent(idUsuario)}`)
         .then(res => res.json())
         .then(data => {
             usuario = data.nombre;
@@ -118,7 +132,6 @@ if (localStorage.registroUsuario) {
             preferenciasTema = data.tema;
             preferenciasIdioma = data.idioma;
 
-            localStorage.setItem("nombre", usuario);
             localStorage.setItem("tema", preferenciasTema);
             localStorage.setItem("idioma", preferenciasIdioma);
 
@@ -131,7 +144,7 @@ if (localStorage.registroUsuario) {
                 aplicarIdiomaIngles();
             }
 
-            nombreUsuarioContainer.innerText = nombre;
+            nombreUsuarioContainer.innerText = usuario;
             mailUsuarioContainer.innerText = email;
 
             botonEditar.addEventListener('click', function () {
@@ -150,8 +163,7 @@ if (localStorage.registroUsuario) {
             inputNom.value = usuario;
             inputMail.value = email;
             inputEdad.value = edad;
-            inputContraseña.value = contraseña;
-            inputConfirmarContraseña.value = contraseña;
+            document.getElementById("idUsuario").value = idUsuario;
         })
 } else {
     botonEditar.innerText = "Volver al inicio";

@@ -12,22 +12,30 @@ botonVolver.addEventListener('click', () => {
     if (confirm('¿Estás seguro de que deseas cancelar la partida?')) {
         const idPartida = localStorage.getItem('idPartida');
         idPartidaInput.value = idPartida;
+        registroUsuario = localStorage.getItem('registroUsuario');
+        idUsuarioLocal = localStorage.getItem('idUsuario');
+        idioma = localStorage.getItem('idioma');
+        tema = localStorage.getItem('tema');
+        localStorage.clear();
+        localStorage.setItem('registroUsuario', registroUsuario);
+        localStorage.setItem('idUsuario', idUsuarioLocal);
+        localStorage.setItem('idioma', idioma);
+        localStorage.setItem('tema', tema);
         formCancelarPartida.submit();
     }
 });
 
 function registrarJugada(dino, recinto) {
-    const recintoId = recinto.classList[1] || "rio"; 
+    const modoJuego = localStorage.getItem('modoJuego');
+    const recintoId = recinto.classList[1] || "rio";
     console.log(`Jugador ${localStorage.jugadorActual} colocó ${dino.alt} en ${recintoId}`);
-
     let indiceActual = nombresArray.indexOf(localStorage.jugadorActual);
-
     let siguienteIndice = (indiceActual + 1) % nombresArray.length;
-
-    localStorage.jugadorActual = nombresArray[siguienteIndice];
+    if (modoJuego === 'Multi') {
+        localStorage.jugadorActual = nombresArray[siguienteIndice];
+    }
     nombreJugadorElemento.textContent = localStorage.jugadorActual;
 }
-
 
 addEventListener("DOMContentLoaded", () => {
     fetch(`../../../negocio/recuperarPartida.php?idPartida=${encodeURIComponent(localStorage.getItem('idPartida'))}`)
@@ -38,6 +46,8 @@ addEventListener("DOMContentLoaded", () => {
             let tablero = data.tablero;
             let numJugadores = data.numJugadores;
             let idUsuario = data.jugadores;
+
+            localStorage.setItem('modoJuego', modoJuego);
 
             if (tablero === 'invierno') {
                 tableroElemento.style.backgroundImage = "url('../../../recursos/img/tableroInvierno.png')";
@@ -52,16 +62,15 @@ addEventListener("DOMContentLoaded", () => {
                 colDerecha.innerHTML = '';
 
                 colDerecha.style.display = 'grid';
-                colDerecha.style.gridTemplateColumns = 'repeat(2, 1fr)'; 
+                colDerecha.style.gridTemplateColumns = 'repeat(2, 1fr)';
                 colDerecha.style.gridAutoRows = 'auto';
-                colDerecha.style.gap = '10px'; 
+                colDerecha.style.gap = '10px';
                 colDerecha.style.justifyItems = 'center';
-
                 nombreJugadorElemento.textContent = nombresArray[0];
 
                 nombresArray.forEach((nombre, index) => {
                     const btn = document.createElement('button');
-                    btn.classList.add('btn', 'btn-success', 'boton'); 
+                    btn.classList.add('btn', 'btn-success', 'boton');
                     btn.textContent = nombre;
 
                     btn.addEventListener('click', () => {

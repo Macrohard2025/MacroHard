@@ -1,8 +1,6 @@
 <?php 
 
-function eliminarPartida($idPartida) {
-    // Aquí iría la lógica para eliminar la partida de la base de datos.
-}
+include_once "../datos/solicitudes.php";
 
 if (isset($_POST['idPartida'])) {
     $idPartida = $_POST['idPartida'];

@@ -81,14 +81,3 @@ class Usuario
     }
 }
 
-function buscarContraseñaUsuario(string $id, string $contraseña): bool
-{
-    // Aquí se simula la verificación de la contraseña del usuario en la base de datos.
-    return true;
-}
-
-function traerIdUsuario(string $nombre, string $contraseña): int
-{
-    // Aquí se simula la obtención del ID del usuario en la base de datos.
-    return 1;
-}

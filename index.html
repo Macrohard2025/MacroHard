@@ -24,7 +24,7 @@
     <section class="menu-flotante">
       <ul>
         <li>
-          <a href="presentación/HTML/Sala/menuSala.html" class="menu-boton">
+          <a id="botonSalaEntrar" class="menu-boton">
             <span>
               <i class="bi bi-controller"></i>
             </span>
@@ -89,8 +89,8 @@
   <article class="formularios" id="formContainer">
 
     <form action="negocio/validarLoginUsuario.php" method="post" class="formulario-login" id="formLogin">
-      <label for="nombreLogin">Nombre de usuario</label>
-      <input type="text" id="nombreLogin" name="nombreLogin" placeholder="Ingrese su nombre de usuario.">
+      <label for="nombreLogin">Correo electrónico</label>
+      <input type="email" id="nombreLogin" name="correoLogin" placeholder="Ingrese su correo electrónico.">
       <label for="contraseñaLogin">Contraseña</label>
       <input type="password" id="contraseñaLogin" name="contraseñaLogin" placeholder="Ingrese su contraseña.">
       <div class="botones-formulario">
@@ -101,7 +101,7 @@
 
     <form action="negocio/validarRegistroUsuario.php" method="post" class="formulario-registro" id="formRegistro">
       <label for="nombre" id="labelUser">Nombre de usuario</label>
-      <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre de usuario." required>
+      <input type="text" name="nombre" maxlength="10" id="nombre" placeholder="Ingrese su nombre de usuario." required>
       <label for="correo" id="labelCorreo">Correo electrónico</label>
       <input type="email" id="correo" name="correo" placeholder="Ingrese su correo electrónico." required>
       <label for="edad" id="labelEdad">Edad</label>
@@ -113,6 +113,8 @@
         required>
       <input type="hidden" id="preferenciasIdioma" name="preferenciasIdioma" value="es">
       <input type="hidden" id="preferenciasTema" name="preferenciasTema" value="claro">
+      <input type="hidden" id="idUsuario" name="idUsuario" value="">
+      <input type="hidden" name="destino" id="destino" value="index">
       <div class="botones-formulario">
         <button class="btn btn-success boton botonSalir" id="botonSalir">Salir</button>
         <button class="btn btn-success boton botonEntrar" id="botonConfirmar">Registrarse</button>
