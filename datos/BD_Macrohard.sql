@@ -67,9 +67,11 @@ INSERT INTO Recinto (nombre, puntos) VALUES
 ('Rey', 7),
 ('Isla', 7),
 ('Rio', 1),
-('Trex', 1),
 ('BosqueInv', 2),
 ('Puente', 6),
 ('Puesto', 2),
 ('Piramide', 2),
 ('Cuarentena', 0);
+
+INSERT INTO Usuario (nombre, contrasena, email, fecha_nacimiento) VALUES
+('admin', 'admin123', 'admin@macrohard.com', '1990-01-01');

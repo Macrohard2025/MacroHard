@@ -153,6 +153,10 @@ i {
   background-color: #00c510;
 }
 
+.dashboard {
+  display: none;
+}
+
 @media (min-width: 993px) {
 
   body,
@@ -188,12 +192,13 @@ i {
 
   .menu-flotante {
     position: absolute;
-    top: 20%;
+    top: 10%;
     left: 15px;
   }
 
   li {
     margin: 3dvh;
+    max-width: fit-content;
   }
 
   a {
@@ -215,7 +220,7 @@ i {
     display: flex;
     position: absolute;
     bottom: 55%;
-    left: 30%;
+    left: 20%;
   }
 
 
