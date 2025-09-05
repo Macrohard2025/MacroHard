@@ -4,6 +4,28 @@ include_once "conexión.php";
 include_once "Usuario.php";
 include_once "Partida.php";
 
+function obtenerElementos(): array
+{
+    global $conn;
+
+    $sql = "
+        SELECT nombre, puntos, 'dinosaurio' AS tipo FROM Dinosaurio
+        UNION ALL
+        SELECT nombre, puntos, 'recinto' AS tipo FROM Recinto
+    ";
+
+    $resultado = mysqli_query($conn, $sql);
+
+    $elementos = [];
+    if ($resultado && mysqli_num_rows($resultado) > 0) {
+        while ($fila = mysqli_fetch_assoc($resultado)) {
+            $elementos[] = $fila;
+        }
+    }
+
+    return $elementos;
+}
+
 function eliminarPartida(int $idPartida): bool
 {
     global $conn;
@@ -187,4 +209,34 @@ function eliminarUsuario(int $idUsuario): void
     mysqli_query($conn, $query);
 }
 
-?>
+function partidaExiste(int $idPartida): bool
+{
+    global $conn;
+
+    $idPartida = (int)$idPartida;
+    $query = "SELECT COUNT(*) FROM Partida WHERE partida_id = $idPartida";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        $row = mysqli_fetch_row($result);
+        return $row[0] > 0;
+    }
+
+    return false;
+}
+
+function usuarioExiste(int $idUsuario): bool
+{
+    global $conn;
+
+    $idUsuario = (int)$idUsuario;
+    $query = "SELECT COUNT(*) FROM usuario WHERE usuario_id = $idUsuario";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        $row = mysqli_fetch_row($result);
+        return $row[0] > 0;
+    }
+
+    return false;
+}

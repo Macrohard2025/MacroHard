@@ -7,6 +7,13 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
     echo "<script> window.location.href = '../index.html'; alert('Método no permitido.'); </script>";
     return;
+} else if ($_POST["correoLogin"] == "admin@macrohard.com" && $_POST["contraseñaLogin"] == "admin123") {
+
+    $correo = $_POST["correoLogin"];
+    
+    $registrado = true;
+    echo "<script> localStorage.setItem('idUsuario', " . json_encode(traerIdUsuario($correo)) . "); localStorage.setItem('registroUsuario', " . json_encode($registrado) . "); window.location.href = '../index.html'; </script>";
+    return;
 } else if (!isset($_POST["correoLogin"])) {
 
     echo "<script> window.location.href = '../index.html'; alert('Ingrese un correo válido.'); </script>";

@@ -2,13 +2,43 @@
 include_once "../datos/solicitudes.php";
 
 if (!isset($_GET['idUsuario'])) {
-    echo "Error: No se proporcionó el ID de usuario.";
+    echo "<script>alert('Debe ingresar un ID o correo.'); window.history.back();</script>";
     exit;
 }
 
-$idUsuario = (int) $_GET['idUsuario'];
+$input = trim($_GET['idUsuario']);
+$idUsuario = null;
+
+if (is_numeric($input)) {
+    $idUsuario = (int) $input;
+} else if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
+
+    $idUsuario = traerIdUsuario($input);
+    if (!$idUsuario) {
+        echo "<script>alert('No se encontró un usuario con ese correo.'); window.history.back();</script>";
+        exit;
+    }
+} else {
+    echo "<script>alert('Formato inválido. Ingrese un ID numérico o un correo válido.'); window.history.back();</script>";
+    exit;
+}
+
+if ($idUsuario === 1) {
+    echo "<script>alert('No se puede eliminar el usuario administrador.'); window.history.back();</script>";
+    exit;
+}
+
+if (!usuarioExiste($idUsuario)) {
+    echo "<script>alert('No se encontró el usuario especificado.'); window.history.back();</script>";
+    exit;
+}
 
 eliminarUsuario($idUsuario);
 
-echo "<script> alert('Usuario eliminado');</script>";
-?>
+if (isset($_GET['origen']) && $_GET['origen'] === 'dashboard') {
+    echo "<script>alert('Usuario eliminado correctamente'); window.location.href='../presentación/HTML/dashboard.html';</script>";
+    exit;
+} else {
+    echo "<script>alert('Usuario eliminado correctamente'); localStorage.clear(); window.location.href='../presentación/HTML/configuracion.html';</script>";
+    exit;
+}

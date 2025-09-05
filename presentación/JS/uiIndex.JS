@@ -17,6 +17,8 @@ const botonSalir = document.getElementById("botonSalir");
 const botonSalirLogin = document.getElementById("botonSalirLogin");
 const botonCerrar = document.getElementById("botonCerrar");
 
+const botonDashboard = document.getElementById("dashboard");
+
 botonSalaEntrar.addEventListener("click", function (e) {
     e.preventDefault();
     if (localStorage.registroUsuario) {
@@ -70,6 +72,10 @@ let preferenciasTema = "";
 let preferenciasIdioma = "";
 
 addEventListener("DOMContentLoaded", function () {
+
+    if (localStorage.idUsuario == 1) {
+        botonDashboard.style.display = "flex";
+    }
 
     if (localStorage.registroUsuario) {
         const divCerrarSesion = document.getElementById("divCerrarSesion");
