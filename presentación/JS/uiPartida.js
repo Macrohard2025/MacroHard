@@ -25,17 +25,12 @@ botonVolver.addEventListener('click', () => {
     }
 });
 
-function registrarJugada(dino, recinto) {
-    const modoJuego = localStorage.getItem('modoJuego');
-    const recintoId = recinto.classList[1] || "rio";
-    console.log(`Jugador ${localStorage.jugadorActual} colocó ${dino.alt} en ${recintoId}`);
-    let indiceActual = nombresArray.indexOf(localStorage.jugadorActual);
-    let siguienteIndice = (indiceActual + 1) % nombresArray.length;
-    if (modoJuego === 'Multi') {
-        localStorage.jugadorActual = nombresArray[siguienteIndice];
-    }
-    nombreJugadorElemento.textContent = localStorage.jugadorActual;
-}
+const recinto1 = document.querySelector(".recinto-1");
+const recinto2 = document.querySelector(".recinto-2");
+const recinto3 = document.querySelector(".recinto-3");
+const recinto4 = document.querySelector(".recinto-4");
+const recinto5 = document.querySelector(".recinto-5");
+const recinto6 = document.querySelector(".recinto-6");
 
 addEventListener("DOMContentLoaded", () => {
     fetch(`../../../negocio/recuperarPartida.php?idPartida=${encodeURIComponent(localStorage.getItem('idPartida'))}`)
@@ -49,9 +44,24 @@ addEventListener("DOMContentLoaded", () => {
 
             localStorage.setItem('modoJuego', modoJuego);
 
-            if (tablero === 'invierno') {
+            if (tablero === 'Invierno') {
                 tableroElemento.style.backgroundImage = "url('../../../recursos/img/tableroInvierno.png')";
                 document.body.style.backgroundColor = "#9bceffff";
+                recinto6.style.display = "none";
+                recinto1.classList.add("El-Bosque-Ordenado");
+                recinto2.classList.add("El-puente-de-los-enamorados");
+                recinto3.classList.add("El-puesto-de-observación");
+                recinto4.classList.add("La-pirámide");
+                recinto5.classList.add("Zona-de-cuarentena");
+            }
+
+            if (tablero === "Verano") {
+                recinto1.classList.add("El-bosque-de-la-semejanza");
+                recinto2.classList.add("El-trío-frondoso");
+                recinto3.classList.add("La-pradera-del-amor");
+                recinto4.classList.add("El-rey-de-la-selva");
+                recinto5.classList.add("El-prado-de-la-diferencia");
+                recinto6.classList.add("La-isla-solitaria");
             }
 
             if (modoJuego === 'Solo') {
@@ -86,12 +96,16 @@ addEventListener("DOMContentLoaded", () => {
             let dadoTirar = true;
             if (modoJuego === 'Solo' || modoJuego === 'Multi') {
                 dado.addEventListener('click', () => {
-                    if (dadoTirar) {
+                    if (dadoTirar && localStorage.getItem("dado") == null) {
                         const lado = Math.floor(Math.random() * 6) + 1;
-                        dado.src = `../../../recursos/img/dado/lado${lado}.png`;
                         dadoTirar = false;
+                        localStorage.setItem("dado", lado);
+                        dado.src = `../../../recursos/img/dado/lado${lado}.png`;
                     }
                 });
+                if (localStorage.getItem("dado") != null) {
+                    dado.src = `../../../recursos/img/dado/lado${localStorage.getItem("dado")}.png`;
+                }
             }
 
         })

@@ -9,7 +9,7 @@ session_start();
 function traerNombreUsuario(int $id): string
 {
     $datosUsuario = recuperarUsuarioPorId($id);
-    $nombreUsuario = $datosUsuario->getNombre(); 
+    $nombreUsuario = $datosUsuario->getNombre();
     return "$nombreUsuario";
 }
 
@@ -21,7 +21,7 @@ function validarLoginUsuario(string $correo, string $contraseña): bool
 function traerEdadUsuario(int $id): DateTime
 {
     $datosUsuario = recuperarUsuarioPorId($id);
-    $edadUsuario = $datosUsuario->getEdad(); 
+    $edadUsuario = $datosUsuario->getEdad();
     return new DateTime($edadUsuario->format('Y-m-d'));
 }
 
@@ -46,6 +46,26 @@ function ordenarJugadoresPorEdad(array $jugadores): array
     return array_column($jugadoresConInfo, "nombre");
 }
 
+function ordenarIdsPorEdad(array $jugadores): array
+{
+    $jugadoresConInfo = [];
+
+    foreach ($jugadores as $jugadorId) {
+        if ($jugadorId != 0) {
+            $jugadoresConInfo[] = [
+                "id" => $jugadorId,
+                "nombre" => traerNombreUsuario($jugadorId),
+                "edad" => traerEdadUsuario($jugadorId)
+            ];
+        }
+    }
+
+    usort($jugadoresConInfo, function ($a, $b) {
+        return $b["edad"]->getTimestamp() <=> $a["edad"]->getTimestamp();
+    });
+
+    return array_column($jugadoresConInfo, "id");
+}
 
 function comenzarPartida($datos)
 {
@@ -64,9 +84,10 @@ function comenzarPartida($datos)
     $partida = new Partida(new DateTime(), $modoJuego, $tablero, $numJugadores, $jugadores);
 
     $nombresUsuarios = ordenarJugadoresPorEdad($jugadores);
-    
+    $idsUsuarios = ordenarIdsPorEdad($jugadores);
+
     session_destroy();
-    echo "<script> localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/partida.html'; </script>";
+    echo "<script> localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "');  window.location.href = '../presentación/HTML/Sala/partida.html'; </script>";
     return;
 }
 
@@ -87,9 +108,10 @@ function comenzarControl($datos)
     $partida = new Partida(new DateTime(), $modoJuego, $tablero, $numJugadores, $jugadores);
 
     $nombresUsuarios = ordenarJugadoresPorEdad($jugadores);
+    $idsUsuarios = ordenarIdsPorEdad($jugadores);
 
     session_destroy();
-    echo "<script> localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/controlPartidas.html'; </script>";
+    echo "<script> localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/controlPartidas.html'; </script>";
     return;
 }
 

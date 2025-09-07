@@ -72,9 +72,17 @@
         <section class="col-derecha"></section>
     </main>
 
+    <form id="formRegistrarJugada" action="../../../negocio/registrarJugada.php" method="post">
+        <input type="hidden" name="jugador" id="jugadorActualInput">
+        <input type="hidden" name="dino" id="dinoSeleccionadoInput">
+        <input type="hidden" name="recinto" id="recintoSeleccionadoInput">
+        <input type="hidden" name="partida" id="idPartidaInput2">
+    </form>
+
     <script src="../../JS/uiPartida.js"></script>
     <script src="../../JS/dragDrop.js"></script>
     <script src="../../JS/clickPoint.js"></script>
+    <script src="../../JS/logicaPartida.js"></script>
 </body>
 
 </html>

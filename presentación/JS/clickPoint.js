@@ -14,15 +14,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     recintos.forEach(recinto => {
         recinto.addEventListener("click", () => {
-            const recintoSeleccionado = recinto.classList[1] || "rio";
+            const recintoSeleccionado = recinto.classList[2] || "rio";
             if (dinoSeleccionado && confirm(`Estás colocando ${dinoSeleccionado.alt} en ${recintoSeleccionado}. ¿Confirmar?`)) {
-                recinto.appendChild(dinoSeleccionado);
-
-                const jugador = localStorage.getItem("jugadorActual");
-                registrarJugada(dinoSeleccionado, recinto, jugador);
-
-                dinoSeleccionado.classList.remove("seleccionado");
-                dinoSeleccionado = null;
+                if (localStorage.getItem("dado") != null || localStorage.getItem("modoJuego") == "Control") {
+                    recinto.appendChild(dinoSeleccionado);
+                    const jugador = localStorage.getItem("jugadorActual");
+                    registrarJugada(dinoSeleccionado.alt, recinto);
+                    dinoSeleccionado.classList.remove("seleccionado");
+                    dinoSeleccionado = null;
+                } else {
+                    alert("Debe tirar el dado primero");
+                }
             }
         });
     });

@@ -19,12 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             const idDino = e.dataTransfer.getData("idDino");
             const dino = document.getElementById(idDino);
-            const recintoSeleccionado = recinto.classList[1] || "rio";
+            const recintoSeleccionado = recinto.classList[2] || "rio";
             if (dino && confirm(`Estás colocando ${dino.alt} en ${recintoSeleccionado}. ¿Confirmar?`)) {
-                recinto.appendChild(dino);
-
-                const jugador = localStorage.getItem("jugadorActual");
-                registrarJugada(dino, recinto, jugador);
+                if (localStorage.getItem("dado") != null || localStorage.getItem("modoJuego") == "Control") {
+                    recinto.appendChild(dino);
+                    dinoRegistrar = dino.alt;
+                    registrarJugada(dinoRegistrar, recinto);
+                } else {
+                    alert("Debe tirar el dado primero");
+                }
             }
         });
     });

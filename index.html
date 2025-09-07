@@ -100,9 +100,9 @@
 
     <form action="negocio/validarLoginUsuario.php" method="post" class="formulario-login" id="formLogin">
       <label for="nombreLogin">Correo electrónico</label>
-      <input type="email" id="nombreLogin" name="correoLogin" placeholder="Ingrese su correo electrónico.">
+      <input required type="email" id="nombreLogin" name="correoLogin" placeholder="Ingrese su correo electrónico.">
       <label for="contraseñaLogin">Contraseña</label>
-      <input type="password" id="contraseñaLogin" name="contraseñaLogin" placeholder="Ingrese su contraseña.">
+      <input required type="password" id="contraseñaLogin" name="contraseñaLogin" placeholder="Ingrese su contraseña.">
       <div class="botones-formulario">
         <button class="btn btn-success boton botonSalir" id="botonSalirLogin">Salir</button>
         <button class="btn btn-success boton botonEntrar">Entrar</button>
@@ -115,7 +115,7 @@
       <label for="correo" id="labelCorreo">Correo electrónico</label>
       <input type="email" id="correo" name="correo" placeholder="Ingrese su correo electrónico." required>
       <label for="edad" id="labelEdad">Edad</label>
-      <input type="date" id="edad" name="edad" placeholder="Ingrese su edad." required>
+      <input type="date" min="1900-01-01" max="2018-01-01" id="edad" name="edad" placeholder="Ingrese su edad." required>
       <label for="contraseña" id="labelPsw">Contraseña</label>
       <input type="password" id="contraseña" name="contraseña" placeholder="Ingrese su contraseña." required>
       <label for="confirmarContraseña" id="labelConfirmarPsw">Confirmar contraseña</label>

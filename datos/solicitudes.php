@@ -30,6 +30,9 @@ function eliminarPartida(int $idPartida): bool
 {
     global $conn;
 
+    $queryJugadas = "DELETE FROM Jugadas WHERE fk_partida_id = $idPartida";
+    mysqli_query($conn, $queryJugadas);
+
     $queryJugadores = "DELETE FROM Jugadores WHERE fk_partida_id = $idPartida";
     mysqli_query($conn, $queryJugadores);
 
@@ -239,4 +242,14 @@ function usuarioExiste(int $idUsuario): bool
     }
 
     return false;
+}
+
+function registrarJugada(int $jugador, int $partida, string $dino, string $recinto): void
+{
+    global $conn;
+
+    $sql = "INSERT INTO Jugadas (fk_partida_id, fk_usuario_id, fk_recinto_nombre, fk_dino_nombre)
+            VALUES ($partida, $jugador, '$recinto', '$dino')";
+
+    mysqli_query($conn, $sql);
 }
