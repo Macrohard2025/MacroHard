@@ -87,7 +87,7 @@ function comenzarPartida($datos)
     $idsUsuarios = ordenarIdsPorEdad($jugadores);
 
     session_destroy();
-    echo "<script> localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "');  window.location.href = '../presentación/HTML/Sala/partida.html'; </script>";
+    echo "<script> localStorage.setItem('turnoActual', '1'); localStorage.setItem('rondaActual', '1'); localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "');  window.location.href = '../presentación/HTML/Sala/partida.html'; </script>";
     return;
 }
 

@@ -7,6 +7,16 @@ const turnoJugador = document.getElementById('turnoJugador');
 const nombreJugadorElemento = document.getElementById('nombreJugador');
 const nombresString = localStorage.getItem('nombresUsuarios');
 const nombresArray = JSON.parse(nombresString);
+const idsString = localStorage.getItem('idsUsuarios');
+const idsArray = JSON.parse(idsString);
+const botonFinalizarControl = document.getElementById("botonFinalizarControl");
+
+if (botonFinalizarControl) {
+    botonFinalizarControl.addEventListener("click", (e) => {
+        e.preventDefault();
+        finalizarPartida();
+    });
+}
 
 botonVolver.addEventListener('click', () => {
     if (confirm('¿Estás seguro de que deseas cancelar la partida?')) {
@@ -68,7 +78,7 @@ addEventListener("DOMContentLoaded", () => {
                 turnoJugador.style.display = 'none';
             } else if (modoJuego === 'Control') {
 
-                const colDerecha = document.querySelector('.col-derecha');
+                const colDerecha = document.querySelector('.col-derechaDiv');
                 colDerecha.innerHTML = '';
 
                 colDerecha.style.display = 'grid';
@@ -76,7 +86,7 @@ addEventListener("DOMContentLoaded", () => {
                 colDerecha.style.gridAutoRows = 'auto';
                 colDerecha.style.gap = '10px';
                 colDerecha.style.justifyItems = 'center';
-                nombreJugadorElemento.textContent = nombresArray[0];
+                nombreJugadorElemento.textContent = localStorage.jugadorActual;
 
                 nombresArray.forEach((nombre, index) => {
                     const btn = document.createElement('button');
@@ -85,12 +95,14 @@ addEventListener("DOMContentLoaded", () => {
 
                     btn.addEventListener('click', () => {
                         nombreJugadorElemento.textContent = nombre;
+                        localStorage.jugadorActual = nombre;
+                        localStorage.idJugadorActual = idsArray[index];
                     });
 
                     colDerecha.appendChild(btn);
                 });
             } else {
-                nombreJugadorElemento.textContent = nombresArray[0];
+                nombreJugadorElemento.textContent = localStorage.jugadorActual;
             }
 
             let dadoTirar = true;

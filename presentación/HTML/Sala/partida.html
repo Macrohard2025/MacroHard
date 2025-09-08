@@ -32,7 +32,7 @@
                 <h2>Elige un dinosaurio</h2>
                 <div class="dinos">
                     <div>
-                        <img id="plesio" src="../../../recursos/img/dinos/plesiosaurio.png" alt="Plesiosaurio">
+                        <img id="plesio" src="../../../recursos/img/dinos/plesiosaurio.png" alt="Plesio">
                     </div>
                     <div>
                         <img id="T-Rex" src="../../../recursos/img/dinos/tiranosaurioRex.png" alt="T-Rex">
@@ -68,8 +68,8 @@
 
         <section class="col-derecha">
             <div class="panel-derecho">
-                <h3><span class="titulo-verde">Ronda 1</span></h3>
-                <p>Turno 1</p>
+                <h3><span id="rondaActualElemento" class="titulo-verde">Ronda 1</span></h3>
+                <p id="turnoActualElemento">Turno 1</p>
                 <p id="turnoJugador">Turno de <span id="nombreJugador" class="jugador"></span></p>
                 <img id="dado" class="dado" src="../../../recursos/img/dado/lado0.png">
             </div>
@@ -81,6 +81,7 @@
         <input type="hidden" name="dino" id="dinoSeleccionadoInput">
         <input type="hidden" name="recinto" id="recintoSeleccionadoInput">
         <input type="hidden" name="partida" id="idPartidaInput2">
+        <input type="hidden" name="destino" value="partida">
     </form>
 
     <script src="../../JS/uiPartida.js"></script>

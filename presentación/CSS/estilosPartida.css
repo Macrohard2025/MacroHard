@@ -201,6 +201,12 @@ header {
     right: 1%;
 }
 
+.botonFinalizar {
+    display: flex;
+    justify-content: center;
+    margin-top: 5dvh;
+}
+
 @media (min-width: 993px) {
 
     body,
