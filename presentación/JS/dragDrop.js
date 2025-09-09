@@ -21,13 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const dino = document.getElementById(idDino);
             const recintoSeleccionado = recinto.classList[2] || "rio";
             if (dino && confirm(`Estás colocando ${dino.alt} en ${recintoSeleccionado}. ¿Confirmar?`)) {
-                if (localStorage.getItem("dado") != null || localStorage.getItem("modoJuego") == "Control") {
-                    recinto.appendChild(dino);
-                    dinoRegistrar = dino.alt;
-                    registrarJugada(dinoRegistrar, recinto);
-                } else {
-                    alert("Debe tirar el dado primero");
-                }
+                recinto.appendChild(dino);
+                dinoRegistrar = dino.alt;
+                registrarJugada(dinoRegistrar, recinto);
             }
         });
     });

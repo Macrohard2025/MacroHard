@@ -1,4 +1,12 @@
 function registrarJugada(dino, recinto) {
+
+    fetch("../../../negocio/borrarDino.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `jugadorId=${localStorage.idJugadorActual}&dino=${encodeURIComponent(dino)}&idPartida=${localStorage.idPartida}`
+    })
+        .catch(err => console.error("Error borrando dino:", err));
+
     const recintoId = recinto.classList[2];
 
     const mapaRecintos = {
@@ -44,6 +52,7 @@ function pasarTurno() {
 
     if (localStorage.modoJuego === "Solo") {
         if (turnoActual < 6) {
+            fetch(`../../../negocio/rotarManos.php?idPartida=${localStorage.idPartida}`);
             localStorage.turnoActual = turnoActual + 1;
         } else if (rondaActual === 1) {
             localStorage.turnoActual = 1;
@@ -60,6 +69,8 @@ function pasarTurno() {
             localStorage.jugadorIndex = 0;
 
             localStorage.turnoActual = turnoActual + 1;
+
+            fetch(`../../../negocio/rotarManos.php?idPartida=${localStorage.idPartida}`);
 
             if (localStorage.turnoActual > 6) {
                 if (rondaActual === 1) {

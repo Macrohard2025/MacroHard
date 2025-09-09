@@ -1,6 +1,10 @@
 <?php 
 include_once "../datos/solicitudes.php";
 
+if (session_status() === PHP_SESSION_ACTIVE) {
+    session_destroy();
+}
+
 if (!isset($_POST['idPartida']) || empty(trim($_POST['idPartida']))) {
     echo "<script>alert('Debe ingresar un ID de partida.'); window.history.back();</script>";
     exit;
