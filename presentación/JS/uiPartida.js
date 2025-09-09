@@ -97,6 +97,7 @@ addEventListener("DOMContentLoaded", () => {
                         nombreJugadorElemento.textContent = nombre;
                         localStorage.jugadorActual = nombre;
                         localStorage.idJugadorActual = idsArray[index];
+                        recuperarTablero();
                     });
 
                     colDerecha.appendChild(btn);
@@ -121,4 +122,57 @@ addEventListener("DOMContentLoaded", () => {
             }
 
         })
+    recuperarTablero();
 });
+
+function recuperarTablero() {
+    fetch(`../../../negocio/recuperarTablero.php?jugador=${encodeURIComponent(localStorage.idJugadorActual)}&partida=${encodeURIComponent(localStorage.idPartida)}`)
+        .then(res => res.json())
+        .then(jugadas => {
+
+            document.querySelectorAll("[class*='recinto-']").forEach(r => r.innerHTML = "");
+
+            jugadas.forEach(jugada => {
+
+                const dinoImg = document.createElement("img");
+                dinoImg.src = `../../../recursos/img/dinos/${mapaDinos[jugada.dinosaurio]}`;
+                dinoImg.alt = jugada.dinosaurio;
+                dinoImg.classList.add("dino-tablero");
+
+                const recintoClase = mapaRecintos[jugada.recinto];
+                const recintoElemento = document.querySelector(`.${CSS.escape(recintoClase)}`);
+
+
+                if (recintoElemento) {
+                    recintoElemento.appendChild(dinoImg);
+                } else {
+                    window.location.reload();
+                }
+            });
+        })
+        .catch(err => console.error("Error recuperando tablero:", err));
+}
+
+const mapaDinos = {
+    "T-Rex": "tiranosaurioRex.png",
+    "Trike": "triceratops.png",
+    "Ptera": "pteranodon.png",
+    "Bronto": "brontosaurio.png",
+    "Estego": "estegosaurio.png",
+    "Plesio": "plesiosaurio.png"
+};
+
+const mapaRecintos = {
+    "BosqueInv": "El-Bosque-Ordenado",
+    "Puente": "El-puente-de-los-enamorados",
+    "Puesto": "El-puesto-de-observación",
+    "Piramide": "La-pirámide",
+    "Cuarentena": "Zona-de-cuarentena",
+    "Bosque": "El-bosque-de-la-semejanza",
+    "Trio": "El-trío-frondoso",
+    "Amor": "La-pradera-del-amor",
+    "Rey": "El-rey-de-la-selva",
+    "Prado": "El-prado-de-la-diferencia",
+    "Isla": "La-isla-solitaria",
+    "Rio": "Rio"
+};

@@ -253,3 +253,56 @@ function registrarJugada(int $jugador, int $partida, string $dino, string $recin
 
     mysqli_query($conn, $sql);
 }
+
+function traerJugadas(int $idJugador, int $idPartida): array
+{
+    global $conn;
+
+    $jugadas = [];
+
+    $sql = "
+        SELECT fk_recinto_nombre AS recinto, 
+               fk_dino_nombre AS dinosaurio
+        FROM Jugadas
+        WHERE fk_usuario_id = $idJugador
+          AND fk_partida_id = $idPartida
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($fila = mysqli_fetch_assoc($result)) {
+            $jugadas[] = $fila;
+        }
+    }
+
+    return $jugadas;
+}
+
+function recuperarResultados(int $idPartida): array
+{
+    global $conn;
+
+    $resultados = [];
+
+    $sql = "
+        SELECT u.nombre, j.puntos_totales AS puntos
+        FROM Jugadores j
+        JOIN Usuario u ON j.fk_usuario_id = u.usuario_id
+        WHERE j.fk_partida_id = $idPartida
+        ORDER BY j.puntos_totales DESC
+    ";
+
+    $query = mysqli_query($conn, $sql);
+
+    if ($query && mysqli_num_rows($query) > 0) {
+        while ($fila = mysqli_fetch_assoc($query)) {
+            $resultados[] = [
+                "nombre" => $fila['nombre'],
+                "puntos" => (int)$fila['puntos']
+            ];
+        }
+    }
+
+    return $resultados;
+}
