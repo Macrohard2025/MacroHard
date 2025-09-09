@@ -19,12 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             const idDino = e.dataTransfer.getData("idDino");
             const dino = document.getElementById(idDino);
-            const recintoSeleccionado = recinto.classList[1] || "rio";
+            const recintoSeleccionado = recinto.classList[2] || "rio";
             if (dino && confirm(`Estás colocando ${dino.alt} en ${recintoSeleccionado}. ¿Confirmar?`)) {
                 recinto.appendChild(dino);
-
-                const jugador = localStorage.getItem("jugadorActual");
-                registrarJugada(dino, recinto, jugador);
+                dinoRegistrar = dino.alt;
+                registrarJugada(dinoRegistrar, recinto);
             }
         });
     });

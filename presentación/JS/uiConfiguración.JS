@@ -101,7 +101,7 @@ esButton.addEventListener('click', function () {
 const nombreUsuarioContainer = document.getElementById('nombre-usuario');
 const mailUsuarioContainer = document.getElementById('mail-usuario');
 
-const botonesForm = document.querySelectorAll('.botones-formulario button');
+const botonesForm = document.querySelectorAll('#divCerrarSesion button');
 
 const inputNom = document.getElementById('inputNom');
 const inputMail = document.getElementById('inputMail');
@@ -157,6 +157,11 @@ if (localStorage.registroUsuario) {
                     location.reload();
                 });
             });
+
+            botonSalir.addEventListener('click', function () {
+                    formContainer.style.display = "none";
+                    location.reload();
+                });
 
             formEditar.action = "../../negocio/editarUsuario.php";
 

@@ -48,14 +48,6 @@ botonRegistro.addEventListener("click", function (e) {
     formRegistro.style.display = "block";
 });
 
-document.querySelectorAll(".botonEntrar").forEach(function (boton) {
-    boton.addEventListener("click", function () {
-        formContainer.style.display = "none";
-        formRegistro.style.display = "none";
-        formLogin.style.display = "none";
-    });
-});
-
 document.querySelectorAll(".botonSalir").forEach(function (boton) {
     boton.addEventListener("click", function () {
         formContainer.style.display = "none";
