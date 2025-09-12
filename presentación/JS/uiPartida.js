@@ -151,7 +151,6 @@ function recuperarTablero() {
                 if (recintoElemento) {
                     recintoElemento.appendChild(dinoImg);
                 } else {
-                    console.log("No se encontró " + recintoElemento);
                     window.location.reload();
                 }
             });
