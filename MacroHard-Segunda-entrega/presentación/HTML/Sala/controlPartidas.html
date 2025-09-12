@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partida en curso</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../CSS/estilosGenerales.css">
+    <link rel="stylesheet" href="../../CSS/estilosPartida.css">
+    <link rel="icon" href="../../../recursos/img/draftosaurus-logo.png" type="image/png">
+</head>
+
+<body>
+
+    <footer class="logo-macrohard">
+        <img src="../../../recursos/img/LogoMH2.png">
+    </footer>
+
+    <header>
+        <nav>
+            <button type="button" class="btn btn-success boton" id="boton-volver">Cancelar partida</button>
+            <form id="formCancelarPartida" action="../../../negocio/cancelarPartida.php" method="post">
+                <input type="hidden" id="idPartidaInput" name="idPartida">
+            </form>
+        </nav>
+    </header>
+
+    <main class="layout-partida">
+        <section class="col-izquierda">
+            <section class="grid-dinos">
+                <h2>Elige un dinosaurio</h2>
+                <div class="dinos">
+                    <div>
+                        <img id="plesio" src="../../../recursos/img/dinos/plesiosaurio.png" alt="Plesio">
+                    </div>
+                    <div>
+                        <img id="T-Rex" src="../../../recursos/img/dinos/tiranosaurioRex.png" alt="T-Rex">
+                    </div>
+                    <div>
+                        <img id="Trike" src="../../../recursos/img/dinos/triceratops.png" alt="Trike">
+                    </div>
+                    <div>
+                        <img id="Ptera" src="../../../recursos/img/dinos/pteranodon.png" alt="Ptera">
+                    </div>
+                    <div>
+                        <img id="Bronto" src="../../../recursos/img/dinos/brontosaurio.png" alt="Bronto">
+                    </div>
+                    <div>
+                        <img id="Estego" src="../../../recursos/img/dinos/estegosaurio.png" alt="Estego">
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="col-centro">
+            <div class="titulo-tablero">
+                <h3>Tablero de <span id="nombreJugador" class="jugador"></span></h3>
+            </div>
+            <article id="tablero" class="tablero">
+                <div class="rio"></div>
+
+                <div class="recinto recinto-1"></div>
+                <div class="recinto recinto-2"></div>
+                <div class="recinto recinto-3"></div>
+                <div class="recinto recinto-4"></div>
+                <div class="recinto recinto-5"></div>
+                <div class="recinto recinto-6"></div>
+            </article>
+        </section>
+
+        <section class="col-derecha">
+            <div class="col-derechaDiv"></div>
+            <div class="botonFinalizar">
+                <button id="botonFinalizarControl" class="btn btn-danger">Finalizar partida</button>
+            </div>
+        </section>
+    </main>
+
+    <form id="formRegistrarJugada" action="../../../negocio/registrarJugada.php" method="post">
+        <input type="hidden" name="jugador" id="jugadorActualInput">
+        <input type="hidden" name="dino" id="dinoSeleccionadoInput">
+        <input type="hidden" name="recinto" id="recintoSeleccionadoInput">
+        <input type="hidden" name="partida" id="idPartidaInput2">
+        <input type="hidden" name="destino" value="controlPartidas">
+    </form>
+
+    <script src="../../JS/uiPartida.js"></script>
+    <script src="../../JS/dragDrop.js"></script>
+    <script src="../../JS/clickPoint.js"></script>
+    <script src="../../JS/logicaPartida.js"></script>
+</body>
+
+</html>

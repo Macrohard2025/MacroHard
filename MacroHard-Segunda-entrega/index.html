@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Draftosaurus</title>
+  <link rel="icon" href="recursos/img/draftosaurus-logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="presentación/CSS/estilosGenerales.css">
+  <link rel="stylesheet" href="presentación/CSS/estilos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<body>
+
+  <header class="py-3">
+    <button class="btn btn-success boton boton-index-login">Iniciar sesión</button>
+    <button class="btn btn-success boton boton-index-registro">Registrarse</button>
+  </header>
+
+  <main>
+
+    <section class="menu-flotante">
+      <ul>
+        <li>
+          <a id="botonSalaEntrar" class="menu-boton">
+            <span>
+              <i class="bi bi-controller"></i>
+            </span>
+            <div class="textoPaginas">
+              <p id="salaTexto">Sala de juego</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="presentación/HTML/estadisticas.html" class="menu-boton">
+            <span>
+              <i class="bi bi-file-earmark-bar-graph-fill"></i>
+            </span>
+            <div class="textoPaginas">
+              <p id="statsTexto">Estadísticas</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="presentación/HTML/tutorial.html" class="menu-boton">
+            <span>
+              <i class="bi bi-journal-text"></i>
+            </span>
+            <div class="textoPaginas">
+              <p>Tutorial</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="presentación/HTML/configuracion.html" class="menu-boton">
+            <span>
+              <i class="bi bi-sliders"></i>
+            </span>
+            <div class="textoPaginas">
+              <p id="configTexto">Configuración</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="presentación/HTML/creditos.html" class="menu-boton">
+            <span>
+              <i class="bi bi-suit-heart-fill"></i>
+            </span>
+            <div class="textoPaginas">
+              <p id="creditosTexto">Créditos</p>
+            </div>
+          </a>
+        </li>
+        <li class="dashboard" id="dashboard">
+          <a href="presentación/HTML/dashboard.html" class="menu-boton">
+            <span>
+              <i class="bi bi-person-fill"></i>
+            </span>
+            <div class="textoPaginas">
+              <p>Dashboard</p>
+            </div>
+          </a>
+        </li>        
+      </ul>
+    </section>
+
+    <section class="titulo-juego">
+      <img src="recursos/img/draftosaurus-logo2.png">
+    </section>
+
+  </main>
+
+  <footer class="logo-macrohard">
+    <img src="recursos/img/LogoMH2.png">
+  </footer>
+
+  <article class="formularios" id="formContainer">
+
+    <form action="negocio/validarLoginUsuario.php" method="post" class="formulario-login" id="formLogin">
+      <label for="nombreLogin">Correo electrónico</label>
+      <input required type="email" id="nombreLogin" name="correoLogin" placeholder="Ingrese su correo electrónico.">
+      <label for="contraseñaLogin">Contraseña</label>
+      <input required type="password" id="contraseñaLogin" name="contraseñaLogin" placeholder="Ingrese su contraseña.">
+      <div class="botones-formulario">
+        <button class="btn btn-success boton botonSalir" id="botonSalirLogin">Salir</button>
+        <button class="btn btn-success boton botonEntrar">Entrar</button>
+      </div>
+    </form>
+
+    <form action="negocio/validarRegistroUsuario.php" method="post" class="formulario-registro" id="formRegistro">
+      <label for="nombre" id="labelUser">Nombre de usuario</label>
+      <input type="text" name="nombre" maxlength="10" id="nombre" placeholder="Ingrese su nombre de usuario." required>
+      <label for="correo" id="labelCorreo">Correo electrónico</label>
+      <input type="email" id="correo" name="correo" placeholder="Ingrese su correo electrónico." required>
+      <label for="edad" id="labelEdad">Edad</label>
+      <input type="date" min="1900-01-01" max="2018-01-01" id="edad" name="edad" placeholder="Ingrese su edad." required>
+      <label for="contraseña" id="labelPsw">Contraseña</label>
+      <input type="password" id="contraseña" name="contraseña" placeholder="Ingrese su contraseña." required>
+      <label for="confirmarContraseña" id="labelConfirmarPsw">Confirmar contraseña</label>
+      <input type="password" name="confirmarContraseña" id="confirmarContraseña" placeholder="Confirme su contraseña."
+        required>
+      <input type="hidden" id="preferenciasIdioma" name="preferenciasIdioma" value="es">
+      <input type="hidden" id="preferenciasTema" name="preferenciasTema" value="claro">
+      <input type="hidden" id="idUsuario" name="idUsuario" value="">
+      <input type="hidden" name="destino" id="destino" value="index">
+      <div class="botones-formulario">
+        <button class="btn btn-success boton botonSalir" id="botonSalir">Salir</button>
+        <button class="btn btn-success boton botonEntrar" id="botonConfirmar">Registrarse</button>
+      </div>
+      <div class="botones-formulario" style="display: none;" id="divCerrarSesion">
+        <button class="btn btn-success boton botonCerrar" id="botonCerrar">Cerrar sesión</button>
+      </div>
+    </form>
+
+  </article>
+
+  <script src="presentación/JS/uiIndex.JS"></script>
+
+</body>
+
+</html>

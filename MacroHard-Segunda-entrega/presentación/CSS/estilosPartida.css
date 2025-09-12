@@ -1,0 +1,276 @@
+body,
+html {
+    overflow: auto;
+    background-color: #a6fea9;
+}
+
+header {
+    background: transparent;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.layout-partida {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.col-izquierda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.grid-dinos {
+    background-color: #fff;
+    border: 3px solid #03920f;
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.grid-dinos h2 {
+    font-size: 1.2rem;
+    color: #03920f;
+    margin-bottom: 1rem;
+}
+
+.grid-dinos .dinos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5rem;
+}
+
+.dinos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .3rem;
+}
+
+.grid-dinos img {
+    width: 60px;
+    cursor: pointer;
+}
+
+.grid-dinos img:hover {
+    border: 2px solid #03920f;
+    border-radius: .5rem;
+}
+
+.imagen-tablero {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 1rem;
+}
+
+.col-derecha {
+    width: 100%;
+    height: fit-content;
+}
+
+.panel-derecho {
+    background-color: #fff;
+    border: 3px solid #03920f;
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.panel-derecho h3 {
+    font-size: 1.3rem;
+    color: #03920f;
+}
+
+.panel-derecho p {
+    margin: .5rem 0;
+    font-size: 1rem;
+}
+
+.panel-derecho .jugador {
+    font-weight: bold;
+    color: #03920f;
+}
+
+.col-centro .jugador {
+    font-weight: bold;
+    color: #03920f;
+}
+
+.col-centro h3 {
+    font-size: 1.3rem;
+    color: #03920f;
+}
+
+.col-centro .titulo-tablero {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 3px solid #03920f;
+    border-radius: 1rem;
+}
+
+.dado {
+    width: 150px;
+    margin-top: 1rem;
+}
+
+.logo-macrohard {
+    display: none;
+}
+
+.tablero {
+    position: relative;
+    width: 90vw;
+    height: 60vh;
+    background-image: url("../../recursos/img/tableroVerano.png");
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+}
+
+.rio {
+    position: absolute;
+    top: 0;
+    left: 42%;
+    width: 15%;
+    height: 100%;
+}
+
+.recinto {
+    position: absolute;
+    width: 40%;
+    height: 25%;
+}
+
+.recinto img {
+    width: 30%;
+    height: auto;
+}
+
+.rio img {
+    width: 100%;
+    height: auto;
+}
+
+.recinto-1 {
+    top: 1%;
+    left: 1%;
+}
+
+.recinto-2 {
+    top: 35%;
+    left: 1%;
+}
+
+.recinto-3 {
+    top: 70%;
+    left: 1%;
+}
+
+.recinto-4 {
+    width: 25%;
+    height: 15%;
+    top: 5%;
+    right: 5%;
+}
+
+.La-isla-solitaria img, .El-rey-de-la-selva img {
+    height: 100%;
+    width: auto;
+}
+
+.recinto-5 {
+    top: 32%;
+    right: 1%;
+}
+
+.recinto-6 {
+    top: 72%;
+    right: 1%;
+}
+
+.botonFinalizar {
+    display: flex;
+    justify-content: center;
+    margin-top: 5dvh;
+}
+
+@media (min-width: 993px) {
+
+    body,
+    html {
+        overflow: hidden;
+    }
+
+    header {
+        justify-content: end;
+    }
+
+    .logo-macrohard {
+        position: fixed;
+        left: 15px;
+        transform: none;
+        top: 15px;
+        bottom: auto;
+        display: flex;
+    }
+
+    .col-centro .titulo-tablero {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .layout-partida {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        align-items: center;
+        justify-items: center;
+        gap: 1rem;
+        height: 90vh;
+        padding: 1rem;
+    }
+
+    .grid-dinos {
+        width: 100%;
+    }
+
+    .grid-dinos img {
+        width: 100px;
+    }
+
+    .imagen-tablero {
+        max-height: 80vh;
+        width: auto;
+    }
+
+    .panel-derecho {
+        padding: 2rem;
+    }
+
+    .panel-derecho h3 {
+        font-size: 1.8rem;
+    }
+
+    .panel-derecho p {
+        font-size: 1.2rem;
+    }
+
+    .tablero {
+        width: 30vw;
+        height: 80vh;
+    }
+}
