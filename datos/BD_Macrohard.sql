@@ -68,7 +68,8 @@ INSERT INTO Recinto (nombre, puntos) VALUES
 ('Isla', 7),
 ('Rio', 1),
 ('BosqueInv', 2),
-('Puente', 6),
+('PuenteIzq', 6),
+('PuenteDer', 6),
 ('Puesto', 2),
 ('Piramide', 2),
 ('Cuarentena', 0);

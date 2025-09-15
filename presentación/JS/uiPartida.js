@@ -42,36 +42,41 @@ const recinto4 = document.querySelector(".recinto-4");
 const recinto5 = document.querySelector(".recinto-5");
 const recinto6 = document.querySelector(".recinto-6");
 
+const recinto7 = document.querySelector(".recinto-7");
+const recinto8 = document.querySelector(".recinto-8");
+const recinto9 = document.querySelector(".recinto-9");
+const recinto10 = document.querySelector(".recinto-10");
+const recinto11 = document.querySelector(".recinto-11");
+const recinto12 = document.querySelector(".recinto-12");
+
 addEventListener("DOMContentLoaded", () => {
+
     fetch(`../../../negocio/recuperarPartida.php?idPartida=${encodeURIComponent(localStorage.getItem('idPartida'))}`)
         .then(res => res.json())
         .then(data => {
-            let fecha = data.fecha;
-            let modoJuego = data.modoJuego;
-            let tablero = data.tablero;
-            let numJugadores = data.numJugadores;
-            let idUsuario = data.jugadores;
+
+            let { fecha, modoJuego, tablero, numJugadores, idUsuario } = data;
 
             localStorage.setItem('modoJuego', modoJuego);
 
             if (tablero === 'Invierno') {
                 tableroElemento.style.backgroundImage = "url('../../../recursos/img/tableroInvierno.png')";
-                document.body.style.backgroundColor = "#9bceffff";
-                recinto6.style.display = "none";
-                recinto1.classList.add("El-Bosque-Ordenado");
-                recinto2.classList.add("El-puente-de-los-enamorados");
-                recinto3.classList.add("El-puesto-de-observación");
-                recinto4.classList.add("La-pirámide");
-                recinto5.classList.add("Zona-de-cuarentena");
+                document.body.style.backgroundColor = "#badeffff";
+                recinto7.style.display = "none";
+                recinto8.style.display = "none";
+                recinto9.style.display = "none";
+                recinto10.style.display = "none";
+                recinto11.style.display = "none";
+                recinto12.style.display = "none";
             }
 
             if (tablero === "Verano") {
-                recinto1.classList.add("El-bosque-de-la-semejanza");
-                recinto2.classList.add("El-trío-frondoso");
-                recinto3.classList.add("La-pradera-del-amor");
-                recinto4.classList.add("El-rey-de-la-selva");
-                recinto5.classList.add("El-prado-de-la-diferencia");
-                recinto6.classList.add("La-isla-solitaria");
+                recinto1.style.display = "none";
+                recinto2.style.display = "none";
+                recinto3.style.display = "none";
+                recinto4.style.display = "none";
+                recinto5.style.display = "none";
+                recinto6.style.display = "none";
             }
 
             if (modoJuego === 'Solo') {
@@ -131,6 +136,7 @@ function recuperarTablero() {
         .then(jugadas => {
 
             document.querySelectorAll("[class*='recinto-']").forEach(r => r.innerHTML = "");
+            document.querySelector(".Rio").innerHTML = "";
 
             jugadas.forEach(jugada => {
 
@@ -143,11 +149,7 @@ function recuperarTablero() {
                 const recintoElemento = document.querySelector(`.${CSS.escape(recintoClase)}`);
 
 
-                if (recintoElemento) {
-                    recintoElemento.appendChild(dinoImg);
-                } else {
-                    window.location.reload();
-                }
+                recintoElemento.appendChild(dinoImg);
             });
         })
         .catch(err => console.error("Error recuperando tablero:", err));
@@ -164,7 +166,8 @@ const mapaDinos = {
 
 const mapaRecintos = {
     "BosqueInv": "El-Bosque-Ordenado",
-    "Puente": "El-puente-de-los-enamorados",
+    "PuenteIzq": "El-puente-de-los-enamorados-izquierda",
+    "PuenteDer": "El-puente-de-los-enamorados-derecha",
     "Puesto": "El-puesto-de-observación",
     "Piramide": "La-pirámide",
     "Cuarentena": "Zona-de-cuarentena",
