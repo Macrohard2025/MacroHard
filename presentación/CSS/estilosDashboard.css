@@ -1,0 +1,136 @@
+body,
+html {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.logo-macrohard img {
+    max-height: 70px;
+    height: auto;
+    width: auto;
+    margin: 1rem;
+}
+
+.dinos img {
+    max-height: 50px;
+    height: auto;
+    width: auto;
+}
+
+.imagenDinos {
+    display: none;
+}
+
+header {
+    background: transparent;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.logo-macrohard {
+    display: flex;
+    align-items: center;
+    bottom: 10px;
+    left: 20px;
+    z-index: 10;
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.panel-section {
+    margin: auto;
+    width: 90dvw;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 3px solid #03920f;
+    margin-bottom: 2rem;
+}
+
+.panel-section h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #03920f;
+}
+
+.panel-section article {
+    padding: 1rem;
+}
+
+.panel-section h2 {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #014706;
+    margin-bottom: 0.5rem;
+}
+
+.borrarPartida,
+.borrarUsuario {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 400px;
+    margin: auto;
+}
+
+.borrarPartida label,
+.borrarUsuario label {
+    display: flex;
+    justify-content: center;
+}
+
+.valores-section {
+    margin: auto;
+    width: 95dvw;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.valores-section input {
+    width: 50px;
+}
+
+.valores-article {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 3px solid #03920f;
+}
+
+.valores-article h2 {
+    font-size: 1.5rem;
+    color: #03920f;
+}
+
+@media (min-width: 400px) {
+
+    .imagenDinos {
+        display: flex;
+    }
+
+}
+
+@media (min-width: 993px) {
+
+    .logo-macrohard {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        transform: none;
+        height: 10dvh;
+    }
+
+    header {
+        justify-content: end;
+        margin-bottom: 4rem;
+    }
+
+}

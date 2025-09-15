@@ -1,0 +1,389 @@
+body,
+html {
+    overflow: auto;
+    background-color: #daffd1;
+}
+
+header {
+    background: transparent;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.layout-partida {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.col-izquierda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.grid-dinos {
+    background-color: #fff;
+    border: 3px solid #03920f;
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.grid-dinos h2 {
+    font-size: 1.2rem;
+    color: #03920f;
+    margin-bottom: 1rem;
+}
+
+.grid-dinos .dinos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5rem;
+}
+
+.dinos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .3rem;
+}
+
+.grid-dinos img {
+    width: 60px;
+    cursor: pointer;
+}
+
+.grid-dinos img:hover {
+    border: 2px solid #03920f;
+    border-radius: .5rem;
+}
+
+.imagen-tablero {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 1rem;
+}
+
+.col-derecha {
+    width: 100%;
+    height: fit-content;
+}
+
+.panel-derecho {
+    background-color: #fff;
+    border: 3px solid #03920f;
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+}
+
+.panel-derecho h3 {
+    font-size: 1.3rem;
+    color: #03920f;
+}
+
+.panel-derecho p {
+    margin: .5rem 0;
+    font-size: 1rem;
+}
+
+.panel-derecho .jugador {
+    font-weight: bold;
+    color: #03920f;
+}
+
+.col-centro .jugador {
+    font-weight: bold;
+    color: #03920f;
+}
+
+.col-centro h3 {
+    font-size: 1.3rem;
+    color: #03920f;
+}
+
+.col-centro .titulo-tablero {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 3px solid #03920f;
+    border-radius: 1rem;
+}
+
+.dado {
+    width: 150px;
+    margin-top: 1rem;
+}
+
+.logo-macrohard {
+    display: none;
+}
+
+.tablero {
+    position: relative;
+    width: 90vw;
+    height: 60vh;
+    background-image: url("../../recursos/img/tableroVerano.png");
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+}
+
+.Rio {
+    position: absolute;
+    top: 0;
+    left: 46%;
+    width: 15%;
+    height: 100%;
+}
+
+.recinto {
+    position: absolute;
+    width: 40%;
+    height: 25%;
+}
+
+.recinto img {
+    width: 30%;
+    height: auto;
+}
+
+.Rio img {
+    width: 90%;
+    height: auto;
+}
+
+.recinto-1 {
+    top: 3%;
+    left: 8%;
+}
+
+.recinto-2 {
+    top: 28%;
+    left: 14%;
+}
+
+.recinto-2 img,
+.recinto-3 img {
+    width: 35%;
+}
+
+.recinto-3 {
+    top: 28%;
+    left: 62%;
+}
+
+.recinto-4 {
+    top: 1%;
+    left: 70%;
+}
+
+.recinto-4 img {
+    width: 50%;
+}
+
+.recinto-5 {
+    width: 48%;
+    height: 20%;
+    top: 61%;
+    left: 49%;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 2px;
+    justify-items: center;
+    align-content: start;
+}
+
+.recinto-5 img:nth-child(1) {
+    grid-column: 2;
+}
+
+.recinto-5 img:nth-child(2),
+.recinto-5 img:nth-child(3) {
+    grid-row: 2;
+}
+
+.recinto-5 img:nth-child(2) {
+    grid-column: 2;
+    justify-self: end;
+    margin-right: -10px;
+}
+
+.recinto-5 img:nth-child(3) {
+    grid-column: 2;
+    justify-self: start;
+    margin-left: -10px;
+}
+
+.recinto-5 img:nth-child(4) {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: end;
+}
+
+.recinto-5 img:nth-child(5) {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.recinto-5 img:nth-child(6) {
+    grid-column: 3;
+    grid-row: 3;
+    justify-self: start;
+}
+
+.recinto-5 img {
+    width: 50%;
+}
+
+.recinto-5>img:only-child {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    align-self: start;
+}
+
+.recinto-6 {
+    top: 62%;
+    left: 7%;
+}
+
+.recinto-6 img {
+    width: 60%;
+}
+
+.recinto-7 {
+    top: 4%;
+    left: 5%;
+}
+
+.recinto-8 {
+    display: flex;
+    flex-direction: column;
+    top: 38%;
+    left: 20%;
+}
+
+.recinto-8 img {
+    width: 25%;
+}
+
+.recinto-9 {
+    width: 30%;
+    top: 80%;
+    left: 7%;
+}
+
+.recinto-10 {
+    width: 25%;
+    height: 15%;
+    top: 3%;
+    right: 6%;
+}
+
+.El-rey-de-la-selva img {
+    height: 100%;
+    width: auto;
+}
+
+.La-isla-solitaria img {
+    height: 75%;
+    width: auto;
+}
+
+.recinto-11 {
+    top: 42%;
+    left: 63%;
+}
+
+.recinto-12 {
+    top: 72%;
+    left: 65%;
+}
+
+.botonFinalizar {
+    display: flex;
+    justify-content: center;
+    margin-top: 5dvh;
+}
+
+@media (min-width: 993px) {
+
+    body,
+    html {
+        overflow: hidden;
+    }
+
+    header {
+        justify-content: end;
+    }
+
+    .logo-macrohard {
+        position: fixed;
+        left: 15px;
+        transform: none;
+        top: 15px;
+        bottom: auto;
+        display: flex;
+    }
+
+    .col-centro .titulo-tablero {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .layout-partida {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        align-items: center;
+        justify-items: center;
+        gap: 1rem;
+        height: 90vh;
+        padding: 1rem;
+    }
+
+    .grid-dinos {
+        width: 100%;
+    }
+
+    .grid-dinos img {
+        width: 100px;
+    }
+
+    .imagen-tablero {
+        max-height: 80vh;
+        width: auto;
+    }
+
+    .panel-derecho {
+        padding: 2rem;
+    }
+
+    .panel-derecho h3 {
+        font-size: 1.8rem;
+    }
+
+    .panel-derecho p {
+        font-size: 1.2rem;
+    }
+
+    .tablero {
+        width: 30vw;
+        height: 80vh;
+    }
+}
