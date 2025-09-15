@@ -63,7 +63,6 @@ Abrí phpMyAdmin desde tu navegador:
 
 http://localhost/phpmyadmin/
 
-
 Hacé clic en Importar → Elegir archivo → seleccioná datos/bd_macrohard.sql
 
 Clic en Continuar
@@ -75,7 +74,6 @@ Este archivo ya crea la base de datos y todas las tablas necesarias automáticam
 En tu navegador, escribí:
 
 http://localhost/MacroHard/
-
 
 ¡Listo! 🎉 La aplicación debería cargarse y estar lista para usar.
 
