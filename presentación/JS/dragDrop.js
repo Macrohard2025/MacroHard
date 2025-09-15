@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const dinos = document.querySelectorAll(".grid-dinos img");
-    const recintos = document.querySelectorAll(".recinto, .rio");
+    const recintos = document.querySelectorAll(".recinto, .Rio");
 
     dinos.forEach(dino => {
         dino.setAttribute("draggable", true);
@@ -19,11 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             const idDino = e.dataTransfer.getData("idDino");
             const dino = document.getElementById(idDino);
-            const recintoSeleccionado = recinto.classList[2] || "rio";
+            const recintoSeleccionado = recinto.classList[2] || "Rio";
             if (dino && confirm(`Estás colocando ${dino.alt} en ${recintoSeleccionado}. ¿Confirmar?`)) {
-                recinto.appendChild(dino);
-                dinoRegistrar = dino.alt;
-                registrarJugada(dinoRegistrar, recinto);
+                if (validarRecinto(recinto)) {
+                    recinto.appendChild(dino);
+                    dinoRegistrar = dino.alt;
+                    registrarJugada(dinoRegistrar, recinto);
+                } else {
+                    alert("No puedes colocar más dinosaurios en ese recinto")
+                }
             }
         });
     });

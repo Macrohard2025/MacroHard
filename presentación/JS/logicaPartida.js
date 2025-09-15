@@ -55,9 +55,11 @@ function pasarTurno() {
         if (turnoActual < 6) {
             fetch(`../../../negocio/rotarManos.php?idPartida=${localStorage.idPartida}`);
             localStorage.turnoActual = turnoActual + 1;
+            localStorage.removeItem("dado");
         } else if (rondaActual === 1) {
             localStorage.turnoActual = 1;
             localStorage.rondaActual = rondaActual + 1;
+            localStorage.removeItem("dado");
         } else {
             finalizarPartida();
         }
@@ -70,6 +72,7 @@ function pasarTurno() {
             localStorage.jugadorIndex = 0;
 
             localStorage.turnoActual = turnoActual + 1;
+            localStorage.removeItem("dado");
 
             fetch(`../../../negocio/rotarManos.php?idPartida=${localStorage.idPartida}`);
 
@@ -77,6 +80,7 @@ function pasarTurno() {
                 if (rondaActual === 1) {
                     localStorage.turnoActual = 1;
                     localStorage.rondaActual = rondaActual + 1;
+                    localStorage.removeItem("dado");
                 } else {
                     finalizarPartida();
                 }
@@ -115,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("jugadorIndex", 0);
     }
 
-    turnoActualElemento.innerHTML = "Turno " + localStorage.turnoActual;
-    rondaActualElemento.innerHTML = "Ronda " + localStorage.rondaActual;
+    if (localStorage.modoJuego != "Control") {
+        turnoActualElemento.innerHTML = "Turno " + localStorage.turnoActual;
+        rondaActualElemento.innerHTML = "Ronda " + localStorage.rondaActual;
+    }
 });

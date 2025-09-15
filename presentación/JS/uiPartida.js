@@ -55,19 +55,19 @@ addEventListener("DOMContentLoaded", () => {
         .then(res => res.json())
         .then(data => {
 
-            let {fecha, modoJuego, tablero, numJugadores, idUsuario} = data;
+            let { fecha, modoJuego, tablero, numJugadores, idUsuario } = data;
 
             localStorage.setItem('modoJuego', modoJuego);
 
             if (tablero === 'Invierno') {
                 tableroElemento.style.backgroundImage = "url('../../../recursos/img/tableroInvierno.png')";
-                document.body.style.backgroundColor = "#9bceffff";
+                document.body.style.backgroundColor = "#badeffff";
                 recinto7.style.display = "none";
                 recinto8.style.display = "none";
                 recinto9.style.display = "none";
                 recinto10.style.display = "none";
                 recinto11.style.display = "none";
-                recinto12.style.display = "none";                
+                recinto12.style.display = "none";
             }
 
             if (tablero === "Verano") {
@@ -136,6 +136,7 @@ function recuperarTablero() {
         .then(jugadas => {
 
             document.querySelectorAll("[class*='recinto-']").forEach(r => r.innerHTML = "");
+            document.querySelector(".Rio").innerHTML = "";
 
             jugadas.forEach(jugada => {
 
@@ -148,11 +149,7 @@ function recuperarTablero() {
                 const recintoElemento = document.querySelector(`.${CSS.escape(recintoClase)}`);
 
 
-                if (recintoElemento) {
-                    recintoElemento.appendChild(dinoImg);
-                } else {
-                    window.location.reload();
-                }
+                recintoElemento.appendChild(dinoImg);
             });
         })
         .catch(err => console.error("Error recuperando tablero:", err));
