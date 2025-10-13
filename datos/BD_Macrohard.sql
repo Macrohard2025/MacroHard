@@ -45,6 +45,7 @@ CREATE TABLE Jugadas (
     fk_usuario_id INT NOT NULL,
     fk_recinto_nombre VARCHAR(50) NOT NULL,
     fk_dino_nombre VARCHAR(50) NOT NULL,
+    PRIMARY KEY (fk_partida_id, fk_usuario_id, fk_recinto_nombre, fk_dino_nombre),
     FOREIGN KEY (fk_partida_id) REFERENCES Partida(partida_id),
     FOREIGN KEY (fk_usuario_id) REFERENCES Usuario(usuario_id),
     FOREIGN KEY (fk_recinto_nombre) REFERENCES Recinto(nombre),
@@ -68,8 +69,7 @@ INSERT INTO Recinto (nombre, puntos) VALUES
 ('Isla', 7),
 ('Rio', 1),
 ('BosqueInv', 2),
-('PuenteIzq', 6),
-('PuenteDer', 6),
+('Puente', 6),
 ('Puesto', 2),
 ('Piramide', 2),
 ('Cuarentena', 0);

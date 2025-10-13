@@ -306,3 +306,48 @@ function recuperarResultados(int $idPartida): array
 
     return $resultados;
 }
+
+function traerUltimasPartidasPorUsuario(int $idUsuario): array
+{
+    global $conn;
+
+    $partidas = [];
+
+    $sql = "
+        SELECT 
+            p.partida_id AS id,
+            DATE_FORMAT(p.fecha, '%d/%m/%Y') AS fecha,
+            CONCAT(p.modo_juego, ' - ', p.tablero) AS modo,
+            u.nombre AS ganador,
+            j.puntos_totales AS puntos,
+            (
+                SELECT COUNT(*) + 1
+                FROM Jugadores j2
+                WHERE j2.fk_partida_id = j.fk_partida_id
+                AND j2.puntos_totales > j.puntos_totales
+            ) AS posicion
+        FROM Jugadores j
+        JOIN Partida p ON j.fk_partida_id = p.partida_id
+        LEFT JOIN Usuario u ON p.fk_ganador_id = u.usuario_id
+        WHERE j.fk_usuario_id = $idUsuario
+        ORDER BY p.fecha DESC
+        LIMIT 10
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($fila = mysqli_fetch_assoc($result)) {
+            $partidas[] = [
+                "id" => (int)$fila['id'],
+                "fecha" => $fila['fecha'],
+                "modo" => $fila['modo'],
+                "ganador" => $fila['ganador'] ?? 'No',
+                "puntos" => (int)$fila['puntos'],
+                "posicion" => (int)$fila['posicion']
+            ];
+        }
+    }
+
+    return $partidas;
+}
