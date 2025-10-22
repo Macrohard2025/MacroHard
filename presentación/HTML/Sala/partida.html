@@ -26,7 +26,7 @@
         </nav>
     </header>
 
-    <main class="layout-partida">
+    <main id="col-izquierda" class="layout-partida">
         <section class="col-izquierda">
             <section class="grid-dinos">
                 <h2>Elige un dinosaurio</h2>
@@ -53,7 +53,7 @@
             </section>
         </section>
 
-        <section class="col-centro">
+        <section id="col-centro" class="col-centro">
             <article id="tablero" class="tablero">
                 <div class="Rio"></div>
 
@@ -73,7 +73,7 @@
             </article>
         </section>
 
-        <section class="col-derecha">
+        <section id="col-derecha" class="col-derecha">
             <div class="panel-derecho">
                 <h3><span id="rondaActualElemento" class="titulo-verde">Ronda 1</span></h3>
                 <p id="turnoActualElemento">Turno 1</p>
@@ -90,6 +90,13 @@
         <input type="hidden" name="partida" id="idPartidaInput2">
         <input type="hidden" name="destino" value="partida">
     </form>
+
+    <div id="pantalla-final" class="finalPantalla">
+        <h2>¡La partida ha finalizado!</h2>
+        <p>Podés ver los resultados aquí.</p>
+        <button class="btn btn-success boton" id="btnFinalizar">Finalizar partida</button>
+    </div>
+
 
     <script src="../../JS/logicaTableroDado.js"></script>
     <script src="../../JS/uiPartida.js"></script>

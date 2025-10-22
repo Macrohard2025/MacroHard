@@ -41,11 +41,11 @@ CREATE TABLE Dinosaurio (
 );
 
 CREATE TABLE Jugadas (
+    jugada_id INT PRIMARY KEY AUTO_INCREMENT,
     fk_partida_id INT NOT NULL,
     fk_usuario_id INT NOT NULL,
     fk_recinto_nombre VARCHAR(50) NOT NULL,
     fk_dino_nombre VARCHAR(50) NOT NULL,
-    PRIMARY KEY (fk_partida_id, fk_usuario_id, fk_recinto_nombre, fk_dino_nombre),
     FOREIGN KEY (fk_partida_id) REFERENCES Partida(partida_id),
     FOREIGN KEY (fk_usuario_id) REFERENCES Usuario(usuario_id),
     FOREIGN KEY (fk_recinto_nombre) REFERENCES Recinto(nombre),
@@ -62,7 +62,7 @@ INSERT INTO Dinosaurio (nombre, puntos) VALUES
 
 INSERT INTO Recinto (nombre, puntos) VALUES
 ('Bosque', 2),
-('Prado', 2),
+('Prado', 3),
 ('Amor', 5),
 ('Trio', 7),
 ('Rey', 7),

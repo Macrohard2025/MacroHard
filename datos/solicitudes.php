@@ -351,3 +351,138 @@ function traerUltimasPartidasPorUsuario(int $idUsuario): array
 
     return $partidas;
 }
+
+function recuperarJugadoresPorPartida(int $idPartida): array
+{
+    global $conn;
+
+    $jugadores = [];
+
+    $sql = "
+        SELECT fk_usuario_id AS jugador
+        FROM Jugadores
+        WHERE fk_partida_id = $idPartida
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($fila = mysqli_fetch_assoc($result)) {
+            $jugadores[] = $fila;
+        }
+    }
+
+    return $jugadores;
+}
+
+function revisarModo(int $idPartida): string
+{
+    global $conn;
+
+    $sql = "
+        SELECT tablero
+        FROM Partida
+        WHERE partida_id = $idPartida
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $fila = mysqli_fetch_assoc($result);
+        return $fila['tablero'];
+    }
+
+    return "";
+}
+
+function revisarSumaPuntos(string $recinto): int
+{
+    global $conn;
+
+    $sql = "
+        SELECT puntos
+        FROM Recinto
+        WHERE nombre = '$recinto'
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $fila = mysqli_fetch_assoc($result);
+        return (int)$fila['puntos'];
+    }
+
+    return 0;
+}
+
+function chequearRey(string $dino, string $idJugador): bool
+{
+    global $conn;
+
+    $sqlJugador = "
+        SELECT COUNT(*) AS total
+        FROM Jugadas
+        WHERE fk_usuario_id = '$idJugador' 
+          AND fk_dino_nombre = '$dino'
+    ";
+    $resJugador = mysqli_query($conn, $sqlJugador);
+    $rowJugador = mysqli_fetch_assoc($resJugador);
+    $cantidadJugador = (int)$rowJugador['total'];
+
+    $sqlMax = "
+        SELECT MAX(cant) AS maximo
+        FROM (
+            SELECT COUNT(*) AS cant
+            FROM Jugadas
+            WHERE fk_dino_nombre = '$dino'
+            GROUP BY fk_usuario_id
+        ) AS sub
+    ";
+    $resMax = mysqli_query($conn, $sqlMax);
+    $rowMax = mysqli_fetch_assoc($resMax);
+    $maximo = (int)$rowMax['maximo'];
+
+    return $cantidadJugador === $maximo;
+}
+
+function actualizarPuntosJugador(string $idJugador, int $idPartida, int $puntos): void
+{
+    global $conn;
+
+    $sql = "
+        UPDATE Jugadores
+        SET puntos_totales = $puntos
+        WHERE fk_usuario_id = '$idJugador' 
+          AND fk_partida_id = $idPartida
+    ";
+
+    mysqli_query($conn, $sql);
+}
+
+function determinarGanador(int $idPartida): void
+{
+    global $conn;
+
+    $sql = "
+        SELECT fk_usuario_id
+        FROM Jugadores
+        WHERE fk_partida_id = $idPartida
+        ORDER BY puntos_totales DESC
+        LIMIT 1
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $fila = mysqli_fetch_assoc($result);
+        $ganadorId = $fila['fk_usuario_id'];
+
+        $updateSql = "
+            UPDATE Partida
+            SET fk_ganador_id = $ganadorId
+            WHERE partida_id = $idPartida
+        ";
+
+        mysqli_query($conn, $updateSql);
+    }
+}

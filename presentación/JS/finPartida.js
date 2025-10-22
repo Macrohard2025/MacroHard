@@ -2,6 +2,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const idPartida = localStorage.getItem("idPartida");
     const tbody = document.querySelector("table tbody");
     const ganadorElemento = document.getElementById("ganador");
+    const menuVolverBoton = document.getElementById("menuVolver");
+
+    menuVolverBoton.addEventListener("click", (e) => {
+        e.preventDefault();
+        registroUsuario = localStorage.getItem('registroUsuario');
+        idUsuarioLocal = localStorage.getItem('idUsuario');
+        idioma = localStorage.getItem('idioma');
+        tema = localStorage.getItem('tema');
+        localStorage.clear();
+        localStorage.setItem('registroUsuario', registroUsuario);
+        localStorage.setItem('idUsuario', idUsuarioLocal);
+        localStorage.setItem('idioma', idioma);
+        localStorage.setItem('tema', tema);
+        window.location.href = "menuSala.html";
+    });
 
     if (!idPartida) {
         console.error("No hay idPartida en localStorage");
@@ -41,3 +56,16 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(err => console.error("Error cargando resultados:", err));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (!localStorage.getItem("cargado")) {
+        localStorage.setItem("cargado", "true");
+        contarPuntos(localStorage.getItem("idPartida"));
+        window.location.reload();
+    }
+});
+
+function contarPuntos(idPartida) {
+    fetch(`../../../negocio/contarPuntos.php?idPartida=${idPartida}`)
+        .catch(err => console.error("Error contando puntos:", err));
+}

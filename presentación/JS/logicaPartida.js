@@ -61,7 +61,7 @@ function pasarTurno() {
             localStorage.rondaActual = rondaActual + 1;
             localStorage.removeItem("dado");
         } else {
-            finalizarPartida();
+            localStorage.turnoActual = turnoActual + 1;
         }
     } else if (localStorage.modoJuego === "Multi") {
         jugadorIndex++;
@@ -82,7 +82,7 @@ function pasarTurno() {
                     localStorage.rondaActual = rondaActual + 1;
                     localStorage.removeItem("dado");
                 } else {
-                    finalizarPartida();
+                    localStorage.turnoActual = turnoActual + 1;
                 }
             }
         }
@@ -113,6 +113,28 @@ function finalizarPartida() {
     window.location.href = "finalizarPartida.html";
 }
 
+function mostrarPantallaFinal() {
+    document.querySelector("header").style.display = "none";
+    document.getElementById("col-izquierda").style.display = "none";
+    document.getElementById("col-centro").style.display = "none";
+    document.getElementById("col-derecha").style.display = "none";
+
+    const pantallaFinal = document.getElementById("pantalla-final");
+    pantallaFinal.style.display = "block";
+
+    document.getElementById("btnFinalizar").addEventListener("click", () => {
+        finalizarPartida();
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (localStorage.turnoActual > 6 && localStorage.rondaActual > 1) {
+        mostrarPantallaFinal();
+    }
+
+});
+
 document.addEventListener("DOMContentLoaded", function () {
 
     if (localStorage.getItem("jugadorIndex") === null) {
@@ -124,3 +146,4 @@ document.addEventListener("DOMContentLoaded", function () {
         rondaActualElemento.innerHTML = "Ronda " + localStorage.rondaActual;
     }
 });
+
