@@ -486,3 +486,42 @@ function determinarGanador(int $idPartida): void
         mysqli_query($conn, $updateSql);
     }
 }
+
+function verificarInstalacion(): bool
+{
+    global $conn;
+
+    $sql = "SELECT nombre FROM Usuario WHERE usuario_id = 1";
+    $result = mysqli_query($conn, $sql);
+
+    if (!$result || mysqli_num_rows($result) === 0) {
+
+        return false;
+    }
+
+    $row = mysqli_fetch_assoc($result);
+    $nombre = trim($row['nombre']);
+
+    return $nombre !== "" && $nombre !== null;
+}
+
+function actualizarAdmin(int $idUsuario, string $nombre, string $email, DateTime $edad, string $contraseña, string $idioma = 'es', string $tema = 'claro'): bool
+{
+    global $conn;
+
+    $fechaNacimiento = $edad->format('Y-m-d');
+    $hash = password_hash($contraseña, PASSWORD_DEFAULT);
+
+    $query = "
+        UPDATE Usuario 
+        SET nombre='$nombre',
+            contrasena='$hash',
+            email='$email',
+            fecha_nacimiento='$fechaNacimiento',
+            preferencias_idioma='$idioma',
+            preferencias_tema='$tema'
+        WHERE usuario_id=$idUsuario
+    ";
+
+    return mysqli_query($conn, $query);
+}

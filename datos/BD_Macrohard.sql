@@ -74,5 +74,5 @@ INSERT INTO Recinto (nombre, puntos) VALUES
 ('Piramide', 2),
 ('Cuarentena', 0);
 
-INSERT INTO Usuario (nombre, contrasena, email, fecha_nacimiento) VALUES
-('admin', 'admin123', 'admin@macrohard.com', '1990-01-01');
+INSERT INTO Usuario (usuario_id) VALUES
+('1');

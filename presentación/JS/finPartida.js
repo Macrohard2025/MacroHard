@@ -6,15 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     menuVolverBoton.addEventListener("click", (e) => {
         e.preventDefault();
-        registroUsuario = localStorage.getItem('registroUsuario');
-        idUsuarioLocal = localStorage.getItem('idUsuario');
-        idioma = localStorage.getItem('idioma');
-        tema = localStorage.getItem('tema');
+        const registroUsuario = localStorage.getItem('registroUsuario');
+        const idUsuarioLocal = localStorage.getItem('idUsuario');
+        const idioma = localStorage.getItem('idioma');
+        const tema = localStorage.getItem('tema');
+
         localStorage.clear();
         localStorage.setItem('registroUsuario', registroUsuario);
         localStorage.setItem('idUsuario', idUsuarioLocal);
         localStorage.setItem('idioma', idioma);
         localStorage.setItem('tema', tema);
+
         window.location.href = "menuSala.html";
     });
 
@@ -23,7 +25,16 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    fetch(`../../../negocio/recuperarResultados.php?idPartida=${encodeURIComponent(idPartida)}`)
+    contarPuntos(idPartida)
+        .then(status => {
+            if (status === "ok") {
+                console.log("Puntos contados correctamente, cargando resultados...");
+
+                return fetch(`../../../negocio/recuperarResultados.php?idPartida=${encodeURIComponent(idPartida)}`);
+            } else {
+                throw new Error("Error al contar puntos");
+            }
+        })
         .then(res => res.json())
         .then(data => {
             if (!data || !Array.isArray(data)) {
@@ -34,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
             data.sort((a, b) => b.puntos - a.puntos);
 
             tbody.innerHTML = "";
-
             ganadorElemento.innerHTML = data[0].nombre;
 
             data.forEach((jugador, index) => {
@@ -54,18 +64,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 tbody.appendChild(tr);
             });
         })
-        .catch(err => console.error("Error cargando resultados:", err));
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    if (!localStorage.getItem("cargado")) {
-        localStorage.setItem("cargado", "true");
-        contarPuntos(localStorage.getItem("idPartida"));
-        window.location.reload();
-    }
+        .catch(err => console.error("Error general:", err));
 });
 
 function contarPuntos(idPartida) {
-    fetch(`../../../negocio/contarPuntos.php?idPartida=${idPartida}`)
-        .catch(err => console.error("Error contando puntos:", err));
+    return fetch(`../../../negocio/contarPuntos.php?idPartida=${idPartida}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data && data.status === "ok") {
+                return "ok";
+            } else {
+                console.error("Respuesta inesperada al contar puntos:", data);
+                return "error";
+            }
+        })
+        .catch(err => {
+            console.error("Error contando puntos:", err);
+            return "error";
+        });
 }

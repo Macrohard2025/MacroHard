@@ -1,3 +1,17 @@
+document.addEventListener("DOMContentLoaded", function () {
+
+    fetch("negocio/verificarInstalacion.php")
+        .then(res => res.json())
+        .then(data => {
+            if (!data.instalado) {
+                window.location.href = "presentación/HTML/installer.html";
+            }
+        })
+        .catch(err => {
+            console.error("Error verificando instalación:", err);
+        });
+});
+
 const formContainer = document.getElementById("formContainer");
 const formLogin = document.getElementById("formLogin");
 const formRegistro = document.getElementById("formRegistro");

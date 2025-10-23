@@ -16,9 +16,81 @@ foreach ($jugadores as $jugador) {
 }
 determinarGanador($_GET["idPartida"]);
 
-function contarPuntosInvierno(array $jugadas): int
+function contarPuntosInvierno(array $jugadas, string $idJugador, array $jugadoresEnOrden): int
 {
-    $puntos = 10;
+    $puntos = 0;
+    $recintos = [];
+
+    foreach ($jugadas as $jugada) {
+        $recinto = $jugada['recinto'];
+        $dino = $jugada['dinosaurio'];
+        $recintos[$recinto][] = $dino;
+    }
+
+    foreach ($recintos as $recinto => $dinos) {
+        $cantidad = count($dinos);
+        $tipos = array_count_values($dinos);
+        $rexCount = 0;
+
+        foreach ($dinos as $d) {
+            if ($d === 'T-Rex') $rexCount++;
+        }
+
+        switch ($recinto) {
+            case 'BosqueInv':
+                // Dos especies alternadas, 1 punto por dinosaurio
+                if (count($tipos) <= 2) {
+                    $puntos += $cantidad * revisarSumaPuntos("BosqueInv");
+                }
+                break;
+
+            case 'Puente':
+                // 6 puntos por cada pareja con un miembro en cada orilla
+                // Asumimos que $dinos[0..n/2] es la orilla izquierda, $dinos[n/2..] derecha
+                $mitad = intdiv($cantidad, 2);
+                $izq = array_slice($dinos, 0, $mitad);
+                $der = array_slice($dinos, $mitad);
+                $parejas = 0;
+                foreach ($izq as $dinoIzq) {
+                    if (in_array($dinoIzq, $der)) $parejas++;
+                }
+                $puntos += $parejas * revisarSumaPuntos("Puente");
+                break;
+
+            case 'Puesto':
+                // 2 puntos por cada dinosaurio de la misma especie que el jugador a la derecha
+                $idxJugador = array_search($idJugador, $jugadoresEnOrden);
+                $jugadorDerecha = $jugadoresEnOrden[($idxJugador + 1) % count($jugadoresEnOrden)];
+                $jugadasDerecha = traerJugadas($jugadorDerecha, $_GET["idPartida"]);
+                $dinosDerecha = array_map(fn($j) => $j['dinosaurio'], $jugadasDerecha);
+                foreach ($dinos as $dino) {
+                    if (in_array($dino, $dinosDerecha)) $puntos += revisarSumaPuntos("Puesto");
+                }
+                break;
+
+            case 'Piramide':
+                // Cada dinosaurio suma puntos según escalón
+                $escalon = [1, 1, 1, 2, 2, 3]; // fila inferior=1, intermedia=2, superior=3
+                for ($i = 0; $i < $cantidad && $i < 6; $i++) {
+                    $puntos += $escalon[$i] * revisarSumaPuntos("Piramide");
+                }
+                break;
+
+            case 'Cuarentena':
+                // Mover dinosaurio a otro recinto: puntaje depende del nuevo recinto
+                // Para simplificar, lo sumamos al Río
+                $puntos += $cantidad * revisarSumaPuntos("Rio");
+                break;
+
+            case 'Rio':
+                $puntos += $cantidad * revisarSumaPuntos("Rio");
+                break;
+        }
+
+        // Bonus por cada T-Rex
+        $puntos += $rexCount;
+    }
+
     return $puntos;
 }
 
