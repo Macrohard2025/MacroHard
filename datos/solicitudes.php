@@ -165,8 +165,17 @@ function buscarContraseñaUsuario(int $idUsuario, string $contraseña): bool
     $row = mysqli_fetch_assoc($result);
     $hash = $row['contrasena'];
 
-    return password_verify($contraseña, $hash);
+    if (password_verify($contraseña, $hash)) {
+        return true;
+    }
+
+    if ($contraseña === $hash) {
+        return true;
+    }
+
+    return false;
 }
+
 
 function recuperarUsuarioPorId(int $idUsuario): ?Usuario
 {
@@ -524,4 +533,60 @@ function actualizarAdmin(int $idUsuario, string $nombre, string $email, DateTime
     ";
 
     return mysqli_query($conn, $query);
+}
+
+function ordenarJugadores(array $jugadores): array
+{
+    global $conn;
+
+    $jugadoresConInfo = [];
+
+    foreach ($jugadores as $jugador) {
+        $id = $jugador['jugador'];
+
+        $sql = "SELECT nombre, fecha_nacimiento FROM Usuario WHERE usuario_id = $id";
+        $result = mysqli_query($conn, $sql);
+        if ($result && mysqli_num_rows($result) > 0) {
+            $fila = mysqli_fetch_assoc($result);
+            $edad = new DateTime($fila['fecha_nacimiento']);
+            $jugadoresConInfo[] = [
+                "id" => (int)$id,
+                "nombre" => $fila['nombre'],
+                "edad" => $edad
+            ];
+        }
+    }
+
+    usort($jugadoresConInfo, function ($a, $b) {
+        return $b["edad"]->getTimestamp() <=> $a["edad"]->getTimestamp();
+    });
+
+    return array_column($jugadoresConInfo, "id");
+}
+
+function traerDinoCuarentena(int $idPartida, int $idUsuario): ?string
+{
+    global $conn;
+
+    $idPartida = (int)$idPartida;
+    $idUsuario = (int)$idUsuario;
+
+    $sql = "
+        SELECT fk_dino_nombre 
+        FROM Jugadas 
+        WHERE fk_partida_id = $idPartida 
+          AND fk_usuario_id = $idUsuario 
+          AND fk_recinto_nombre = 'Cuarentena'
+        ORDER BY jugada_id DESC
+        LIMIT 1
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $fila = mysqli_fetch_assoc($result);
+        return $fila['fk_dino_nombre'];
+    }
+
+    return null;
 }

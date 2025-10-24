@@ -3,6 +3,7 @@
 include_once "../datos/solicitudes.php";
 
 $jugadores = recuperarJugadoresPorPartida($_GET["idPartida"]);
+$orden = ordenarJugadores($jugadores);
 
 foreach ($jugadores as $jugador) {
     $jugadas = traerJugadas($jugador["jugador"], $_GET["idPartida"]);
@@ -10,13 +11,13 @@ foreach ($jugadores as $jugador) {
         $puntos = contarPuntosVerano($jugadas, $jugador["jugador"]);
         actualizarPuntosJugador($jugador["jugador"], $_GET["idPartida"], $puntos);
     } else {
-        $puntos = contarPuntosInvierno($jugadas);
+        $puntos = contarPuntosInvierno($jugadas, $orden, $jugador["jugador"], $_GET["idPartida"]);
         actualizarPuntosJugador($jugador["jugador"], $_GET["idPartida"], $puntos);
     }
 }
 determinarGanador($_GET["idPartida"]);
 
-function contarPuntosInvierno(array $jugadas, string $idJugador, array $jugadoresEnOrden): int
+function contarPuntosInvierno(array $jugadas, array $orden, int $idJugador, int $idPartida): int
 {
     $puntos = 0;
     $recintos = [];
@@ -38,48 +39,109 @@ function contarPuntosInvierno(array $jugadas, string $idJugador, array $jugadore
 
         switch ($recinto) {
             case 'BosqueInv':
-                // Dos especies alternadas, 1 punto por dinosaurio
-                if (count($tipos) <= 2) {
-                    $puntos += $cantidad * revisarSumaPuntos("BosqueInv");
+                if ($cantidad === 1) {
+                    $puntos += 2;
+                    break;
                 }
-                break;
 
-            case 'Puente':
-                // 6 puntos por cada pareja con un miembro en cada orilla
-                // Asumimos que $dinos[0..n/2] es la orilla izquierda, $dinos[n/2..] derecha
-                $mitad = intdiv($cantidad, 2);
-                $izq = array_slice($dinos, 0, $mitad);
-                $der = array_slice($dinos, $mitad);
-                $parejas = 0;
-                foreach ($izq as $dinoIzq) {
-                    if (in_array($dinoIzq, $der)) $parejas++;
+                $especiesUnicas = array_values(array_unique($dinos));
+
+                if (count($especiesUnicas) > 2) {
+                    break;
                 }
-                $puntos += $parejas * revisarSumaPuntos("Puente");
+
+                if (count($especiesUnicas) === 2) {
+                    $a = $especiesUnicas[0];
+                    $b = $especiesUnicas[1];
+
+                    $patronAValido = true;
+                    $patronBValido = true;
+
+                    for ($i = 0; $i < $cantidad; $i++) {
+                        $esperadoA = ($i % 2 === 0) ? $a : $b;
+                        $esperadoB = ($i % 2 === 0) ? $b : $a;
+
+                        if ($dinos[$i] !== $esperadoA) $patronAValido = false;
+                        if ($dinos[$i] !== $esperadoB) $patronBValido = false;
+
+                        if (! $patronAValido && ! $patronBValido) break;
+                    }
+
+                    if ($patronAValido || $patronBValido) {
+                        $puntos += ($cantidad - 1) * revisarSumaPuntos("BosqueInv") + 2;
+                    }
+                }
+
+                break;
+            case 'PuenteIzq':
+            case 'PuenteDer':
+                if ($recinto === 'PuenteIzq') {
+                    $izq = $recintos['PuenteIzq'] ?? [];
+                    $der = $recintos['PuenteDer'] ?? [];
+
+                    $parejas = 0;
+                    $derTemp = $der;
+
+                    foreach ($izq as $dinoIzq) {
+                        $pos = array_search($dinoIzq, $derTemp);
+                        if ($pos !== false) {
+                            $parejas++;
+                            unset($derTemp[$pos]);
+                        }
+                    }
+
+                    $puntos += $parejas * revisarSumaPuntos("PuenteIzq");
+                }
                 break;
 
             case 'Puesto':
-                // 2 puntos por cada dinosaurio de la misma especie que el jugador a la derecha
-                $idxJugador = array_search($idJugador, $jugadoresEnOrden);
-                $jugadorDerecha = $jugadoresEnOrden[($idxJugador + 1) % count($jugadoresEnOrden)];
-                $jugadasDerecha = traerJugadas($jugadorDerecha, $_GET["idPartida"]);
-                $dinosDerecha = array_map(fn($j) => $j['dinosaurio'], $jugadasDerecha);
-                foreach ($dinos as $dino) {
-                    if (in_array($dino, $dinosDerecha)) $puntos += revisarSumaPuntos("Puesto");
+
+                if ($cantidad === 1) {
+                    $dino = $dinos[0];
+                    $posActual = array_search($idJugador, $orden, true);
+                    if ($posActual !== false) {
+                        $idDerecha = ($posActual === count($orden) - 1) ? $orden[0] : $orden[$posActual + 1];
+                        $jugadasDerecha = traerJugadas($idDerecha, $idPartida);
+                        $mismoDino = 0;
+                        foreach ($jugadasDerecha as $j) {
+                            if ($j['dinosaurio'] === $dino) $mismoDino++;
+                        }
+                        $puntos += $mismoDino * revisarSumaPuntos("Puesto");
+                    }
                 }
+
                 break;
 
             case 'Piramide':
-                // Cada dinosaurio suma puntos según escalón
-                $escalon = [1, 1, 1, 2, 2, 3]; // fila inferior=1, intermedia=2, superior=3
-                for ($i = 0; $i < $cantidad && $i < 6; $i++) {
-                    $puntos += $escalon[$i] * revisarSumaPuntos("Piramide");
-                }
-                break;
 
-            case 'Cuarentena':
-                // Mover dinosaurio a otro recinto: puntaje depende del nuevo recinto
-                // Para simplificar, lo sumamos al Río
-                $puntos += $cantidad * revisarSumaPuntos("Rio");
+                $piramideOrden = armarPiramide($jugadas);
+
+                if ($cantidad === 0) break;
+
+                if (($piramideOrden[0] ?? null) !== ($piramideOrden[1] ?? null) && ($piramideOrden[0] ?? null) !== ($piramideOrden[3] ?? null) && $cantidad >= 1) {
+                    $puntos += revisarSumaPuntos("Piramide");
+                }
+
+                if (($piramideOrden[1] ?? null) !== ($piramideOrden[0] ?? null) && ($piramideOrden[1] ?? null) !== ($piramideOrden[2] ?? null) && ($piramideOrden[1] ?? null) !== ($piramideOrden[3] ?? null) && ($piramideOrden[1] ?? null) !== ($piramideOrden[4] ?? null) && $cantidad >= 2) {
+                    $puntos += revisarSumaPuntos("Piramide");
+                }
+
+                if (($piramideOrden[2] ?? null) !== ($piramideOrden[1] ?? null) && ($piramideOrden[2] ?? null) !== ($piramideOrden[4] ?? null) && $cantidad >= 3) {
+                    $puntos += revisarSumaPuntos("Piramide");
+                }
+
+                if (($piramideOrden[3] ?? null) !== ($piramideOrden[0] ?? null) && ($piramideOrden[3] ?? null) !== ($piramideOrden[1] ?? null) && ($piramideOrden[3] ?? null) !== ($piramideOrden[4] ?? null) && ($piramideOrden[3] ?? null) !== ($piramideOrden[5] ?? null) && $cantidad >= 4) {
+                    $puntos += revisarSumaPuntos("Piramide") * 2;
+                }
+
+                if (($piramideOrden[4] ?? null) !== ($piramideOrden[1] ?? null) && ($piramideOrden[4] ?? null) !== ($piramideOrden[2] ?? null) && ($piramideOrden[4] ?? null) !== ($piramideOrden[3] ?? null) && ($piramideOrden[4] ?? null) !== ($piramideOrden[5] ?? null) && $cantidad >= 5) {
+                    $puntos += revisarSumaPuntos("Piramide") * 2;
+                }
+
+                if (($piramideOrden[5] ?? null) !== ($piramideOrden[3] ?? null) && ($piramideOrden[5] ?? null) !== ($piramideOrden[4] ?? null) && $cantidad === 6) {
+                    $puntos += revisarSumaPuntos("Piramide") * 3 + 1;
+                }
+
                 break;
 
             case 'Rio':
@@ -87,7 +149,6 @@ function contarPuntosInvierno(array $jugadas, string $idJugador, array $jugadore
                 break;
         }
 
-        // Bonus por cada T-Rex
         $puntos += $rexCount;
     }
 
@@ -175,5 +236,19 @@ function contarPuntosVerano(array $jugadas, string $idJugador): int
 
     return $puntos;
 }
+
+function armarPiramide(array $jugadas): array
+{
+    $piramide = [];
+
+    foreach ($jugadas as $jugada) {
+        if ($jugada['recinto'] === 'Piramide') {
+            $piramide[] = $jugada['dinosaurio'];
+        }
+    }
+
+    return $piramide;
+}
+
 
 echo json_encode(["status" => "ok"]);

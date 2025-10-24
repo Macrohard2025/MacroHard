@@ -198,63 +198,22 @@ header {
     height: 20%;
     top: 61%;
     left: 49%;
-    position: absolute;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, auto);
-    gap: 2px;
-    justify-items: center;
-    align-content: start;
-}
-
-.recinto-5 img:nth-child(1) {
-    grid-column: 2;
-}
-
-.recinto-5 img:nth-child(2),
-.recinto-5 img:nth-child(3) {
-    grid-row: 2;
-}
-
-.recinto-5 img:nth-child(2) {
-    grid-column: 2;
-    justify-self: end;
-    margin-right: -10px;
-}
-
-.recinto-5 img:nth-child(3) {
-    grid-column: 2;
-    justify-self: start;
-    margin-left: -10px;
-}
-
-.recinto-5 img:nth-child(4) {
-    grid-column: 1;
-    grid-row: 3;
-    justify-self: end;
-}
-
-.recinto-5 img:nth-child(5) {
-    grid-column: 2;
-    grid-row: 3;
-}
-
-.recinto-5 img:nth-child(6) {
-    grid-column: 3;
-    grid-row: 3;
-    justify-self: start;
+    position: absolute; 
 }
 
 .recinto-5 img {
-    width: 50%;
+    position: absolute; 
+    width: 20%;
 }
 
-.recinto-5>img:only-child {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: center;
-    align-self: start;
-}
+.recinto-5 img:nth-child(1) { bottom: 0; left: 15%; }
+.recinto-5 img:nth-child(2) { bottom: 0; left: 50%; transform: translateX(-50%); }
+.recinto-5 img:nth-child(3) { bottom: 0; left: 85%; transform: translateX(-100%); }
+
+.recinto-5 img:nth-child(4) { bottom: 33%; left: 25%; }
+.recinto-5 img:nth-child(5) { bottom: 33%; right: 25%; }
+
+.recinto-5 img:nth-child(6) { bottom: 66%; left: 50%; transform: translateX(-50%); }
 
 .recinto-6 {
     top: 62%;
@@ -334,6 +293,10 @@ header {
     display: none;
     flex-direction: column;
     gap: 1rem;
+}
+
+.cuarentenaMano {
+    display: none;
 }
 
 @media (min-width: 993px) {

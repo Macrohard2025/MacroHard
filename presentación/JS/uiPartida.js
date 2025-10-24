@@ -58,6 +58,7 @@ addEventListener("DOMContentLoaded", () => {
             let { fecha, modoJuego, tablero, numJugadores, idUsuario } = data;
 
             localStorage.setItem('modoJuego', modoJuego);
+            localStorage.setItem('tablero', tablero);
 
             if (tablero === 'Invierno') {
                 tableroElemento.style.backgroundImage = "url('../../../recursos/img/tableroInvierno.png')";

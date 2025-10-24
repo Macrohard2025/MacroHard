@@ -129,8 +129,11 @@ function mostrarPantallaFinal() {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    if (localStorage.turnoActual > 6 && localStorage.rondaActual > 1) {
+    if (localStorage.turnoActual > 6 && localStorage.rondaActual > 1 && localStorage.tablero !== "Invierno" || localStorage.turnoActual > 7) {
         mostrarPantallaFinal();
+    } else if (localStorage.turnoActual > 6 && localStorage.rondaActual > 1 && localStorage.tablero === "Invierno") {
+        localStorage.removeItem("dado");
+        turnoCuarentena();
     }
 
 });
@@ -146,4 +149,48 @@ document.addEventListener("DOMContentLoaded", function () {
         rondaActualElemento.innerHTML = "Ronda " + localStorage.rondaActual;
     }
 });
+
+function turnoCuarentena() {
+    fetch(`../../../negocio/getDinoCuarentena.php?idPartida=${localStorage.idPartida}&idUsuario=${localStorage.idJugadorActual}`)
+        .then(res => res.json())
+        .then(data => {
+            const dinoNombre = data.dinoCuarentena;
+
+            if (!dinoNombre) {
+                if (localStorage.modoJuego === "Solo") {
+                    mostrarPantallaFinal();
+                } else {
+                    pasarTurno();
+                }
+                return;
+            }
+
+            document.getElementById("columnaDinos").style.display = "none";
+            const colIzquierda2 = document.getElementById("col-izquierda2");
+            colIzquierda2.style.display = "flex";
+            const contenedor = colIzquierda2.querySelector(".grid-dinos .dinos");
+
+            const div = document.createElement("div");
+            const img = document.createElement("img");
+            img.src = `../../../recursos/img/dinos/${mapaDinos[dinoNombre]}`;
+            img.alt = dinoNombre;
+            img.id = dinoNombre;
+            img.classList.add("dino-mano");
+
+            img.addEventListener("click", () => {
+                dinoSeleccionado = img;
+                document.querySelectorAll(".grid-dinos img").forEach(d => d.classList.remove("seleccionado"));
+                img.classList.add("seleccionado");
+            });
+
+            img.setAttribute("draggable", true);
+            img.addEventListener("dragstart", e => e.dataTransfer.setData("idDino", dinoNombre));
+
+            div.appendChild(img);
+            contenedor.appendChild(div);
+
+            document.querySelector(".Zona-de-cuarentena").innerHTML = "";
+        })
+        .catch(err => console.error("Error cargando dino de cuarentena:", err));
+}
 
