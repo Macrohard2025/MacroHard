@@ -195,7 +195,7 @@ function recuperarUsuarioPorId(int $idUsuario): ?Usuario
     );
 }
 
-function actualizarUsuario(int $idUsuario, string $nombre, string $email, DateTime $edad, ?string $contraseña, string $idioma, string $tema): bool
+function actualizarUsuario(int $idUsuario, string $nombre, string $email, DateTime $edad, string $contraseña, string $idioma, string $tema): bool
 {
     global $conn;
 
@@ -203,7 +203,7 @@ function actualizarUsuario(int $idUsuario, string $nombre, string $email, DateTi
 
     $query = "UPDATE Usuario SET nombre='$nombre', email='$email', fecha_nacimiento='$fechaNacimiento', preferencias_idioma='$idioma', preferencias_tema='$tema'";
 
-    if (!is_null($contraseña)) {
+    if (trim($contraseña) !== "") {
         $hash = password_hash($contraseña, PASSWORD_DEFAULT);
         $query .= ", contrasena='$hash'";
     }
