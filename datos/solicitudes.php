@@ -323,25 +323,30 @@ function traerUltimasPartidasPorUsuario(int $idUsuario): array
     $partidas = [];
 
     $sql = "
-        SELECT 
-            p.partida_id AS id,
-            DATE_FORMAT(p.fecha, '%d/%m/%Y') AS fecha,
-            CONCAT(p.modo_juego, ' - ', p.tablero) AS modo,
-            u.nombre AS ganador,
-            j.puntos_totales AS puntos,
-            (
-                SELECT COUNT(*) + 1
-                FROM Jugadores j2
-                WHERE j2.fk_partida_id = j.fk_partida_id
-                AND j2.puntos_totales > j.puntos_totales
-            ) AS posicion
-        FROM Jugadores j
-        JOIN Partida p ON j.fk_partida_id = p.partida_id
-        LEFT JOIN Usuario u ON p.fk_ganador_id = u.usuario_id
-        WHERE j.fk_usuario_id = $idUsuario
-        ORDER BY p.fecha DESC
-        LIMIT 10
-    ";
+    SELECT 
+        p.partida_id AS id,
+        DATE_FORMAT(p.fecha, '%d/%m/%Y') AS fecha,
+        CONCAT(p.modo_juego, ' - ', p.tablero) AS modo,
+        u.nombre AS ganador,
+        (
+            SELECT jg.puntos_totales
+            FROM Jugadores jg
+            WHERE jg.fk_partida_id = p.partida_id
+            AND jg.fk_usuario_id = p.fk_ganador_id
+        ) AS puntos,
+        (
+            SELECT COUNT(*) + 1
+            FROM Jugadores j2
+            WHERE j2.fk_partida_id = j.fk_partida_id
+            AND j2.puntos_totales > j.puntos_totales
+        ) AS posicion
+    FROM Jugadores j
+    JOIN Partida p ON j.fk_partida_id = p.partida_id
+    LEFT JOIN Usuario u ON p.fk_ganador_id = u.usuario_id
+    WHERE j.fk_usuario_id = $idUsuario
+    ORDER BY p.fecha DESC
+    LIMIT 10
+";
 
     $result = mysqli_query($conn, $sql);
 
@@ -589,4 +594,41 @@ function traerDinoCuarentena(int $idPartida, int $idUsuario): ?string
     }
 
     return null;
+}
+
+function traerRankingGlobal(): array
+{
+    global $conn;
+
+    $ranking = [];
+
+    $sql = "
+        SELECT 
+            u.usuario_id AS id,
+            u.nombre,
+            COUNT(DISTINCT j.fk_partida_id) AS partidas_jugadas,
+            SUM(j.puntos_totales) AS puntos_totales,
+            AVG(j.puntos_totales) AS promedio_puntos
+        FROM Usuario u
+        JOIN Jugadores j ON u.usuario_id = j.fk_usuario_id
+        GROUP BY u.usuario_id, u.nombre
+        ORDER BY puntos_totales DESC
+        LIMIT 10
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($fila = mysqli_fetch_assoc($result)) {
+            $ranking[] = [
+                "id" => (int)$fila['id'],
+                "nombre" => $fila['nombre'],
+                "partidas_jugadas" => (int)$fila['partidas_jugadas'],
+                "puntos_totales" => (int)$fila['puntos_totales'],
+                "promedio_puntos" => (float)$fila['promedio_puntos']
+            ];
+        }
+    }
+
+    return $ranking;
 }
