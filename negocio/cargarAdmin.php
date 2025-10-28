@@ -29,7 +29,7 @@ if (!isset($_POST["contraseña"]) || $_POST["contraseña"] !== $_POST["confirmar
 }
 
 if (verificarInstalacion()) {
-    echo "<script>alert('El administrador ya fue configurado.'); window.location.href = '../index.html';</script>";
+    echo "<script>alert('El administrador ya fue configurado previamente.'); window.location.href = '../index.html';</script>";
     exit;
 }
 
@@ -43,7 +43,6 @@ $exito = actualizarAdmin(
 
 if ($exito) {
     echo "<script>
-        alert('Administrador creado correctamente.');
         window.location.href = '../index.html';
     </script>";
 } else {
