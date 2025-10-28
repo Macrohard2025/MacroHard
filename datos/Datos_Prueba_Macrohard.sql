@@ -1,4 +1,4 @@
-USE BD_Macrohard;
+USE BD-Macrohard;
 
 INSERT INTO Usuario (usuario_id, nombre, contrasena, email, fecha_nacimiento) VALUES
 (2, 'Mateo', 'mateo123', 'mateo@test.com', '2005-03-15'),

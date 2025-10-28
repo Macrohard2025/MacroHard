@@ -1,5 +1,5 @@
 CREATE DATABASE BD_Macrohard;
-USE BD_Macrohard;
+USE BD-Macrohard;
 
 CREATE TABLE Usuario (
     usuario_id INT PRIMARY KEY AUTO_INCREMENT,
