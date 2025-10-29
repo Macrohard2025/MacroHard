@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         fila.innerHTML = `
           <td colspan="6" class="text-center">
             ${localStorage.idioma === "en"
-              ? "No players in the ranking yet."
-              : "Aún no hay jugadores en el ranking."}
+            ? "No players in the ranking yet."
+            : "Aún no hay jugadores en el ranking."}
           </td>`;
         tbody.appendChild(fila);
         return;
@@ -39,4 +39,23 @@ document.addEventListener("DOMContentLoaded", () => {
           </td>
         </tr>`;
     });
+});
+
+const botonVolver = document.getElementById("botonVolver");
+const rankTitulo = document.getElementById("rankTitulo");
+const tablaNombre = document.getElementById("tablaNombre");
+const tablaJugadas = document.getElementById("tablaJugadas");
+const tablaPuntos = document.getElementById("tablaPuntos");
+const tablaPPP = document.getElementById("tablaPPP");
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("idioma") === "en") {
+    botonVolver.textContent = "Back to Home";
+    rankTitulo.textContent = "Player Ranking";
+    tablaNombre.textContent = "Name";
+    tablaJugadas.textContent = "Games Played";
+    tablaPuntos.textContent = "Total Points";
+    tablaPPP.textContent = "Points per Game";
+    document.title = "Statistics";
+  }
 });
