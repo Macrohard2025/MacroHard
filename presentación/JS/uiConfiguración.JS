@@ -214,4 +214,5 @@ function aplicarIdiomaIngles() {
     botonVolver.innerHTML = "Back to home";
     esButton.innerHTML = "Spanish";
     enButton.innerHTML = "English";
+    document.title = "Settings";
 }
