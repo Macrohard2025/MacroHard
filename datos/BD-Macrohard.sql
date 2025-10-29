@@ -1,12 +1,12 @@
-CREATE DATABASE BD_Macrohard;
-USE BD-Macrohard;
+CREATE DATABASE `BD-Macrohard`;
+USE `BD-Macrohard`;
 
 CREATE TABLE Usuario (
     usuario_id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(50) NOT NULL,
-    contrasena VARCHAR(255) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    fecha_nacimiento DATE NOT NULL,
+    nombre VARCHAR(50),
+    contrasena VARCHAR(255),
+    email VARCHAR(100) UNIQUE,
+    fecha_nacimiento DATE,
     preferencias_idioma VARCHAR(50) DEFAULT 'es',
     preferencias_tema VARCHAR(50) DEFAULT 'claro'
 );

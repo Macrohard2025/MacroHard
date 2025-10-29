@@ -124,6 +124,8 @@ header {
 .dado {
     width: 150px;
     margin-top: 1rem;
+    border: solid 2px black;
+    border-radius: 20px;
 }
 
 .logo-macrohard {
@@ -296,6 +298,19 @@ header {
 }
 
 .cuarentenaMano {
+    display: none;
+}
+
+.bolsaContenedor {
+    display: flex;
+}
+
+.bolsaContenedor img {
+    max-width: 200px;
+    height: auto;
+}
+
+.dinos img {
     display: none;
 }
 

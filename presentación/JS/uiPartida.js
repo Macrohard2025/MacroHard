@@ -84,6 +84,11 @@ addEventListener("DOMContentLoaded", () => {
                 turnoJugador.style.display = 'none';
             } else if (modoJuego === 'Control') {
 
+                const contDinosIMG = document.querySelectorAll('.dinos img');
+                contDinosIMG.forEach(img => {
+                    img.style.display = 'flex';
+                });
+
                 const colDerecha = document.querySelector('.col-derechaDiv');
                 colDerecha.innerHTML = '';
 
@@ -180,3 +185,15 @@ const mapaRecintos = {
     "Isla": "La-isla-solitaria",
     "Rio": "Rio"
 };
+
+const bolsaDinos = document.getElementById('bolsaDinos');
+const textoBolsa = document.getElementById('textoBolsa');
+
+bolsaDinos.addEventListener('click', () => {
+    const contDinosIMG = document.querySelectorAll('.dinos img');
+    contDinosIMG.forEach(img => {
+        img.style.display = 'flex';
+    });
+    bolsaDinos.src = '../../../recursos/img/dinosauriosBolsa2.png';
+    textoBolsa.innerHTML = 'Elige un dinosaurio';
+});
