@@ -19,7 +19,13 @@ if (botonFinalizarControl) {
 }
 
 botonVolver.addEventListener('click', () => {
-    if (confirm('¿Estás seguro de que deseas cancelar la partida?')) {
+    let mensaje;
+    if (localStorage.getItem("idioma") === "en") {
+        mensaje = "Are you sure you want to cancel the game? All progress will be lost.";
+    } else {
+        mensaje = "¿Estás seguro de que quieres cancelar la partida? Se perderá todo el progreso.";
+    }
+    if (confirm(mensaje)) {
         const idPartida = localStorage.getItem('idPartida');
         idPartidaInput.value = idPartida;
         registroUsuario = localStorage.getItem('registroUsuario');
