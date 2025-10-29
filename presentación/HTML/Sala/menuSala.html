@@ -32,27 +32,14 @@
         <main>
             <button id="botonSolo"> Modo un jugador </button>
             <button id="botonMulti"> Modo multijugador </button>
-            <button onclick="window.location.href='historialPartidas.html'"> Historial de partidas </button>
+            <button id="botonHistorial" onclick="window.location.href='historialPartidas.html'"> Historial de partidas </button>
             <button id="botonControl"> Control de partidas </button>
         </main>
-
-        <article class="eleccionModoDeJuego" id="eleccionModoDeJuego">
-            <section class="div-partida">
-                <p class="pregunta">¿En qué modo se desarrolló su partida?</p>
-                <article class="botones-tablero">
-                    <button id="boton-solitario" class="boton-invierno" style="background-color: #03920f;"> Un jugador
-                    </button>
-                    <button id="boton-multijugador" class="boton-verano" style="background-color: #03920f;">
-                        Multijugador </button>
-                </article>
-                <button id="cancelar" class="cancelar"> Cancelar </button>
-            </section>
-        </article>
-
+        
         <article class="article-partida" id="article-partida">
             <section class="div-partida">
-                <p class="pregunta">¿Qué tablero desea usar?</p>
-                <p class="aclarar">(Cada tablero tiene sus propias reglas)</p>
+                <p class="pregunta" id="preguntaTablero">¿Qué tablero desea usar?</p>
+                <p class="aclarar" id="aclararTablero">(Cada tablero tiene sus propias reglas)</p>
                 <div class="botones-tablero">
                     <button id="tablero-invierno" class="boton-invierno">Invierno</button>
                     <button id="tablero-verano" class="boton-verano">Verano</button>
@@ -63,14 +50,14 @@
 
         <article class="article-partida" id="article-partida2">
             <section class="div-partida">
-                <p class="pregunta">¿Cuántos jugadores habrá?</p>
+                <p class="pregunta" id="preguntaCantidad">¿Cuántos jugadores habrá?</p>
                 <select id="select-jugadores" class="select-jugadores">
-                    <option value="" disabled selected>Elija una opción</option>
+                    <option value="" disabled selected id="preguntaOpcion">Elija una opción</option>
                     <option id="optionSelect" style="display: none;" value="1">1 jugador</option>
-                    <option value="2">2 jugadores</option>
-                    <option value="3">3 jugadores</option>
-                    <option value="4">4 jugadores</option>
-                    <option value="5">5 jugadores</option>
+                    <option value="2" id="jugadorDos">2 jugadores</option>
+                    <option value="3" id="jugadorTres">3 jugadores</option>
+                    <option value="4" id="jugadorCuatro">4 jugadores</option>
+                    <option value="5" id="jugadorCinco">5 jugadores</option>
                 </select>
                 <button class="boton-listo" id="boton-listo">Listo</button>
                 <button id="cancelar" class="cancelar"> Cancelar </button>

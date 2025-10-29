@@ -101,6 +101,7 @@ main button:hover {
 .botones-tablero {
   flex-direction: row;
   display: flex;
+  gap: 20px;
 }
 
 .boton-verano {

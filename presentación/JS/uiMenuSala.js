@@ -88,3 +88,39 @@ botonListo.addEventListener("click", function (e) {
         formComenzarPartida.submit();
     }
 });
+
+const botonHistorial = document.getElementById('botonHistorial');
+const preguntaTablero = document.getElementById('preguntaTablero');
+const aclararTablero = document.getElementById('aclararTablero');
+const preguntaCantidad = document.getElementById('preguntaCantidad');
+const preguntaOpcion = document.getElementById('preguntaOpcion');
+const jugadorDos = document.getElementById('jugadorDos');
+const jugadorTres = document.getElementById('jugadorTres');
+const jugadorCuatro = document.getElementById('jugadorCuatro');
+const jugadorCinco = document.getElementById('jugadorCinco');
+
+document.addEventListener("DOMContentLoaded", function () {
+    if (localStorage.idioma == "en") {
+        document.title = "Game Menu";
+        botonSolo.textContent = "Single Player";
+        botonHistorial.textContent = "Game History";
+        botonMulti.textContent = "Multiplayer";
+        botonControl.textContent = "Control Mode";
+        botonVolver.textContent = "Back to home";
+        preguntaTablero.textContent = "Which board do you want to use?";
+        aclararTablero.textContent = "(Each board has its own rules)";
+        botonInvierno.textContent = "Winter";
+        botonVerano.textContent = "Summer";
+        botonCancelar.forEach(boton => {
+            boton.textContent = "Cancel";
+        });
+        preguntaCantidad.textContent = "How many players will there be?";
+        preguntaOpcion.textContent = "Choose an option";
+        optionSelect.textContent = "1 player";
+        jugadorDos.textContent = "2 players";
+        jugadorTres.textContent = "3 players";
+        jugadorCuatro.textContent = "4 players";
+        jugadorCinco.textContent = "5 players";
+        botonListo.textContent = "Ready";
+    }
+});

@@ -70,7 +70,7 @@ actualizarTexto();
 
 if (localStorage.idioma === 'en') {
     document.title = "Tutorial";
-    botonVolver.textContent = "Return to home";
+    botonVolver.textContent = "Back to home";
     botonAnterior.textContent = "Previous";
     botonSiguiente.textContent = "Next";
 
