@@ -88,7 +88,7 @@
             <div class="panel-derecho">
                 <h3><span id="rondaActualElemento" class="titulo-verde">Ronda 1</span></h3>
                 <p id="turnoActualElemento">Turno 1</p>
-                <p id="turnoJugador">Turno de <span id="nombreJugador" class="jugador"></span></p>
+                <p id="turnoJugador"><span id="nombreJugador" class="jugador"></span></p>
                 <img id="dado" class="dado" src="../../../recursos/img/dado/lado0.png">
             </div>
         </section>
@@ -103,8 +103,8 @@
     </form>
 
     <div id="pantalla-final" class="finalPantalla">
-        <h2>¡La partida ha finalizado!</h2>
-        <p>Podés ver los resultados aquí.</p>
+        <h2 id="finalTextoPop">¡La partida ha finalizado!</h2>
+        <p id="finalTextoMsg">Podés ver los resultados aquí.</p>
         <button class="btn btn-success boton" id="btnFinalizar">Finalizar partida</button>
     </div>
 
@@ -113,6 +113,7 @@
     <script src="../../JS/uiPartida.js"></script>
     <script src="../../JS/manejarDinos.js"></script>
     <script src="../../JS/logicaPartida.js"></script>
+    <script src="../../JS/traducirPartida.js"></script>
 </body>
 
 </html>

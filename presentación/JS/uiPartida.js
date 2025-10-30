@@ -133,7 +133,9 @@ addEventListener("DOMContentLoaded", () => {
                         dado.src = `../../../recursos/img/dado/lado${lado}.png`;
                     }
                 });
-                if (localStorage.getItem("dado") != null) {
+                if (localStorage.getItem("dado") === null && localStorage.idioma === "en") {
+                    dado.src = `../../../recursos/img/dado/lado0en.png`;
+                } else if (localStorage.getItem("dado") != null) {
                     dado.src = `../../../recursos/img/dado/lado${localStorage.getItem("dado")}.png`;
                 }
             }
@@ -201,5 +203,9 @@ bolsaDinos.addEventListener('click', () => {
         img.style.display = 'flex';
     });
     bolsaDinos.src = '../../../recursos/img/dinosauriosBolsa2.png';
-    textoBolsa.innerHTML = 'Elige un dinosaurio';
+    if (localStorage.getItem("idioma") === "en") {
+        textoBolsa.innerHTML = 'Choose a dinosaur';
+    } else {
+        textoBolsa.innerHTML = 'Elige un dinosaurio';
+    }
 });

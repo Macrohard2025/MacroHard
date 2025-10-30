@@ -37,6 +37,41 @@ function mostrarMano() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const jugadorActual = localStorage.idJugadorActual;
+    const idioma = localStorage.getItem("idioma") || "es";
+
+    const traduccionesRecintos = {
+        "El-Bosque-Ordenado": idioma === "en" ? "Ordered Forest" : "El Bosque Ordenado",
+        "El-puente-de-los-enamorados-izquierda": idioma === "en" ? "Lovers' Bridge (left)" : "Puente de los Enamorados (izq.)",
+        "El-puente-de-los-enamorados-derecha": idioma === "en" ? "Lovers' Bridge (right)" : "Puente de los Enamorados (der.)",
+        "El-puesto-de-observación": idioma === "en" ? "Observation Post" : "Puesto de Observación",
+        "La-pirámide": idioma === "en" ? "The Pyramid" : "La Pirámide",
+        "Zona-de-cuarentena": idioma === "en" ? "Quarantine Zone" : "Zona de Cuarentena",
+        "El-bosque-de-la-semejanza": idioma === "en" ? "Forest of Similarity" : "Bosque de la Semejanza",
+        "El-trío-frondoso": idioma === "en" ? "Leafy Trio" : "Trío Frondoso",
+        "La-pradera-del-amor": idioma === "en" ? "Love Meadow" : "Pradera del Amor",
+        "El-rey-de-la-selva": idioma === "en" ? "King of the Jungle" : "Rey de la Selva",
+        "El-prado-de-la-diferencia": idioma === "en" ? "Meadow of Difference" : "Prado de la Diferencia",
+        "La-isla-solitaria": idioma === "en" ? "Lonely Island" : "Isla Solitaria",
+        "Rio": idioma === "en" ? "River" : "Río"
+    };
+
+    const textos = {
+        confirmarColocar: idioma === "en"
+            ? (dino, recinto) => `You are placing ${dino} in ${recinto}. Confirm?`
+            : (dino, recinto) => `Estás colocando ${dino} en ${recinto}. ¿Confirmar?`,
+
+        dadoInvalido: idioma === "en"
+            ? "The dice doesn’t allow you to place that dinosaur in that enclosure."
+            : "El dado no te permite colocar ese dinosaurio en ese recinto.",
+
+        recintoLleno: idioma === "en"
+            ? "You can’t place more dinosaurs in that enclosure."
+            : "No puedes colocar más dinosaurios en ese recinto.",
+
+        tirarDadoPrimero: idioma === "en"
+            ? "You must roll the dice first."
+            : "Debe tirar el dado primero."
+    };
 
     fetch(`../../../negocio/repartirDinos.php?idPartida=${encodeURIComponent(localStorage.idPartida)}`)
         .then(res => res.json())
@@ -48,29 +83,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
             recintos.forEach(recinto => {
                 recinto.addEventListener("click", () => {
-                    const recintoSeleccionado = recinto.classList[2] || "Rio";
-                    if (dinoSeleccionado && confirm(`Estás colocando ${dinoSeleccionado.alt} en ${recintoSeleccionado}. ¿Confirmar?`)) {
+                    const claseRecinto = [...recinto.classList].find(c => traduccionesRecintos[c]) || "Rio";
+                    const nombreRecinto = traduccionesRecintos[claseRecinto];
+
+                    if (dinoSeleccionado && confirm(textos.confirmarColocar(dinoSeleccionado.alt, nombreRecinto))) {
                         if (localStorage.getItem("dado") != null || localStorage.getItem("modoJuego") == "Control") {
                             if (validarRecinto(recinto)) {
                                 if (validarDado(recinto, dinoSeleccionado)) {
                                     recinto.appendChild(dinoSeleccionado);
                                     registrarJugada(dinoSeleccionado.alt, recinto);
                                     dinoSeleccionado.classList.remove("seleccionado");
-                                    dinoSeleccionado = null;
 
                                     const index = manoActual.indexOf(dinoSeleccionado.alt);
                                     if (index > -1) {
                                         manoActual.splice(index, 1);
                                         mostrarMano();
                                     }
+
+                                    dinoSeleccionado = null;
                                 } else {
-                                    alert("El dado no te permite colocar ese dinosaurio en ese recinto")
+                                    alert(textos.dadoInvalido);
                                 }
                             } else {
-                                alert("No puedes colocar más dinosaurios en este recinto")
+                                alert(textos.recintoLleno);
                             }
                         } else {
-                            alert("Debe tirar el dado primero");
+                            alert(textos.tirarDadoPrimero);
                         }
                     }
                 });
@@ -82,9 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     e.preventDefault();
                     const idDino = e.dataTransfer.getData("idDino");
                     const dino = document.getElementById(idDino);
-                    const recintoSeleccionado = recinto.classList[2] || "Rio";
+                    const claseRecinto = [...recinto.classList].find(c => traduccionesRecintos[c]) || "Rio";
+                    const nombreRecinto = traduccionesRecintos[claseRecinto];
 
-                    if (dino && confirm(`Estás colocando ${dino.alt} en ${recintoSeleccionado}. ¿Confirmar?`)) {
+                    if (dino && confirm(textos.confirmarColocar(dino.alt, nombreRecinto))) {
                         if (localStorage.getItem("dado") != null || localStorage.getItem("modoJuego") == "Control") {
                             if (validarRecinto(recinto)) {
                                 if (validarDado(recinto, dino)) {
@@ -97,13 +136,13 @@ document.addEventListener("DOMContentLoaded", () => {
                                         mostrarMano();
                                     }
                                 } else {
-                                    alert("El dado no te permite colocar ese dinosaurio en ese recinto")
+                                    alert(textos.dadoInvalido);
                                 }
                             } else {
-                                alert("No puedes colocar más dinosaurios en ese recinto")
+                                alert(textos.recintoLleno);
                             }
                         } else {
-                            alert("Debe tirar el dado primero");
+                            alert(textos.tirarDadoPrimero);
                         }
                     }
                 });

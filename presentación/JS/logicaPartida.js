@@ -145,8 +145,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (localStorage.modoJuego != "Control") {
-        turnoActualElemento.innerHTML = "Turno " + localStorage.turnoActual;
-        rondaActualElemento.innerHTML = "Ronda " + localStorage.rondaActual;
+        let ronda;
+        let turno;
+        if (localStorage.getItem("idioma") === "en") {
+            ronda = "Round ";
+            turno = "Turn ";
+        } else {
+            ronda = "Ronda ";
+            turno = "Turno ";
+        }
+        turnoActualElemento.innerHTML = turno + localStorage.turnoActual;
+        rondaActualElemento.innerHTML = ronda + localStorage.rondaActual;
     }
 });
 
