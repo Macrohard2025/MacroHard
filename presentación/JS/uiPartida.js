@@ -209,3 +209,18 @@ bolsaDinos.addEventListener('click', () => {
         textoBolsa.innerHTML = 'Elige un dinosaurio';
     }
 });
+
+const bolsaDinos2 = document.getElementById('bolsaDinos2');
+
+bolsaDinos2.addEventListener('click', () => {
+    const contDinosIMG = document.querySelectorAll('.dinos img');
+    contDinosIMG.forEach(img => {
+        img.style.display = 'flex';
+    });
+    bolsaDinos2.src = '../../../recursos/img/dinosauriosBolsa2.png';
+    if (localStorage.getItem("idioma") === "en") {
+        textoBolsa.innerHTML = 'Choose a dinosaur';
+    } else {
+        textoBolsa.innerHTML = 'Elige un dinosaurio';
+    }
+});

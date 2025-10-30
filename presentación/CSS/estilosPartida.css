@@ -301,11 +301,11 @@ header {
     display: none;
 }
 
-.bolsaContenedor {
+.bolsaContenedor, .bolsaContenedor2 {
     display: flex;
 }
 
-.bolsaContenedor img {
+.bolsaContenedor img, .bolsaContenedor2 img {
     max-width: 200px;
     height: auto;
 }
