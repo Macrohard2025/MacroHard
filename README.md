@@ -52,23 +52,12 @@ Copiá la carpeta del proyecto dentro de la carpeta htdocs de XAMPP. Por ejemplo
 
 C:\xampp\htdocs\MacroHard
 
-4️⃣ Configurar la base de datos
-
-Abrí http://localhost/phpmyadmin
- en tu navegador.
-
-Creá una nueva base de datos e importá los archivos:
-
-BD-MacroHard.sql
-
-Datos_Prueba_Macrohard.sql
-
-5️⃣ Iniciar la aplicación
+4️⃣ Iniciar la aplicación
 
 Abrí http://localhost/MacroHard
  en tu navegador.
 
-La primera vez que ingreses, si el usuario admin no está creado, el sistema te llevará a un formulario para registrar al administrador.
+La primera vez que ingreses, si el usuario admin y la base de datos no están creadas, el sistema te llevará a un formulario para registrar al administrador y posteriormente creará la base de datos.
 
 ¡Listo! Ya podés empezar a jugar y gestionar partidas.
 
