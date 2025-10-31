@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    fetch("negocio/verificarInstalacion.php")
+    fetch("datos/verificarInstalacion.php")
         .then(res => res.json())
         .then(data => {
             if (!data.instalado) {

@@ -91,7 +91,7 @@ addEventListener("DOMContentLoaded", function () {
             islaInput.value = elementos["Isla"];
             rioInput.value = elementos["Rio"];
             bosqueInvInput.value = elementos["BosqueInv"];
-            puenteInput.value = elementos["Puente"];
+            puenteInput.value = elementos["PuenteIzq"];
             puestoInput.value = elementos["Puesto"];
             piramideInput.value = elementos["Piramide"];
             cuarentenaInput.value = elementos["Cuarentena"];

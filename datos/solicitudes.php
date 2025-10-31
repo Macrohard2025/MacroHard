@@ -1,8 +1,8 @@
 <?php
 
 include_once "conexión.php";
-include_once "Usuario.php";
-include_once "Partida.php";
+include_once "../negocio/Usuario.php";
+include_once "../negocio/Partida.php";
 
 function obtenerElementos(): array
 {
@@ -217,8 +217,12 @@ function eliminarUsuario(int $idUsuario): void
 {
     global $conn;
 
-    $query = "DELETE FROM Usuario WHERE usuario_id = $idUsuario";
-    mysqli_query($conn, $query);
+    $sql = "UPDATE Usuario 
+            SET activo = FALSE,
+                email = NULL
+            WHERE usuario_id = $idUsuario";
+
+    mysqli_query($conn, $sql);
 }
 
 function partidaExiste(int $idPartida): bool
@@ -501,24 +505,6 @@ function determinarGanador(int $idPartida): void
     }
 }
 
-function verificarInstalacion(): bool
-{
-    global $conn;
-
-    $sql = "SELECT nombre FROM Usuario WHERE usuario_id = 1";
-    $result = mysqli_query($conn, $sql);
-
-    if (!$result || mysqli_num_rows($result) === 0) {
-
-        return false;
-    }
-
-    $row = mysqli_fetch_assoc($result);
-    $nombre = trim($row['nombre']);
-
-    return $nombre !== "" && $nombre !== null;
-}
-
 function actualizarAdmin(int $idUsuario, string $nombre, string $email, DateTime $edad, string $contraseña, string $idioma = 'es', string $tema = 'claro'): bool
 {
     global $conn;
@@ -611,6 +597,7 @@ function traerRankingGlobal(): array
             AVG(j.puntos_totales) AS promedio_puntos
         FROM Usuario u
         JOIN Jugadores j ON u.usuario_id = j.fk_usuario_id
+        WHERE u.activo = TRUE
         GROUP BY u.usuario_id, u.nombre
         ORDER BY puntos_totales DESC
         LIMIT 10
@@ -631,4 +618,19 @@ function traerRankingGlobal(): array
     }
 
     return $ranking;
+}
+
+function revisarJugadorActivo(int $idUsuario): bool
+{
+    global $conn;
+
+    $query = "SELECT activo FROM Usuario WHERE usuario_id = $idUsuario";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return (bool)$row['activo'];
+    }
+
+    return false;
 }
