@@ -14,14 +14,14 @@
 <body>
 
     <header>
+        <nav class="logo-macrohard">
+            <img src="../../recursos/img/LogoMH2.png">
+        </nav>
         <nav>
             <a id="volverInicio" href="../../index.html" class="btn btn-success boton">Volver al inicio</a>
         </nav>
     </header>
 
-    <footer class="logo-macrohard">
-        <img src="../../recursos/img/LogoMH2.png">
-    </footer>
 
     <section class="panel-section">
         <h1 id="panelTitulo">Panel de administración</h1>
@@ -40,7 +40,8 @@
             <h2 id="eliminarUsuarioTitulo">Eliminar usuario</h2>
             <form class="borrarUsuario" action="../../negocio/borrarUsuario.php" method="get">
                 <label id="labelIdUsuario" for="idUsuario">Id o correo del usuario a eliminar</label>
-                <input type="text" name="idUsuario" id="idUsuario" placeholder="ID o correo del usuario a eliminar" required>
+                <input type="text" name="idUsuario" id="idUsuario" placeholder="ID o correo del usuario a eliminar"
+                    required>
                 <input type="hidden" name="origen" value="dashboard">
                 <button id="botonEliminarUsuario" type="submit" class="btn btn-danger">Eliminar usuario</button>
             </form>

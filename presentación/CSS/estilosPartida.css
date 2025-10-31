@@ -126,6 +126,7 @@ header {
     margin-top: 1rem;
     border: solid 2px black;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .logo-macrohard {
@@ -140,6 +141,10 @@ header {
     background-size: cover;
     background-position: center;
     margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
 }
 
 .Rio {
@@ -200,22 +205,46 @@ header {
     height: 20%;
     top: 61%;
     left: 49%;
-    position: absolute; 
+    position: absolute;
 }
 
 .recinto-5 img {
-    position: absolute; 
+    position: absolute;
     width: 20%;
 }
 
-.recinto-5 img:nth-child(1) { bottom: 0; left: 15%; }
-.recinto-5 img:nth-child(2) { bottom: 0; left: 50%; transform: translateX(-50%); }
-.recinto-5 img:nth-child(3) { bottom: 0; left: 85%; transform: translateX(-100%); }
+.recinto-5 img:nth-child(1) {
+    bottom: 0;
+    left: 15%;
+}
 
-.recinto-5 img:nth-child(4) { bottom: 33%; left: 25%; }
-.recinto-5 img:nth-child(5) { bottom: 33%; right: 25%; }
+.recinto-5 img:nth-child(2) {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-.recinto-5 img:nth-child(6) { bottom: 66%; left: 50%; transform: translateX(-50%); }
+.recinto-5 img:nth-child(3) {
+    bottom: 0;
+    left: 85%;
+    transform: translateX(-100%);
+}
+
+.recinto-5 img:nth-child(4) {
+    bottom: 33%;
+    left: 25%;
+}
+
+.recinto-5 img:nth-child(5) {
+    bottom: 33%;
+    right: 25%;
+}
+
+.recinto-5 img:nth-child(6) {
+    bottom: 66%;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
 .recinto-6 {
     top: 62%;
@@ -301,13 +330,16 @@ header {
     display: none;
 }
 
-.bolsaContenedor, .bolsaContenedor2 {
+.bolsaContenedor,
+.bolsaContenedor2 {
     display: flex;
 }
 
-.bolsaContenedor img, .bolsaContenedor2 img {
+.bolsaContenedor img,
+.bolsaContenedor2 img {
     max-width: 200px;
     height: auto;
+    cursor: pointer;
 }
 
 .dinos img {

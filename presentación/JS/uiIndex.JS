@@ -170,14 +170,14 @@ function aplicarIdiomaIngles() {
     creditosTexto.innerHTML = "Credits";
     labelUser.innerHTML = "Username";
     labelCorreo.innerHTML = "Email";
-    labelEdad.innerHTML = "Age";
+    labelEdad.innerHTML = "Birthdate";
     labelPsw.innerHTML = "Password";
     labelConfirmarPsw.innerHTML = "Confirm Password";
     botonSalir.innerHTML = "Exit";
     botonConfirmar.innerHTML = "Confirm";
     inputNombre.placeholder = "Username";
     inputEmail.placeholder = "Email";
-    inputEdad.placeholder = "Age";
+    inputEdad.placeholder = "Birthdate";
     inputContraseña.placeholder = "Password";
     inputConfirmarContraseña.placeholder = "Confirm Password";
     botonCerrar.innerHTML = "Close session";

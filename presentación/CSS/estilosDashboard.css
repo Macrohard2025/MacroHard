@@ -23,7 +23,7 @@ html {
 
 header {
     background: transparent;
-    height: 5vh;
+    height: 10vh;
     display: flex;
     justify-content: center;
     padding: 1.5rem;
@@ -32,12 +32,14 @@ header {
 .logo-macrohard {
     display: flex;
     align-items: center;
-    bottom: 10px;
-    left: 20px;
     z-index: 10;
     padding: 1rem;
     flex-direction: column;
     justify-content: center;
+}
+
+.logo-macrohard img {
+    max-height: 45px;
 }
 
 .panel-section {
@@ -120,17 +122,14 @@ header {
 
 @media (min-width: 993px) {
 
-    .logo-macrohard {
-        position: absolute;
-        left: 10px;
-        top: 10px;
-        transform: none;
-        height: 10dvh;
+    header {
+        justify-content: space-between;
+        margin-bottom: 4rem;
+        margin-top: 1rem;
     }
 
-    header {
-        justify-content: end;
-        margin-bottom: 4rem;
+    .logo-macrohard img {
+        max-height: 75px;
     }
 
 }

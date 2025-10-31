@@ -233,17 +233,17 @@
     }
 
     .logo-macrohard {
-      position: absolute;
+      position: fixed;
       top: 10px;
-      right: 20px;
-      left: auto;
+      left: 20px;
+      right: auto;
       transform: none;
       margin-top: 0;
       height: auto;
     }
 
     header {
-      justify-content: start;
+      justify-content: end;
     }
 
     .idioma {

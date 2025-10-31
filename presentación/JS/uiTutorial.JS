@@ -45,8 +45,8 @@ let indiceMensaje = 0;
 
 function actualizarTexto() {
     textoPizarron.innerHTML = mensajes[indiceMensaje];
-    botonAnterior.style.display = (indiceMensaje === 0) ? 'none' : 'flex';
-    botonSiguiente.style.display = (indiceMensaje === mensajes.length - 1) ? 'none' : 'flex';
+    botonAnterior.style.visibility = (indiceMensaje === 0) ? 'hidden' : 'visible';
+    botonSiguiente.style.visibility = (indiceMensaje === mensajes.length - 1) ? 'hidden' : 'visible';
 }
 
 function mostrarSiguienteMensaje() {
