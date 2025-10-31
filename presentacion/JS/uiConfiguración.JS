@@ -106,8 +106,8 @@ const botonesForm = document.querySelectorAll('#divCerrarSesion button');
 const inputNom = document.getElementById('inputNom');
 const inputMail = document.getElementById('inputMail');
 const inputEdad = document.getElementById('inputEdad');
-const inputContraseña = document.getElementById('inputContraseña');
-const inputConfirmarContraseña = document.getElementById('inputConfirmarContraseña');
+const inputcontrasenia = document.getElementById('inputcontrasenia');
+const inputConfirmarcontrasenia = document.getElementById('inputConfirmarcontrasenia');
 
 const formContainer = document.getElementById('formContainer');
 
@@ -128,7 +128,7 @@ if (localStorage.registroUsuario) {
             usuario = data.nombre;
             email = data.email;
             edad = data.edad;
-            contraseña = data.contraseña;
+            contrasenia = data.contrasenia;
             preferenciasTema = data.tema;
             preferenciasIdioma = data.idioma;
 
@@ -206,8 +206,8 @@ function aplicarIdiomaIngles() {
     inputNom.placeholder = "Username";
     inputMail.placeholder = "Email";
     inputEdad.placeholder = "Age";
-    inputContraseña.placeholder = "Password";
-    inputConfirmarContraseña.placeholder = "Confirm Password";
+    inputcontrasenia.placeholder = "Password";
+    inputConfirmarcontrasenia.placeholder = "Confirm Password";
     botonCerrar.innerHTML = "Close session";
     titulo.innerHTML = "Settings";
     textoOsc.innerHTML = "Dark Mode";

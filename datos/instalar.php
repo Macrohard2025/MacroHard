@@ -143,27 +143,27 @@ if (!mysqli_multi_query($conn, $sqlDatosPrueba)) {
 while (mysqli_more_results($conn) && mysqli_next_result($conn)) {}
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    echo "<script>alert('Método no permitido.'); window.location.href = '../index.html';</script>";
+    echo "<script>alert('Metodo no permitido.'); window.location.href = '../index.html';</script>";
     exit;
 }
 
 if (!isset($_POST["usuario"]) || trim($_POST["usuario"]) === "") {
-    echo "<script>alert('Ingrese un nombre válido.'); window.location.href = '../presentación/HTML/installer.html';</script>";
+    echo "<script>alert('Ingrese un nombre valido.'); window.location.href = '../presentacion/HTML/installer.html';</script>";
     exit;
 }
 
 if (!isset($_POST["correo"]) || !filter_var($_POST["correo"], FILTER_VALIDATE_EMAIL)) {
-    echo "<script>alert('Ingrese un email válido.'); window.location.href = '../presentación/HTML/installer.html';</script>";
+    echo "<script>alert('Ingrese un email valido.'); window.location.href = '../presentacion/HTML/installer.html';</script>";
     exit;
 }
 
 if (!isset($_POST["edad"]) || (new DateTime($_POST["edad"]) > new DateTime('-7 years'))) {
-    echo "<script>alert('Ingrese una edad válida.'); window.location.href = '../presentación/HTML/installer.html';</script>";
+    echo "<script>alert('Ingrese una edad valida.'); window.location.href = '../presentacion/HTML/installer.html';</script>";
     exit;
 }
 
-if (!isset($_POST["contraseña"]) || $_POST["contraseña"] !== $_POST["confirmarContraseña"]) {
-    echo "<script>alert('Las contraseñas no coinciden.'); window.location.href = '../presentación/HTML/installer.html';</script>";
+if (!isset($_POST["contrasenia"]) || $_POST["contrasenia"] !== $_POST["confirmarcontrasenia"]) {
+    echo "<script>alert('Las contrasenias no coinciden.'); window.location.href = '../presentacion/HTML/installer.html';</script>";
     exit;
 }
 
@@ -172,18 +172,18 @@ $exito = actualizarAdmin(
     trim($_POST["usuario"]),
     trim($_POST["correo"]),
     new DateTime($_POST["edad"]),
-    $_POST["contraseña"]
+    $_POST["contrasenia"]
 );
 
 if ($exito) {
     echo "<script>
-        alert('Instalación completa. Administrador creado correctamente.');
+        alert('Instalacion completa. Administrador creado correctamente.');
         window.location.href = '../index.html';
     </script>";
 } else {
     echo "<script>
         alert('Error al configurar el administrador. Intente nuevamente.');
-        window.location.href = '../presentación/HTML/installer.html';
+        window.location.href = '../presentacion/HTML/installer.html';
     </script>";
 }
 

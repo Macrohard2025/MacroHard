@@ -15,11 +15,11 @@ if (is_numeric($input)) {
 
     $idUsuario = traerIdUsuario($input);
     if (!$idUsuario) {
-        echo "<script>alert('No se encontró un usuario con ese correo.'); window.history.back();</script>";
+        echo "<script>alert('No se encontro un usuario con ese correo.'); window.history.back();</script>";
         exit;
     }
 } else {
-    echo "<script>alert('Formato inválido. Ingrese un ID numérico o un correo válido.'); window.history.back();</script>";
+    echo "<script>alert('Formato invalido. Ingrese un ID numerico o un correo valido.'); window.history.back();</script>";
     exit;
 }
 
@@ -29,16 +29,16 @@ if ($idUsuario === 1) {
 }
 
 if (!usuarioExiste($idUsuario)) {
-    echo "<script>alert('No se encontró el usuario especificado.'); window.history.back();</script>";
+    echo "<script>alert('No se encontro el usuario especificado.'); window.history.back();</script>";
     exit;
 }
 
 eliminarUsuario($idUsuario);
 
 if (isset($_GET['origen']) && $_GET['origen'] === 'dashboard') {
-    echo "<script>alert('Usuario eliminado correctamente'); window.location.href='../presentación/HTML/dashboard.html';</script>";
+    echo "<script>alert('Usuario eliminado correctamente'); window.location.href='../presentacion/HTML/dashboard.html';</script>";
     exit;
 } else {
-    echo "<script>alert('Usuario eliminado correctamente'); localStorage.clear(); window.location.href='../presentación/HTML/configuracion.html';</script>";
+    echo "<script>alert('Usuario eliminado correctamente'); localStorage.clear(); window.location.href='../presentacion/HTML/configuracion.html';</script>";
     exit;
 }

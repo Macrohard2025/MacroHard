@@ -1,6 +1,6 @@
 <?php
 session_start();
 session_destroy();
-header("Location: ../presentación/HTML/Sala/menuSala.html");
+header("Location: ../presentacion/HTML/Sala/menuSala.html");
 exit;
 ?>

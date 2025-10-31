@@ -3,9 +3,9 @@ function validarRecinto(recinto) {
     const limites = {
         "El-puente-de-los-enamorados-izquierda": 4,
         "El-puente-de-los-enamorados-derecha": 4,
-        "El-puesto-de-observación": 1,
+        "El-puesto-de-observacion": 1,
         "Zona-de-cuarentena": 1,
-        "El-trío-frondoso": 3,
+        "El-trio-frondoso": 3,
         "El-rey-de-la-selva": 1,
         "La-isla-solitaria": 1,
         "Rio": 8
@@ -27,10 +27,10 @@ function validarDado(recinto, dino) {
     const dado = localStorage.getItem("dado");
     const nombreRecinto = recinto.classList[2];
 
-    const cafeteria = ["La-pradera-del-amor", "El-trío-frondoso", "El-bosque-de-la-semejanza", "Zona-de-cuarentena", "El-puente-de-los-enamorados-izquierda", "El-Bosque-Ordenado"];
-    const banos = ["La-pirámide", "El-puente-de-los-enamorados-derecha", "El-puesto-de-observación", "El-rey-de-la-selva", "El-prado-de-la-diferencia", "La-isla-solitaria"];
-    const bosque = ["El-bosque-de-la-semejanza", "El-rey-de-la-selva", "El-trío-frondoso", "El-Bosque-Ordenado", "El-puesto-de-observación", "El-puente-de-los-enamorados-izquierda"];
-    const llanura = ["El-puente-de-los-enamorados-derecha", "La-pirámide", "Zona-de-cuarentena", "La-isla-solitaria", "La-pradera-del-amor", "El-prado-de-la-diferencia"];
+    const cafeteria = ["La-pradera-del-amor", "El-trio-frondoso", "El-bosque-de-la-semejanza", "Zona-de-cuarentena", "El-puente-de-los-enamorados-izquierda", "El-Bosque-Ordenado"];
+    const banos = ["La-piramide", "El-puente-de-los-enamorados-derecha", "El-puesto-de-observacion", "El-rey-de-la-selva", "El-prado-de-la-diferencia", "La-isla-solitaria"];
+    const bosque = ["El-bosque-de-la-semejanza", "El-rey-de-la-selva", "El-trio-frondoso", "El-Bosque-Ordenado", "El-puesto-de-observacion", "El-puente-de-los-enamorados-izquierda"];
+    const llanura = ["El-puente-de-los-enamorados-derecha", "La-piramide", "Zona-de-cuarentena", "La-isla-solitaria", "La-pradera-del-amor", "El-prado-de-la-diferencia"];
 
     switch (dado) {
         case "1":

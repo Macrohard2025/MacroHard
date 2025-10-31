@@ -4,11 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(res => res.json())
         .then(data => {
             if (!data.instalado) {
-                window.location.href = "presentación/HTML/installer.html";
+                window.location.href = "presentacion/HTML/installer.html";
             }
         })
         .catch(err => {
-            console.error("Error verificando instalación:", err);
+            console.error("Error verificando instalacion:", err);
         });
 });
 
@@ -22,8 +22,8 @@ const botonSalaEntrar = document.getElementById("botonSalaEntrar");
 const inputNombre = document.getElementById("nombre");
 const inputEmail = document.getElementById("correo");
 const inputEdad = document.getElementById("edad");
-const inputContraseña = document.getElementById("contraseña");
-const inputConfirmarContraseña = document.getElementById("confirmarContraseña");
+const inputcontrasenia = document.getElementById("contrasenia");
+const inputConfirmarcontrasenia = document.getElementById("confirmarcontrasenia");
 const inputPreferenciasTema = document.getElementById("preferenciasTema");
 const inputPreferenciasIdioma = document.getElementById("preferenciasIdioma");
 
@@ -36,7 +36,7 @@ const botonDashboard = document.getElementById("dashboard");
 botonSalaEntrar.addEventListener("click", function (e) {
     e.preventDefault();
     if (localStorage.registroUsuario) {
-        window.location.href = "presentación/HTML/Sala/menuSala.html";
+        window.location.href = "presentacion/HTML/Sala/menuSala.html";
     } else {
         alert("Debes iniciar sesión o registrarte para acceder a la sala.");
     }
@@ -73,7 +73,7 @@ document.querySelectorAll(".botonSalir").forEach(function (boton) {
 let usuario = "";
 let email = "";
 let edad = null;
-let contraseña = "";
+let contrasenia = "";
 let preferenciasTema = "";
 let preferenciasIdioma = "";
 
@@ -109,8 +109,8 @@ addEventListener("DOMContentLoaded", function () {
                 inputNombre.name = "usuarioEditar";
                 inputEmail.name = "correoEditar";
                 inputEdad.name = "edadEditar";
-                inputContraseña.name = "contraseñaEditar";
-                inputConfirmarContraseña.name = "confirmarContraseñaEditar";
+                inputcontrasenia.name = "contraseniaEditar";
+                inputConfirmarcontrasenia.name = "confirmarcontraseniaEditar";
                 inputPreferenciasTema.name = "temaUsuario";
                 inputPreferenciasIdioma.name = "idiomaUsuario";
 
@@ -121,13 +121,13 @@ addEventListener("DOMContentLoaded", function () {
 
                 labelPsw.innerHTML = "Nueva contraseña";
                 labelConfirmarPsw.innerHTML = "Confirmar nueva contraseña";
-                inputContraseña.placeholder = "Nueva contraseña";
-                inputConfirmarContraseña.placeholder = "Confirmar nueva contraseña";
+                inputcontrasenia.placeholder = "Nueva contraseña";
+                inputConfirmarcontrasenia.placeholder = "Confirmar nueva contraseña";
 
                 document.getElementById("idUsuario").value = idUsuario;
 
-                inputContraseña.required = false;
-                inputConfirmarContraseña.required = false;
+                inputcontrasenia.required = false;
+                inputConfirmarcontrasenia.required = false;
 
                 botonConfirmar.innerHTML = "Confirmar";
 
@@ -178,8 +178,8 @@ function aplicarIdiomaIngles() {
     inputNombre.placeholder = "Username";
     inputEmail.placeholder = "Email";
     inputEdad.placeholder = "Birthdate";
-    inputContraseña.placeholder = "Password";
-    inputConfirmarContraseña.placeholder = "Confirm Password";
+    inputcontrasenia.placeholder = "Password";
+    inputConfirmarcontrasenia.placeholder = "Confirm Password";
     botonCerrar.innerHTML = "Close session";
 
 }

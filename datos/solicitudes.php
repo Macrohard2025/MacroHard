@@ -1,6 +1,6 @@
 <?php
 
-include_once "conexión.php";
+include_once "conexion.php";
 include_once "../negocio/Usuario.php";
 include_once "../negocio/Partida.php";
 
@@ -141,17 +141,17 @@ function guardarUsuario(Usuario $usuario): bool
     $nombre = $usuario->getNombre();
     $email = $usuario->getEmail();
     $edad = $usuario->getEdad()->format('Y-m-d');
-    $contraseña = password_hash($usuario->getContraseña(), PASSWORD_DEFAULT);
+    $contrasenia = password_hash($usuario->getcontrasenia(), PASSWORD_DEFAULT);
     $idioma = $usuario->getPreferenciasIdioma();
     $tema = $usuario->getPreferenciasTema();
 
     $query = "INSERT INTO Usuario (nombre, contrasena, email, fecha_nacimiento, preferencias_idioma, preferencias_tema)
-              VALUES ('$nombre', '$contraseña', '$email', '$edad', '$idioma', '$tema')";
+              VALUES ('$nombre', '$contrasenia', '$email', '$edad', '$idioma', '$tema')";
 
     return mysqli_query($conn, $query);
 }
 
-function buscarContraseñaUsuario(int $idUsuario, string $contraseña): bool
+function buscarcontraseniaUsuario(int $idUsuario, string $contrasenia): bool
 {
     global $conn;
 
@@ -165,11 +165,11 @@ function buscarContraseñaUsuario(int $idUsuario, string $contraseña): bool
     $row = mysqli_fetch_assoc($result);
     $hash = $row['contrasena'];
 
-    if (password_verify($contraseña, $hash)) {
+    if (password_verify($contrasenia, $hash)) {
         return true;
     }
 
-    if ($contraseña === $hash) {
+    if ($contrasenia === $hash) {
         return true;
     }
 
@@ -195,7 +195,7 @@ function recuperarUsuarioPorId(int $idUsuario): ?Usuario
     );
 }
 
-function actualizarUsuario(int $idUsuario, string $nombre, string $email, DateTime $edad, string $contraseña, string $idioma, string $tema): bool
+function actualizarUsuario(int $idUsuario, string $nombre, string $email, DateTime $edad, string $contrasenia, string $idioma, string $tema): bool
 {
     global $conn;
 
@@ -203,8 +203,8 @@ function actualizarUsuario(int $idUsuario, string $nombre, string $email, DateTi
 
     $query = "UPDATE Usuario SET nombre='$nombre', email='$email', fecha_nacimiento='$fechaNacimiento', preferencias_idioma='$idioma', preferencias_tema='$tema'";
 
-    if (trim($contraseña) !== "") {
-        $hash = password_hash($contraseña, PASSWORD_DEFAULT);
+    if (trim($contrasenia) !== "") {
+        $hash = password_hash($contrasenia, PASSWORD_DEFAULT);
         $query .= ", contrasena='$hash'";
     }
 
@@ -505,12 +505,12 @@ function determinarGanador(int $idPartida): void
     }
 }
 
-function actualizarAdmin(int $idUsuario, string $nombre, string $email, DateTime $edad, string $contraseña, string $idioma = 'es', string $tema = 'claro'): bool
+function actualizarAdmin(int $idUsuario, string $nombre, string $email, DateTime $edad, string $contrasenia, string $idioma = 'es', string $tema = 'claro'): bool
 {
     global $conn;
 
     $fechaNacimiento = $edad->format('Y-m-d');
-    $hash = password_hash($contraseña, PASSWORD_DEFAULT);
+    $hash = password_hash($contrasenia, PASSWORD_DEFAULT);
 
     $query = "
         UPDATE Usuario 
