@@ -250,8 +250,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         <section class="container-formulario-jugador" id="formulario-jugador">
             <form action="" method="post" class="formulario-jugador">
                 <p id="datosJugador">Ingrese los datos del jugador <?php echo $necesidad; ?></p>
-                <input type="email" name="correoLogin<?php echo $necesidad; ?>" id="nombre-jugador" placeholder="Correo electronico" required>
-                <input type="password" name="contraseniaLogin<?php echo $necesidad; ?>" id="contrasena-jugador" placeholder="contrasenia" required>
+                <input type="email" name="correoLogin<?php echo $necesidad; ?>" id="nombre-jugador" placeholder="Correo electrónico" required>
+                <input type="password" name="contraseniaLogin<?php echo $necesidad; ?>" id="contrasena-jugador" placeholder="contraseña" required>
                 <button type="submit" id="unirseBoton" class="btn btn-primary">Unirse a la sala</button>
                 <button id="cancelar-form" type="button" onclick="window.location.href='cancelarSala.php'" class="btn btn-secondary">Cancelar</button>
             </form>
