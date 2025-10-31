@@ -5,7 +5,7 @@ include_once "solicitudes.php";
 $host = "localhost";
 $user = "root";
 $pass = "";
-$nombreBD = "BD-Macrohard";
+$nombreBD = "bd-macrohard";
 
 $conn = mysqli_connect($host, $user, $pass);
 if (!$conn) {
