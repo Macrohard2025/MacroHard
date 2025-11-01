@@ -8,13 +8,13 @@ const botonBorrar = document.getElementById('botonBorrar');
 botonBorrar.addEventListener("click", function (e) {
     e.preventDefault();
     if (confirm("¿Está seguro de que desea borrar su perfil? Esta acción no se puede deshacer.")) {
-    let idUsuario = localStorage.idUsuario;    
-    localStorage.clear();
-    fetch(`../../negocio/borrarUsuario.php?idUsuario=${encodeURIComponent(idUsuario)}`)
-        .then(res => res.text())
-        .then(data => {
-            window.location.reload();
-        });
+        let idUsuario = localStorage.idUsuario;
+        localStorage.clear();
+        fetch(`../../negocio/borrarUsuario.php?idUsuario=${encodeURIComponent(idUsuario)}`)
+            .then(res => res.text())
+            .then(data => {
+                window.location.reload();
+            });
     }
 });
 
@@ -159,9 +159,9 @@ if (localStorage.registroUsuario) {
             });
 
             botonSalir.addEventListener('click', function () {
-                    formContainer.style.display = "none";
-                    location.reload();
-                });
+                formContainer.style.display = "none";
+                location.reload();
+            });
 
             formEditar.action = "../../negocio/editarUsuario.php";
 
@@ -177,12 +177,19 @@ if (localStorage.registroUsuario) {
     });
 }
 
+const logoMacrohard = document.getElementById("logo-macrohard");
+const configSection = document.querySelector(".container.shadow.p-3.bg-light");
+
 function aplicarTemaOscuro() {
-    document.querySelectorAll("button").forEach(btn => {
-        btn.style.backgroundColor = "black";
-        btn.style.color = "white";
-        btn.style.border = "none";
-    });
+    if (window.innerWidth >= 993) {
+        document.body.style.backgroundImage = "url('../../recursos/img/fondoConfig2.png')";
+    } else {
+        document.body.style.backgroundColor = "#1e1e1e";
+    }
+    logoMacrohard.src = "../../recursos/img/LogoMH.png";
+    configSection.classList.remove("bg-light");
+    configSection.classList.add("bg-dark", "text-light");
+
 }
 
 const botonVolver = document.getElementById("botonVolver");

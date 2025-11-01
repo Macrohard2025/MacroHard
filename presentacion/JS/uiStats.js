@@ -47,6 +47,10 @@ const tablaNombre = document.getElementById("tablaNombre");
 const tablaJugadas = document.getElementById("tablaJugadas");
 const tablaPuntos = document.getElementById("tablaPuntos");
 const tablaPPP = document.getElementById("tablaPPP");
+const logoMacro = document.getElementById("logo-macro");
+const imagenPodio = document.getElementById("podioImg");
+const thead = document.querySelector("thead");
+const tabla = document.querySelector("table");
 
 document.addEventListener("DOMContentLoaded", () => {
   if (localStorage.getItem("idioma") === "en") {
@@ -57,5 +61,14 @@ document.addEventListener("DOMContentLoaded", () => {
     tablaPuntos.textContent = "Total Points";
     tablaPPP.textContent = "Points per Game";
     document.title = "Statistics";
+  }
+  if (localStorage.getItem("tema") === "oscuro") {
+    document.body.style.backgroundColor = "#1e1e1e";
+    logoMacro.src = "../../recursos/img/LogoMH.png";
+    imagenPodio.src = "../../recursos/img/podio2.png";
+    tabla.classList.add("table-dark", "table-striped", "table-hover");
+    thead.classList.remove("table-success");
+    thead.classList.add("table-dark");
+    rankTitulo.style.color = "white";
   }
 });

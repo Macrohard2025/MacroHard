@@ -57,6 +57,8 @@ const modoTexto = document.getElementById('modoTexto');
 const ganadorTexto = document.getElementById('ganadorTexto');
 const puntosTexto = document.getElementById('puntosTexto');
 const posicionTexto = document.getElementById('posicionTexto');
+const logoMacrohard = document.getElementById('logo-macrohard');
+
 addEventListener("DOMContentLoaded", function () {
     if (localStorage.idioma === "en") {
         botonVolver.textContent = "Back";
@@ -67,5 +69,14 @@ addEventListener("DOMContentLoaded", function () {
         puntosTexto.textContent = "Winner's Points";
         posicionTexto.textContent = "Your Position";
         document.title = "Game History";
+    }
+    if (localStorage.tema === "oscuro") {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+        if (window.innerWidth >= 993) {
+            document.body.style.backgroundImage = "url('../../../recursos/img/fondoSala2.png')";
+        } else {
+            document.body.style.backgroundColor = "#1e1e1e";
+        }
+        logoMacrohard.src = "../../../recursos/img/LogoMH.png";
     }
 });

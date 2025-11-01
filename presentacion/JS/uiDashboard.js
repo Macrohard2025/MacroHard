@@ -166,4 +166,22 @@ addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    if (localStorage.tema === "oscuro") {
+        logoMacrohard.src = "../../recursos/img/LogoMH.png";
+        document.body.style.backgroundColor = "#1e1e1e";
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+        panelSection.style.backgroundColor = "#1e1e1e";
+        eliminarPartidaTitulo.style.color = "white";
+        eliminarUsuarioTitulo.style.color = "white";
+        valoresSection.style.backgroundColor = "#1e1e1e";
+        valoresArticle.style.backgroundColor = "#1e1e1e";
+        valoresArticle2.style.backgroundColor = "#1e1e1e";
+    }
+
 });
+
+const panelSection = document.getElementById("panel-section");
+const logoMacrohard = document.getElementById("logo-macrohard");
+const valoresArticle = document.getElementById("valores-article");
+const valoresArticle2 = document.getElementById("valores-article2");
+const valoresSection = document.getElementById("valores-section");

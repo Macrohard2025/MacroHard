@@ -95,3 +95,11 @@ if (localStorage.idioma === 'en') {
 
     actualizarTexto();
 }
+
+const logoMacrohard = document.getElementById('logo-macrohard');
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.tema === 'oscuro') {
+        logoMacrohard.src = '../../recursos/img/LogoMH.png';
+        document.body.style.backgroundImage = "url('../../recursos/img/fondoTutorial2.png')";
+    }
+});

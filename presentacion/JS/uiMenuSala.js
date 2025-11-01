@@ -98,6 +98,7 @@ const jugadorDos = document.getElementById('jugadorDos');
 const jugadorTres = document.getElementById('jugadorTres');
 const jugadorCuatro = document.getElementById('jugadorCuatro');
 const jugadorCinco = document.getElementById('jugadorCinco');
+const logoMacrohard = document.getElementById('logo-macrohard');
 
 document.addEventListener("DOMContentLoaded", function () {
     if (localStorage.idioma == "en") {
@@ -123,4 +124,14 @@ document.addEventListener("DOMContentLoaded", function () {
         jugadorCinco.textContent = "5 players";
         botonListo.textContent = "Ready";
     }
+
+    if (localStorage.getItem("tema") == "oscuro") {
+        if (window.innerWidth >= 993) {
+        document.body.style.backgroundImage = "url('../../../recursos/img/FondoSala2.png')";
+        } else {
+        document.body.style.backgroundColor = "#1e1e1e";
+        }
+        logoMacrohard.src = "../../../recursos/img/LogoMH.png";
+    }
 });
+

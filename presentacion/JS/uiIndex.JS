@@ -140,16 +140,16 @@ addEventListener("DOMContentLoaded", function () {
                     aplicarIdiomaIngles();
                 }
             })
-    }
-
-});
-
-function aplicarTemaOscuro() {
-    document.querySelectorAll("button").forEach(btn => {
-        btn.style.backgroundColor = "black";
-        btn.style.color = "white";
-        btn.style.border = "none";
+        }
+        
     });
+    
+    const logoMacrohard = document.getElementById("logo-macrohard");
+    
+    function aplicarTemaOscuro() {
+        document.body.style.backgroundImage = "url('recursos/img/fondoInicio2.png')";
+        logoMacrohard.src = "recursos/img/LogoMH.png";
+        botonLogin.style.setProperty("--bs-btn-disabled-opacity", "1");
 }
 
 const statsTexto = document.getElementById("statsTexto");
