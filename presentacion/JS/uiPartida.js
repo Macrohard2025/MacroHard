@@ -67,6 +67,41 @@ addEventListener("DOMContentLoaded", () => {
             localStorage.setItem('modoJuego', modoJuego);
             localStorage.setItem('tablero', tablero);
 
+            const bolsaDinos = document.getElementById('bolsaDinos');
+            const textoBolsa = document.getElementById('textoBolsa');
+
+            if (modoJuego === 'Solo' || modoJuego === 'Multi') {
+                bolsaDinos.addEventListener('click', () => {
+                    const contDinosIMG = document.querySelectorAll('.dinos img');
+                    contDinosIMG.forEach(img => {
+                        img.style.display = 'flex';
+                    });
+                    bolsaDinos.src = '../../../recursos/img/dinosauriosBolsa2.png';
+                    if (localStorage.getItem("idioma") === "en") {
+                        textoBolsa.innerHTML = 'Choose a dinosaur';
+                    } else {
+                        textoBolsa.innerHTML = 'Elige un dinosaurio';
+                    }
+                });
+            }
+
+            const bolsaDinos2 = document.getElementById('bolsaDinos2');
+
+            if (modoJuego === 'Solo' || modoJuego === 'Multi') {
+                bolsaDinos2.addEventListener('click', () => {
+                    const contDinosIMG = document.querySelectorAll('.dinos img');
+                    contDinosIMG.forEach(img => {
+                        img.style.display = 'flex';
+                    });
+                    bolsaDinos2.src = '../../../recursos/img/dinosauriosBolsa2.png';
+                    if (localStorage.getItem("idioma") === "en") {
+                        textoBolsa.innerHTML = 'Choose a dinosaur';
+                    } else {
+                        textoBolsa.innerHTML = 'Elige un dinosaurio';
+                    }
+                });
+            }
+
             if (localStorage.getItem("tema") === "oscuro") {
                 aplicarTemaOscuro();
             }
@@ -205,40 +240,6 @@ const mapaRecintos = {
     "Rio": "Rio"
 };
 
-const bolsaDinos = document.getElementById('bolsaDinos');
-const textoBolsa = document.getElementById('textoBolsa');
-
-if (localStorage.modoJuego === 'Solo' || localStorage.modoJuego === 'Multi') {
-    bolsaDinos.addEventListener('click', () => {
-        const contDinosIMG = document.querySelectorAll('.dinos img');
-        contDinosIMG.forEach(img => {
-            img.style.display = 'flex';
-        });
-        bolsaDinos.src = '../../../recursos/img/dinosauriosBolsa2.png';
-        if (localStorage.getItem("idioma") === "en") {
-            textoBolsa.innerHTML = 'Choose a dinosaur';
-        } else {
-            textoBolsa.innerHTML = 'Elige un dinosaurio';
-        }
-    });
-}
-
-const bolsaDinos2 = document.getElementById('bolsaDinos2');
-
-if (localStorage.modoJuego === 'Solo' || localStorage.modoJuego === 'Multi') {
-    bolsaDinos2.addEventListener('click', () => {
-        const contDinosIMG = document.querySelectorAll('.dinos img');
-        contDinosIMG.forEach(img => {
-            img.style.display = 'flex';
-        });
-        bolsaDinos2.src = '../../../recursos/img/dinosauriosBolsa2.png';
-        if (localStorage.getItem("idioma") === "en") {
-            textoBolsa.innerHTML = 'Choose a dinosaur';
-        } else {
-            textoBolsa.innerHTML = 'Elige un dinosaurio';
-        }
-    });
-}
 
 const logoMacrohard = document.getElementById("logo-macrohard");
 const gridDinos = document.getElementById("gridDinos");
