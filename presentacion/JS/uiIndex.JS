@@ -113,6 +113,8 @@ addEventListener("DOMContentLoaded", function () {
                 inputConfirmarcontrasenia.name = "confirmarcontraseniaEditar";
                 inputPreferenciasTema.name = "temaUsuario";
                 inputPreferenciasIdioma.name = "idiomaUsuario";
+                inputPreferenciasIdioma.value = preferenciasIdioma;
+                inputPreferenciasTema.value = preferenciasTema;
 
                 botonRegistro.innerHTML = "Editar perfil";
                 inputNombre.value = usuario;

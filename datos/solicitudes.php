@@ -201,7 +201,15 @@ function actualizarUsuario(int $idUsuario, string $nombre, string $email, DateTi
 
     $fechaNacimiento = $edad->format('Y-m-d');
 
-    $query = "UPDATE Usuario SET nombre='$nombre', email='$email', fecha_nacimiento='$fechaNacimiento', preferencias_idioma='$idioma', preferencias_tema='$tema'";
+    $query = "UPDATE Usuario SET nombre='$nombre', email='$email', fecha_nacimiento='$fechaNacimiento'";
+
+    if (trim($idioma) !== "") {
+        $query .= ", preferencias_idioma='$idioma'";
+    }
+
+    if (trim($tema) !== "") {
+        $query .= ", preferencias_tema='$tema'";
+    }
 
     if (trim($contrasenia) !== "") {
         $hash = password_hash($contrasenia, PASSWORD_DEFAULT);
