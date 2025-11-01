@@ -88,8 +88,10 @@ function pasarTurno() {
         }
     }
 
-    turnoActualElemento.innerHTML = "Turno " + localStorage.turnoActual;
-    rondaActualElemento.innerHTML = "Ronda " + localStorage.rondaActual;
+    if (localStorage.modoJuego === "Solo" || localStorage.modoJuego === "Multi") {
+        turnoActualElemento.innerHTML = "Turno " + localStorage.turnoActual;
+        rondaActualElemento.innerHTML = "Ronda " + localStorage.rondaActual;
+    }
 
     const index = Number(localStorage.jugadorIndex);
     const jugadorNombre = nombresArray[index];
@@ -154,8 +156,10 @@ document.addEventListener("DOMContentLoaded", function () {
             ronda = "Ronda ";
             turno = "Turno ";
         }
-        turnoActualElemento.innerHTML = turno + localStorage.turnoActual;
-        rondaActualElemento.innerHTML = ronda + localStorage.rondaActual;
+        if (localStorage.modoJuego === "Solo" || localStorage.modoJuego === "Multi") {
+            turnoActualElemento.innerHTML = turno + localStorage.turnoActual;
+            rondaActualElemento.innerHTML = ronda + localStorage.rondaActual;
+        }
     }
 });
 

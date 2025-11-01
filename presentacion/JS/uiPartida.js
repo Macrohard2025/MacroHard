@@ -57,6 +57,7 @@ const recinto12 = document.querySelector(".recinto-12");
 
 addEventListener("DOMContentLoaded", () => {
 
+
     fetch(`../../../negocio/recuperarPartida.php?idPartida=${encodeURIComponent(localStorage.getItem('idPartida'))}`)
         .then(res => res.json())
         .then(data => {
@@ -66,9 +67,16 @@ addEventListener("DOMContentLoaded", () => {
             localStorage.setItem('modoJuego', modoJuego);
             localStorage.setItem('tablero', tablero);
 
+            if (localStorage.getItem("tema") === "oscuro") {
+                aplicarTemaOscuro();
+            }
             if (tablero === 'Invierno') {
                 tableroElemento.style.backgroundImage = "url('../../../recursos/img/tableroInvierno.png')";
-                document.body.style.backgroundColor = "#badeffff";
+                if (localStorage.getItem("tema") === "oscuro") {
+                    document.body.style.backgroundColor = "#3a506bff";
+                } else {
+                    document.body.style.backgroundColor = "#badeffff";
+                }
                 recinto7.style.display = "none";
                 recinto8.style.display = "none";
                 recinto9.style.display = "none";
@@ -78,6 +86,9 @@ addEventListener("DOMContentLoaded", () => {
             }
 
             if (tablero === "Verano") {
+                if (localStorage.getItem("tema") === "oscuro") {
+                    document.body.style.backgroundColor = "#083f26ff";
+                }
                 recinto1.style.display = "none";
                 recinto2.style.display = "none";
                 recinto3.style.display = "none";
@@ -197,30 +208,56 @@ const mapaRecintos = {
 const bolsaDinos = document.getElementById('bolsaDinos');
 const textoBolsa = document.getElementById('textoBolsa');
 
-bolsaDinos.addEventListener('click', () => {
-    const contDinosIMG = document.querySelectorAll('.dinos img');
-    contDinosIMG.forEach(img => {
-        img.style.display = 'flex';
+if (localStorage.modoJuego === 'Solo' || localStorage.modoJuego === 'Multi') {
+    bolsaDinos.addEventListener('click', () => {
+        const contDinosIMG = document.querySelectorAll('.dinos img');
+        contDinosIMG.forEach(img => {
+            img.style.display = 'flex';
+        });
+        bolsaDinos.src = '../../../recursos/img/dinosauriosBolsa2.png';
+        if (localStorage.getItem("idioma") === "en") {
+            textoBolsa.innerHTML = 'Choose a dinosaur';
+        } else {
+            textoBolsa.innerHTML = 'Elige un dinosaurio';
+        }
     });
-    bolsaDinos.src = '../../../recursos/img/dinosauriosBolsa2.png';
-    if (localStorage.getItem("idioma") === "en") {
-        textoBolsa.innerHTML = 'Choose a dinosaur';
-    } else {
-        textoBolsa.innerHTML = 'Elige un dinosaurio';
-    }
-});
+}
 
 const bolsaDinos2 = document.getElementById('bolsaDinos2');
 
-bolsaDinos2.addEventListener('click', () => {
-    const contDinosIMG = document.querySelectorAll('.dinos img');
-    contDinosIMG.forEach(img => {
-        img.style.display = 'flex';
+if (localStorage.modoJuego === 'Solo' || localStorage.modoJuego === 'Multi') {
+    bolsaDinos2.addEventListener('click', () => {
+        const contDinosIMG = document.querySelectorAll('.dinos img');
+        contDinosIMG.forEach(img => {
+            img.style.display = 'flex';
+        });
+        bolsaDinos2.src = '../../../recursos/img/dinosauriosBolsa2.png';
+        if (localStorage.getItem("idioma") === "en") {
+            textoBolsa.innerHTML = 'Choose a dinosaur';
+        } else {
+            textoBolsa.innerHTML = 'Elige un dinosaurio';
+        }
     });
-    bolsaDinos2.src = '../../../recursos/img/dinosauriosBolsa2.png';
-    if (localStorage.getItem("idioma") === "en") {
-        textoBolsa.innerHTML = 'Choose a dinosaur';
-    } else {
-        textoBolsa.innerHTML = 'Elige un dinosaurio';
+}
+
+const logoMacrohard = document.getElementById("logo-macrohard");
+const gridDinos = document.getElementById("gridDinos");
+const panelDerecho = document.getElementById("panel-derecho");
+const tituloTablero = document.getElementById("titulo-tablero");
+
+function aplicarTemaOscuro() {
+    logoMacrohard.src = "../../../recursos/img/LogoMH.png";
+    gridDinos.style.backgroundColor = "#1b262cff";
+    if (localStorage.modoJuego === 'Solo' || localStorage.modoJuego === 'Multi') {
+        textoBolsa.style.color = "#ffffff";
+        panelDerecho.style.backgroundColor = "#1b262cff";
+        rondaActualElemento.style.color = "white";
+        nombreJugadorElemento.style.color = "#ffffff";
+        turnoActualElemento.style.color = "#ffffff";
     }
-});
+    if (localStorage.modoJuego !== 'Solo' && localStorage.modoJuego !== 'Multi') {
+        elegirDino.style.color = "#ffffff";
+        nombreJugadorElemento.style.color = "#ffffff";
+        tituloTablero.style.backgroundColor = "#1b262cff";
+    }
+}   
