@@ -29,7 +29,7 @@ checkbox.addEventListener("change", function () {
 
         inputTema.value = localStorage.getItem("tema");
         inputDestino.value = "config";
-
+        inputIdioma.value = localStorage.getItem("idioma");
         formEditar.submit();
     } else {
         alert("Debe iniciar sesión para cambiar el tema.");
@@ -77,6 +77,7 @@ enButton.addEventListener('click', function () {
         localStorage.setItem("idioma", "en");
         inputIdioma.value = "en";
         inputDestino.value = "config";
+        inputTema.value = localStorage.getItem("tema");
         formEditar.submit();
     } else {
         alert("Debe iniciar sesión para cambiar el idioma.");
@@ -92,6 +93,7 @@ esButton.addEventListener('click', function () {
         localStorage.setItem("idioma", "es");
         inputIdioma.value = "es";
         inputDestino.value = "config";
+        inputTema.value = localStorage.getItem("tema");
         formEditar.submit();
     } else {
         alert("Debe iniciar sesión para cambiar el idioma.");
