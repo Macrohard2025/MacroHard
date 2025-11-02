@@ -24,12 +24,9 @@ header {
   transform: translateX(-50%);
   padding: 0.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-}
-
-.botones-diapositivas button {
-  margin-right: 4rem;
+  gap: 2rem;
 }
 
 .pizarron {
@@ -47,12 +44,20 @@ header {
   margin-top: 5vh;
   background-size: 30px 30px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .pizarron p {
   margin: 0;
   padding: 0.5rem 0;
   font-size: 0.8rem;
+}
+
+.cuernitos {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  height: 15dvh;
 }
 
 @media (min-width: 993px) {
@@ -92,6 +97,10 @@ header {
 
   header {
     justify-content: end;
+  }
+
+  .cuernitos {
+    display: none;
   }
 
 }
