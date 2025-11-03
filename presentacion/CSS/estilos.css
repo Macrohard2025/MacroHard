@@ -1,0 +1,237 @@
+header {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boton-index-login,
+.boton-index-registro {
+  width: 40%;
+  margin: 3dvw;
+}
+
+.titulo-juego {
+  display: flex;
+}
+
+.titulo-juego img {
+  height: 10dvh;
+  width: auto;
+}
+
+.logo-macrohard {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+main {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
+.menu-flotante {
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 80dvw;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+ul {
+  width: 100%;
+  list-style-type: none;
+}
+
+.textoPaginas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+li {
+  margin: 1rem;
+}
+
+a {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1.5rem;
+  align-items: center;
+  width: 100%;
+  height: 65px;
+  background: #03920f;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: width 300ms ease-in;
+  padding: 1.5rem 1.5rem;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  background-color: #002403;
+}
+
+i {
+  font-size: 1.3rem;
+  width: 20%;
+}
+
+.menu-flotante p {
+  margin-top: 15px;
+}
+
+.formularios {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.formulario-login {
+  background-color: rgba(255, 255, 255, 0.89);
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 90vw;
+  height: fit-content;
+  display: none;
+}
+
+.formulario-registro {
+  background-color: rgba(255, 255, 255, 0.89);
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 90vw;
+  height: fit-content;
+  display: none;
+}
+
+.formularios form label {
+  display: block;
+  margin-top: 1rem;
+}
+
+.formularios form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.botones-formulario {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.botonSalir {
+  background-color: red;
+}
+
+.botonSalir:hover {
+  background-color: darkred;
+}
+
+.botonCerrar {
+  background-color: white;
+  border: 1px solid #03920f;
+  color: #03920f;
+}
+
+.botonCerrar:hover {
+  background-color: #00c510;
+}
+
+.dashboard {
+  display: none;
+}
+
+@media (min-width: 993px) {
+
+  body,
+  html {
+    background: url('../../recursos/img/FondoInicio.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  .textoPaginas {
+    width: auto;
+  }
+
+  header {
+    justify-content: end;
+  }
+
+  .boton-index-login,
+  .boton-index-registro {
+    width: fit-content;
+  }
+
+  .logo-macrohard {
+    left: 15px;
+    transform: none;
+    top: 15px;
+    bottom: auto;
+  }
+
+  li {
+    width: 20dvw;
+  }
+
+  .menu-flotante {
+    position: absolute;
+    top: 10%;
+    left: 15px;
+  }
+
+  li {
+    margin: 3dvh;
+    max-width: fit-content;
+  }
+
+  a {
+    width: 65px;
+    height: 65px;
+    background: green;
+    border-radius: 500px;
+  }
+
+  a:hover {
+    width: 100%;
+  }
+
+  .botones-formulario button {
+    width: 40%;
+  }
+
+  .titulo-juego {
+    display: flex;
+    position: absolute;
+    bottom: 65%;
+    left: 25%;
+  }
+
+  main {
+    height: 75vh;
+  }
+
+}

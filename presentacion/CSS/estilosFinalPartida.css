@@ -1,0 +1,77 @@
+.logo-macrohard img {
+    max-height: 70px;
+    height: auto;
+    width: auto;
+    margin: 1rem;
+}
+
+header {
+    background: transparent;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.logo-macrohard {
+    display: flex;
+    align-items: center;
+    bottom: 10px;
+    left: 20px;
+    z-index: 10;
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+main h2 {
+    color: #03920f;
+    font-size: 2rem;
+}
+
+main h3 {
+    color: #002403;
+    font-size: large;
+}
+
+@media (min-width: 993px) {
+
+    .logo-macrohard {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        transform: none;
+        height: 10dvh;
+    }
+
+    header {
+        justify-content: end;
+        margin-bottom: 4rem;
+    }
+
+    body,
+    html {
+        background: url('../../recursos/img/fondoFinal.png') no-repeat center center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    article {
+        width: 50vw;
+    }
+
+}

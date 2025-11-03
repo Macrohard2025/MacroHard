@@ -1,0 +1,197 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="tituloPagina">Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../CSS/estilosGenerales.css">
+    <link rel="stylesheet" href="../CSS/estilosDashboard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="icon" href="../../recursos/img/draftosaurus-logo.png" type="image/png">
+</head>
+
+<body>
+
+    <header>
+        <nav class="logo-macrohard">
+            <img id="logo-macrohard" src="../../recursos/img/LogoMH2.png">
+        </nav>
+        <nav>
+            <a id="volverInicio" href="../../index.html" class="btn btn-success boton">Volver al inicio</a>
+        </nav>
+    </header>
+
+
+    <section id="panel-section" class="panel-section">
+        <h1 id="panelTitulo">Panel de administración</h1>
+        <hr>
+        <article class="eliminar-partida">
+            <h2 id="eliminarPartidaTitulo">Eliminar partida</h2>
+            <form class="borrarPartida" action="../../negocio/cancelarPartida.php" method="POST">
+                <label id="labelIdPartida" for="idPartida">Id de la partida a eliminar</label>
+                <input type="text" name="idPartida" id="idPartida" placeholder="ID de la partida a eliminar">
+                <input type="hidden" name="origen" value="dashboard">
+                <button id="botonEliminarPartida" type="submit" class="btn btn-danger">Eliminar partida</button>
+            </form>
+        </article>
+        <hr>
+        <article class="eliminar-usuario">
+            <h2 id="eliminarUsuarioTitulo">Eliminar usuario</h2>
+            <form class="borrarUsuario" action="../../negocio/borrarUsuario.php" method="get">
+                <label id="labelIdUsuario" for="idUsuario">Id o correo del usuario a eliminar</label>
+                <input type="text" name="idUsuario" id="idUsuario" placeholder="ID o correo del usuario a eliminar"
+                    required>
+                <input type="hidden" name="origen" value="dashboard">
+                <button id="botonEliminarUsuario" type="submit" class="btn btn-danger">Eliminar usuario</button>
+            </form>
+        </article>
+    </section>
+
+    <section class="valores-section">
+        <article id="valores-section" class="valores-article dinos-article">
+            <h2 id="tituloDinos">Modificar valores de los dinosaurios</h2>
+            <table class="dinos table-responsive table table-striped">
+                <thead>
+                    <tr>
+                        <th id="columnaImagen">Imagen</th>
+                        <th id="columnaNombre">Nombre</th>
+                        <th id="columnaValor">Valor</th>
+                        <th id="columnaBotones">Botones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="imagenDinos"><img src="../../recursos/img/dinos/brontosaurio.png"></td>
+                        <td>Bronto</td>
+                        <td><input id="brontoInput" type="number"></td>
+                        <td><button id="btnBronto" class="btn btn-danger botonEnviar">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td class="imagenDinos"><img src="../../recursos/img/dinos/estegosaurio.png"></td>
+                        <td>Estego</td>
+                        <td><input id="estegoInput" type="number"></td>
+                        <td><button id="btnEstego" class="btn btn-danger botonEnviar">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td class="imagenDinos"><img src="../../recursos/img/dinos/plesiosaurio.png"></td>
+                        <td>Plesio</td>
+                        <td><input id="plesioInput" type="number"></td>
+                        <td><button id="btnPlesio" class="btn btn-danger botonEnviar">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td class="imagenDinos"><img src="../../recursos/img/dinos/pteranodon.png"></td>
+                        <td>Ptera</td>
+                        <td><input id="pteraInput" type="number"></td>
+                        <td><button id="btnPtera" class="btn btn-danger botonEnviar">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td class="imagenDinos"><img src="../../recursos/img/dinos/tiranosaurioRex.png"></td>
+                        <td>T-Rex</td>
+                        <td><input id="rexInput" type="number"></td>
+                        <td><button id="btnRex" class="btn btn-danger botonEnviar">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td class="imagenDinos"><img src="../../recursos/img/dinos/triceratops.png"></td>
+                        <td>Trike</td>
+                        <td><input id="trikeInput" type="number"></td>
+                        <td><button id="btnTrike" class="btn btn-danger botonEnviar">Enviar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <article id="valores-article" class="valores-article verano-article">
+            <h2 id="tituloVerano">Modificar los valores del tablero verano</h2>
+            <table class="table-responsive table table-striped">
+                <thead>
+                    <tr>
+                        <th id="columnaNombreVerano">Nombre</th>
+                        <th id="columnaValorVerano">Valor</th>
+                        <th id="columnaBotonesVerano">Botones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="bosqueTexto">El bosque de la semejanza</td>
+                        <td><input id="Bosque" type="number"></td>
+                        <td><button id="btnBosque" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td id="pradoTexto">El prado de la diferencia</td>
+                        <td><input id="Prado" type="number"></td>
+                        <td><button id="btnPrado" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td id="praderaTexto">La pradera del amor</td>
+                        <td><input id="Amor" type="number"></td>
+                        <td><button id="btnAmor" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td id="trioTexto">El trío frondoso</td>
+                        <td><input id="Trio" type="number"></td>
+                        <td><button id="btnTrio" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td id="reyTexto">El rey de la selva</td>
+                        <td><input id="Rey" type="number"></td>
+                        <td><button id="btnRey" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td id="islaTexto">La isla solitaria</td>
+                        <td><input id="Isla" type="number"></td>
+                        <td><button id="btnIsla" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td id="rioTexto">Río</td>
+                        <td><input id="Rio" type="number"></td>
+                        <td><button id="btnRio" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <article id="valores-article2" class="valores-article invierno-article">
+            <h2 id="tituloInvierno">Modificar los valores del tablero invierno</h2>
+            <table class="table-responsive table table-striped">
+                <thead>
+                    <tr>
+                        <th id="columnaNombreInvierno">Nombre</th>
+                        <th id="columnaValorInvierno">Valor</th>
+                        <th id="columnaBotonesInvierno">Botones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="bosqueInvTexto">El bosque ordenado</td>
+                        <td><input id="BosqueInv" type="number"></td>
+                        <td><button id="btnBosqueInv" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td id="puenteTexto">El puente de los enamorados</td>
+                        <td><input id="Puente" type="number"></td>
+                        <td><button id="btnPuente" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td id="puestoTexto">El puesto de observación</td>
+                        <td><input id="Puesto" type="number"></td>
+                        <td><button id="btnPuesto" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td id="piramideTexto">La pirámide</td>
+                        <td><input id="Piramide" type="number"></td>
+                        <td><button id="btnPiramide" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                    <tr>
+                        <td id="zonaTexto">Zona de cuarentena</td>
+                        <td><input id="Cuarentena" type="number"></td>
+                        <td><button id="btnCuarentena" class="btn btn-danger botonEnviar2">Enviar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </section>
+
+    <script src="../JS/uiDashboard.js"></script>
+
+</body>
+
+</html>
