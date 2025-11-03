@@ -32,9 +32,19 @@ function contarPuntosInvierno(array $jugadas, array $orden, int $idJugador, int 
         $cantidad = count($dinos);
         $tipos = array_count_values($dinos);
         $rexCount = 0;
+        $plesioCount = 0;
+        $trikeCount = 0;
+        $pteraCount = 0;
+        $estegoCount = 0;
+        $brontoCount = 0;
 
         foreach ($dinos as $d) {
             if ($d === 'T-Rex') $rexCount++;
+            if ($d === 'Plesio') $plesioCount++;
+            if ($d === 'Trike') $trikeCount++;
+            if ($d === 'Ptera') $pteraCount++;
+            if ($d === 'Estego') $estegoCount++;
+            if ($d === 'Bronto') $brontoCount++;
         }
 
         switch ($recinto) {
@@ -149,7 +159,12 @@ function contarPuntosInvierno(array $jugadas, array $orden, int $idJugador, int 
                 break;
         }
 
-        $puntos += $rexCount;
+        $puntos += $rexCount * revisarSumaPuntosDino("T-Rex");
+        $puntos += $plesioCount * revisarSumaPuntosDino("Plesio");
+        $puntos += $trikeCount * revisarSumaPuntosDino("Trike");
+        $puntos += $pteraCount * revisarSumaPuntosDino("Ptera");
+        $puntos += $estegoCount * revisarSumaPuntosDino("Estego");
+        $puntos += $brontoCount * revisarSumaPuntosDino("Bronto");
     }
 
     return $puntos;
@@ -170,10 +185,30 @@ function contarPuntosVerano(array $jugadas, string $idJugador): int
         $cantidad = count($dinos);
         $tipos = array_count_values($dinos);
         $rexCount = 0;
+        $plesioCount = 0;
+        $trikeCount = 0;
+        $pteraCount = 0;
+        $estegoCount = 0;
+        $brontoCount = 0;
 
         foreach ($dinos as $d) {
             if ($d === 'T-Rex') {
                 $rexCount++;
+            }
+            if ($d === 'Plesio') {
+                $plesioCount++;
+            }
+            if ($d === 'Trike') {
+                $trikeCount++;
+            }
+            if ($d === 'Ptera') {
+                $pteraCount++;
+            }
+            if ($d === 'Estego') {
+                $estegoCount++;
+            }
+            if ($d === 'Bronto') {
+                $brontoCount++;
             }
         }
 
@@ -230,7 +265,12 @@ function contarPuntosVerano(array $jugadas, string $idJugador): int
                 break;
         }
 
-        $puntos += $rexCount;
+        $puntos += $rexCount * revisarSumaPuntosDino("T-Rex");
+        $puntos += $plesioCount * revisarSumaPuntosDino("Plesio");
+        $puntos += $trikeCount * revisarSumaPuntosDino("Trike");
+        $puntos += $pteraCount * revisarSumaPuntosDino("Ptera");
+        $puntos += $estegoCount * revisarSumaPuntosDino("Estego");
+        $puntos += $brontoCount * revisarSumaPuntosDino("Bronto");
     }
 
 

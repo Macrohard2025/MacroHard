@@ -86,7 +86,7 @@ function comenzarPartida($datos)
     $nombresUsuarios = ordenarJugadoresPorEdad($jugadores);
     $idsUsuarios = ordenarIdsPorEdad($jugadores);
 
-    session_destroy();
+    session_unset();
     echo "<script> localStorage.setItem('turnoActual', '1'); localStorage.setItem('rondaActual', '1'); localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "');  window.location.href = '../presentacion/HTML/Sala/partida.html'; </script>";
     return;
 }
@@ -110,7 +110,7 @@ function comenzarControl($datos)
     $nombresUsuarios = ordenarJugadoresPorEdad($jugadores);
     $idsUsuarios = ordenarIdsPorEdad($jugadores);
 
-    session_destroy();
+    session_unset();
     echo "<script> localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "'); window.location.href = '../presentacion/HTML/Sala/controlPartidas.html'; </script>";
     return;
 }
@@ -145,6 +145,14 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     } else {
         $datos = $_SESSION["form_data"];
+        
+        $idNuevoJugador = traerIdUsuario($_POST["correoLogin2"]);
+        if (in_array($idNuevoJugador, $datos)) {
+            echo "<script> alert('Este usuario ya está en la sala. Ingrese otro.'); </script>";
+            pedirCredenciales(2);
+            return;
+        }
+        
         $datos["jugador2"] = traerIdUsuario($_POST["correoLogin2"]);
 
         if ($datos["numJugadores"] != "2") {
@@ -169,6 +177,14 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     } else {
         $datos = $_SESSION["form_data"];
+        
+        $idNuevoJugador = traerIdUsuario($_POST["correoLogin3"]);
+        if (in_array($idNuevoJugador, $datos)) {
+            echo "<script> alert('Este usuario ya está en la sala. Ingrese otro.'); </script>";
+            pedirCredenciales(3);
+            return;
+        }
+        
         $datos["jugador3"] = traerIdUsuario($_POST["correoLogin3"]);
 
         if ($datos["numJugadores"] != "3") {
@@ -192,8 +208,16 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     } else {
         $datos = $_SESSION["form_data"];
+        
+        $idNuevoJugador = traerIdUsuario($_POST["correoLogin4"]);
+        if (in_array($idNuevoJugador, $datos)) {
+            echo "<script> alert('Este usuario ya está en la sala. Ingrese otro.'); </script>";
+            pedirCredenciales(4);
+            return;
+        }
+        
         $datos["jugador4"] = traerIdUsuario($_POST["correoLogin4"]);
-
+        
         if ($datos["numJugadores"] != "4") {
             $_SESSION["form_data"] = $datos;
             pedirCredenciales(5);
@@ -214,7 +238,16 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     } else {
         $datos = $_SESSION["form_data"];
+        
+        $idNuevoJugador = traerIdUsuario($_POST["correoLogin5"]);
+        if (in_array($idNuevoJugador, $datos)) {
+            echo "<script> alert('Este usuario ya está en la sala. Ingrese otro.'); </script>";
+            pedirCredenciales(5);
+            return;
+        }
+        
         $datos["jugador5"] = traerIdUsuario($_POST["correoLogin5"]);
+        
         if ($datos["modoJuego"] != "Control") {
             comenzarPartida($datos);
         } else {
@@ -223,7 +256,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 } else {
 
-    session_destroy();
+    session_unset();
     echo "<script> window.location.href = '../presentacion/HTML/Sala/menuSala.html'; alert('Accion no permitida.'); </script>";
     return;
 }

@@ -441,6 +441,26 @@ function revisarSumaPuntos(string $recinto): int
     return 0;
 }
 
+function revisarSumaPuntosDino(string $dino): int
+{
+    global $conn;
+
+    $sql = "
+        SELECT puntos
+        FROM dinosaurio
+        WHERE nombre = '$dino'
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $fila = mysqli_fetch_assoc($result);
+        return (int)$fila['puntos'];
+    }
+
+    return 0;
+}
+
 function chequearRey(string $dino, string $idJugador): bool
 {
     global $conn;
