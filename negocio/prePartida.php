@@ -13,9 +13,9 @@ function traerNombreUsuario(int $id): string
     return "$nombreUsuario";
 }
 
-function validarLoginUsuario(string $correo, string $contraseña): bool
+function validarLoginUsuario(string $correo, string $contrasenia): bool
 {
-    return buscarContraseñaUsuario(traerIdUsuario($correo), $contraseña);
+    return buscarcontraseniaUsuario(traerIdUsuario($correo), $contrasenia);
 }
 
 function traerEdadUsuario(int $id): DateTime
@@ -87,7 +87,7 @@ function comenzarPartida($datos)
     $idsUsuarios = ordenarIdsPorEdad($jugadores);
 
     session_destroy();
-    echo "<script> localStorage.setItem('turnoActual', '1'); localStorage.setItem('rondaActual', '1'); localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "');  window.location.href = '../presentación/HTML/Sala/partida.html'; </script>";
+    echo "<script> localStorage.setItem('turnoActual', '1'); localStorage.setItem('rondaActual', '1'); localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "');  window.location.href = '../presentacion/HTML/Sala/partida.html'; </script>";
     return;
 }
 
@@ -111,13 +111,13 @@ function comenzarControl($datos)
     $idsUsuarios = ordenarIdsPorEdad($jugadores);
 
     session_destroy();
-    echo "<script> localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "'); window.location.href = '../presentación/HTML/Sala/controlPartidas.html'; </script>";
+    echo "<script> localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "'); window.location.href = '../presentacion/HTML/Sala/controlPartidas.html'; </script>";
     return;
 }
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
-    echo "<script> window.location.href = '../presentación/HTML/Sala/menuSala.html'; alert('Método no permitido.'); </script>";
+    echo "<script> window.location.href = '../presentacion/HTML/Sala/menuSala.html'; alert('Metodo no permitido.'); </script>";
     return;
 } else if (isset($_POST["jugador1"]) && !isset($_SESSION["form_data"])) {
 
@@ -139,8 +139,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 } else if (isset($_POST["correoLogin2"]) && !isset($_SESSION["form_data"]["jugador2"])) {
 
-    if (!validarLoginUsuario($_POST["correoLogin2"], $_POST["contraseñaLogin2"])) {
-        echo "<script> alert('Credenciales inválidas. Ingrese de nuevo.'); </script>";
+    if (!validarLoginUsuario($_POST["correoLogin2"], $_POST["contraseniaLogin2"])) {
+        echo "<script> alert('Credenciales invalidas. Ingrese de nuevo.'); </script>";
         pedirCredenciales(2);
         return;
     } else {
@@ -163,8 +163,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 } else if (isset($_POST["correoLogin3"]) && !isset($_SESSION["form_data"]["jugador3"])) {
 
-    if (!validarLoginUsuario($_POST["correoLogin3"], $_POST["contraseñaLogin3"])) {
-        echo "<script> alert('Credenciales inválidas. Ingrese de nuevo.'); </script>";
+    if (!validarLoginUsuario($_POST["correoLogin3"], $_POST["contraseniaLogin3"])) {
+        echo "<script> alert('Credenciales invalidas. Ingrese de nuevo.'); </script>";
         pedirCredenciales(3);
         return;
     } else {
@@ -186,8 +186,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 } else if (isset($_POST["correoLogin4"]) && !isset($_SESSION["form_data"]["jugador4"])) {
 
-    if (!validarLoginUsuario($_POST["correoLogin4"], $_POST["contraseñaLogin4"])) {
-        echo "<script> alert('Credenciales inválidas. Ingrese de nuevo.'); </script>";
+    if (!validarLoginUsuario($_POST["correoLogin4"], $_POST["contraseniaLogin4"])) {
+        echo "<script> alert('Credenciales invalidas. Ingrese de nuevo.'); </script>";
         pedirCredenciales(4);
         return;
     } else {
@@ -208,8 +208,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 } else if (isset($_POST["correoLogin5"]) && !isset($_SESSION["form_data"]["jugador5"])) {
 
-    if (!validarLoginUsuario($_POST["correoLogin5"], $_POST["contraseñaLogin5"])) {
-        echo "<script> alert('Credenciales inválidas. Ingrese de nuevo.'); </script>";
+    if (!validarLoginUsuario($_POST["correoLogin5"], $_POST["contraseniaLogin5"])) {
+        echo "<script> alert('Credenciales invalidas. Ingrese de nuevo.'); </script>";
         pedirCredenciales(5);
         return;
     } else {
@@ -224,7 +224,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 } else {
 
     session_destroy();
-    echo "<script> window.location.href = '../presentación/HTML/Sala/menuSala.html'; alert('Acción no permitida.'); </script>";
+    echo "<script> window.location.href = '../presentacion/HTML/Sala/menuSala.html'; alert('Accion no permitida.'); </script>";
     return;
 }
 
@@ -242,21 +242,22 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
         <link rel="icon" href="../recursos/img/draftosaurus-logo.png" type="image/png">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../presentación/CSS/estilosSala.css">
+        <link rel="stylesheet" href="../presentacion/CSS/estilosSala.css">
     </head>
 
     <body>
 
         <section class="container-formulario-jugador" id="formulario-jugador">
             <form action="" method="post" class="formulario-jugador">
-                <p>Ingrese los datos del jugador <?php echo $necesidad; ?></p>
+                <p id="datosJugador">Ingrese los datos del jugador <?php echo $necesidad; ?></p>
                 <input type="email" name="correoLogin<?php echo $necesidad; ?>" id="nombre-jugador" placeholder="Correo electrónico" required>
-                <input type="password" name="contraseñaLogin<?php echo $necesidad; ?>" id="contrasena-jugador" placeholder="Contraseña" required>
-                <button type="submit" class="btn btn-primary">Unirse a la sala</button>
+                <input type="password" name="contraseniaLogin<?php echo $necesidad; ?>" id="contrasena-jugador" placeholder="contraseña" required>
+                <button type="submit" id="unirseBoton" class="btn btn-primary">Unirse a la sala</button>
                 <button id="cancelar-form" type="button" onclick="window.location.href='cancelarSala.php'" class="btn btn-secondary">Cancelar</button>
             </form>
         </section>
 
+        <script src="../presentacion/JS/uiPedido.js"></script>
     </body>
 
     </html>

@@ -9,5 +9,5 @@ $destino = $_POST["destino"];
 
 registrarJugada($jugador, $partida, $dino, $recinto);
 
-echo "<script> window.location.href='../presentación/HTML/Sala/$destino.html';</script>";
+echo "<script> window.location.href='../presentacion/HTML/Sala/$destino.html';</script>";
 exit;

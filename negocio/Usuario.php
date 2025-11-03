@@ -6,16 +6,16 @@ class Usuario
     private string $nombre;
     private string $email;
     private DateTime $edad;
-    private string $contraseña;
+    private string $contrasenia;
     private string $preferenciasIdioma;
     private string $preferenciasTema;
 
-    public function __construct(string $nombre, string $email, DateTime $edad, string $contraseña, string $preferenciasIdioma, string $preferenciasTema)
+    public function __construct(string $nombre, string $email, DateTime $edad, string $contrasenia, string $preferenciasIdioma, string $preferenciasTema)
     {
         $this->nombre = $nombre;
         $this->email = $email;
         $this->edad = $edad;
-        $this->contraseña = $contraseña;
+        $this->contrasenia = $contrasenia;
         $this->preferenciasIdioma = $preferenciasIdioma;
         $this->preferenciasTema = $preferenciasTema;
     }
@@ -50,14 +50,14 @@ class Usuario
         $this->edad = $edad;
     }
 
-    public function getContraseña(): string
+    public function getcontrasenia(): string
     {
-        return $this->contraseña;
+        return $this->contrasenia;
     }
 
-    public function setContraseña(string $contraseña): void
+    public function setcontrasenia(string $contrasenia): void
     {
-        $this->contraseña = $contraseña;
+        $this->contrasenia = $contrasenia;
     }
 
     public function getPreferenciasIdioma(): string

@@ -1,93 +1,80 @@
-<p align="center">
-  <img src="recursos/img/encabezadoREADME.png" width="1000">
-</p>
+<p align="center"> <img src="recursos/img/encabezadoREADME.png" width="1000"> </p>
+🦖 S.I.G.P.D.
 
-# 🦖 S.I.G.P.D.  
-**Sistema Informático de Gestión de Partidas para Draftosaurus**  
-Desarrollado por **MacroHard**.
+Sistema Informático de Gestión de Partidas para Draftosaurus
+Desarrollado por MacroHard
 
----
+🧩 ¿Qué es?
 
-## 🧩 ¿Qué es?
+S.I.G.P.D. es una aplicación web diseñada para gestionar partidas del juego de mesa Draftosaurus. Permite iniciar, jugar y controlar partidas de manera digital, rápida y sencilla.
 
-**S.I.G.P.D.** es una aplicación web desarrollada para gestionar partidas del juego de mesa *Draftosaurus*. Permite iniciar, visualizar y controlar partidas de forma clara y digital.
+⚙️ Instalación
 
-Este proyecto forma parte de una segunda entrega y se encuentra en fase inicial. Su desarrollo continuará con nuevas funcionalidades, incluyendo conteo de puntos y más opciones interactivas.
-
----
-
-## ⚙️ Instalación
-
-Sigue estos pasos para instalar y usar la aplicación, incluso si nunca trabajaste con XAMPP o bases de datos:
+No requiere conocimientos avanzados. Solo seguí estos pasos:
 
 1️⃣ Descargar el proyecto
 
-Clonando con Git:
+Tenés dos opciones:
+
+Opción A: Usando Git (para usuarios que lo tengan instalado)
 
 git clone https://github.com/Macrohard2025/MacroHard.git
 
 
-O descargando ZIP desde GitHub:
+Luego, entrá a la carpeta del proyecto:
 
-Hacé clic en el botón verde "Code" arriba a la derecha.
+cd MacroHard
 
-Seleccioná "Download ZIP" y extraé el archivo.
 
-2️⃣ Instalar XAMPP (si no lo tenés)
+Opción B: Descargando ZIP desde GitHub
 
-Descargá XAMPP desde https://www.apachefriends.org/es/index.html
+Hacé clic en el botón verde Code del repositorio.
 
-Instalalo siguiendo las instrucciones del instalador.
+Seleccioná Download ZIP.
 
-Una vez instalado, abrí el Panel de Control de XAMPP.
+Extraé el archivo ZIP en tu computadora.
 
-3️⃣ Colocar la carpeta del proyecto
+2️⃣ Instalar XAMPP
 
-Mové la carpeta MacroHard dentro de la carpeta htdocs de XAMPP.
+Descargá XAMPP desde su página oficial: https://www.apachefriends.org/es/index.html
 
-Ejemplo: C:\xampp\htdocs\MacroHard
+Instalalo con las opciones predeterminadas.
 
-4️⃣ Iniciar los servicios de XAMPP
+Una vez instalado, abrí XAMPP y iniciá los módulos:
 
-En el Panel de Control de XAMPP, arrancá:
+Apache (servidor web)
 
-Apache ✅
+MySQL (base de datos)
 
-MySQL ✅
+3️⃣ Copiar el proyecto a XAMPP
 
-Ambos deben estar activos (resaltados en verde).
+Copiá la carpeta del proyecto dentro de la carpeta htdocs de XAMPP. Por ejemplo:
 
-5️⃣ Importar la base de datos
+C:\xampp\htdocs\MacroHard
 
-Abrí phpMyAdmin desde tu navegador:
+4️⃣ Iniciar la aplicación
 
-http://localhost/phpmyadmin/
+Abrí http://localhost/MacroHard
+ en tu navegador.
 
-Hacé clic en Importar → Elegir archivo → seleccioná datos/bd_macrohard.sql
+La primera vez que ingreses, si el usuario admin y la base de datos no están creadas, el sistema te llevará a un formulario para registrar al administrador y posteriormente creará la base de datos.
 
-Clic en Continuar
-
-Este archivo ya crea la base de datos y todas las tablas necesarias automáticamente.
-
-6️⃣ Abrir la aplicación
-
-En tu navegador, escribí:
-
-http://localhost/MacroHard/
-
-¡Listo! 🎉 La aplicación debería cargarse y estar lista para usar.
+¡Listo! Ya podés empezar a jugar y gestionar partidas.
 
 💼 Sobre MacroHard
+
 MacroHard es un equipo de desarrollo formado por Mateo Más, Florencia del Castillo, Luna Vera y Santiago Alvez. Apostamos a proyectos educativos con impacto real, combinando creatividad, programación y diseño de juegos.
 
 🧠 Tecnologías utilizadas
-    
-    1. HTML5
 
-    2. CSS3
+HTML5
 
-    3. JavaScript
-    
-    4. PHP
-    
-    5. MySql
+CSS3
+
+JavaScript
+
+Bootstrap
+
+PHP
+
+MySQL

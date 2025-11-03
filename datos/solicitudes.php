@@ -1,8 +1,8 @@
 <?php
 
-include_once "conexión.php";
-include_once "Usuario.php";
-include_once "Partida.php";
+include_once "conexion.php";
+include_once "../negocio/Usuario.php";
+include_once "../negocio/Partida.php";
 
 function obtenerElementos(): array
 {
@@ -141,17 +141,17 @@ function guardarUsuario(Usuario $usuario): bool
     $nombre = $usuario->getNombre();
     $email = $usuario->getEmail();
     $edad = $usuario->getEdad()->format('Y-m-d');
-    $contraseña = password_hash($usuario->getContraseña(), PASSWORD_DEFAULT);
+    $contrasenia = password_hash($usuario->getcontrasenia(), PASSWORD_DEFAULT);
     $idioma = $usuario->getPreferenciasIdioma();
     $tema = $usuario->getPreferenciasTema();
 
     $query = "INSERT INTO Usuario (nombre, contrasena, email, fecha_nacimiento, preferencias_idioma, preferencias_tema)
-              VALUES ('$nombre', '$contraseña', '$email', '$edad', '$idioma', '$tema')";
+              VALUES ('$nombre', '$contrasenia', '$email', '$edad', '$idioma', '$tema')";
 
     return mysqli_query($conn, $query);
 }
 
-function buscarContraseñaUsuario(int $idUsuario, string $contraseña): bool
+function buscarcontraseniaUsuario(int $idUsuario, string $contrasenia): bool
 {
     global $conn;
 
@@ -165,8 +165,17 @@ function buscarContraseñaUsuario(int $idUsuario, string $contraseña): bool
     $row = mysqli_fetch_assoc($result);
     $hash = $row['contrasena'];
 
-    return password_verify($contraseña, $hash);
+    if (password_verify($contrasenia, $hash)) {
+        return true;
+    }
+
+    if ($contrasenia === $hash) {
+        return true;
+    }
+
+    return false;
 }
+
 
 function recuperarUsuarioPorId(int $idUsuario): ?Usuario
 {
@@ -186,16 +195,24 @@ function recuperarUsuarioPorId(int $idUsuario): ?Usuario
     );
 }
 
-function actualizarUsuario(int $idUsuario, string $nombre, string $email, DateTime $edad, ?string $contraseña, string $idioma, string $tema): bool
+function actualizarUsuario(int $idUsuario, string $nombre, string $email, DateTime $edad, string $contrasenia, string $idioma, string $tema): bool
 {
     global $conn;
 
     $fechaNacimiento = $edad->format('Y-m-d');
 
-    $query = "UPDATE Usuario SET nombre='$nombre', email='$email', fecha_nacimiento='$fechaNacimiento', preferencias_idioma='$idioma', preferencias_tema='$tema'";
+    $query = "UPDATE Usuario SET nombre='$nombre', email='$email', fecha_nacimiento='$fechaNacimiento'";
 
-    if (!is_null($contraseña)) {
-        $hash = password_hash($contraseña, PASSWORD_DEFAULT);
+    if (trim($idioma) !== "") {
+        $query .= ", preferencias_idioma='$idioma'";
+    }
+
+    if (trim($tema) !== "") {
+        $query .= ", preferencias_tema='$tema'";
+    }
+
+    if (trim($contrasenia) !== "") {
+        $hash = password_hash($contrasenia, PASSWORD_DEFAULT);
         $query .= ", contrasena='$hash'";
     }
 
@@ -208,8 +225,12 @@ function eliminarUsuario(int $idUsuario): void
 {
     global $conn;
 
-    $query = "DELETE FROM Usuario WHERE usuario_id = $idUsuario";
-    mysqli_query($conn, $query);
+    $sql = "UPDATE Usuario 
+            SET activo = FALSE,
+                email = NULL
+            WHERE usuario_id = $idUsuario";
+
+    mysqli_query($conn, $sql);
 }
 
 function partidaExiste(int $idPartida): bool
@@ -305,4 +326,319 @@ function recuperarResultados(int $idPartida): array
     }
 
     return $resultados;
+}
+
+function traerUltimasPartidasPorUsuario(int $idUsuario): array
+{
+    global $conn;
+
+    $partidas = [];
+
+    $sql = "
+    SELECT 
+        p.partida_id AS id,
+        DATE_FORMAT(p.fecha, '%d/%m/%Y') AS fecha,
+        CONCAT(p.modo_juego, ' - ', p.tablero) AS modo,
+        u.nombre AS ganador,
+        (
+            SELECT jg.puntos_totales
+            FROM Jugadores jg
+            WHERE jg.fk_partida_id = p.partida_id
+            AND jg.fk_usuario_id = p.fk_ganador_id
+        ) AS puntos,
+        (
+            SELECT COUNT(*) + 1
+            FROM Jugadores j2
+            WHERE j2.fk_partida_id = j.fk_partida_id
+            AND j2.puntos_totales > j.puntos_totales
+        ) AS posicion
+    FROM Jugadores j
+    JOIN Partida p ON j.fk_partida_id = p.partida_id
+    LEFT JOIN Usuario u ON p.fk_ganador_id = u.usuario_id
+    WHERE j.fk_usuario_id = $idUsuario
+    ORDER BY p.fecha DESC
+    LIMIT 10
+";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($fila = mysqli_fetch_assoc($result)) {
+            $partidas[] = [
+                "id" => (int)$fila['id'],
+                "fecha" => $fila['fecha'],
+                "modo" => $fila['modo'],
+                "ganador" => $fila['ganador'] ?? 'No',
+                "puntos" => (int)$fila['puntos'],
+                "posicion" => (int)$fila['posicion']
+            ];
+        }
+    }
+
+    return $partidas;
+}
+
+function recuperarJugadoresPorPartida(int $idPartida): array
+{
+    global $conn;
+
+    $jugadores = [];
+
+    $sql = "
+        SELECT fk_usuario_id AS jugador
+        FROM Jugadores
+        WHERE fk_partida_id = $idPartida
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($fila = mysqli_fetch_assoc($result)) {
+            $jugadores[] = $fila;
+        }
+    }
+
+    return $jugadores;
+}
+
+function revisarModo(int $idPartida): string
+{
+    global $conn;
+
+    $sql = "
+        SELECT tablero
+        FROM Partida
+        WHERE partida_id = $idPartida
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $fila = mysqli_fetch_assoc($result);
+        return $fila['tablero'];
+    }
+
+    return "";
+}
+
+function revisarSumaPuntos(string $recinto): int
+{
+    global $conn;
+
+    $sql = "
+        SELECT puntos
+        FROM Recinto
+        WHERE nombre = '$recinto'
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $fila = mysqli_fetch_assoc($result);
+        return (int)$fila['puntos'];
+    }
+
+    return 0;
+}
+
+function chequearRey(string $dino, string $idJugador): bool
+{
+    global $conn;
+
+    $sqlJugador = "
+        SELECT COUNT(*) AS total
+        FROM Jugadas
+        WHERE fk_usuario_id = '$idJugador' 
+          AND fk_dino_nombre = '$dino'
+    ";
+    $resJugador = mysqli_query($conn, $sqlJugador);
+    $rowJugador = mysqli_fetch_assoc($resJugador);
+    $cantidadJugador = (int)$rowJugador['total'];
+
+    $sqlMax = "
+        SELECT MAX(cant) AS maximo
+        FROM (
+            SELECT COUNT(*) AS cant
+            FROM Jugadas
+            WHERE fk_dino_nombre = '$dino'
+            GROUP BY fk_usuario_id
+        ) AS sub
+    ";
+    $resMax = mysqli_query($conn, $sqlMax);
+    $rowMax = mysqli_fetch_assoc($resMax);
+    $maximo = (int)$rowMax['maximo'];
+
+    return $cantidadJugador === $maximo;
+}
+
+function actualizarPuntosJugador(string $idJugador, int $idPartida, int $puntos): void
+{
+    global $conn;
+
+    $sql = "
+        UPDATE Jugadores
+        SET puntos_totales = $puntos
+        WHERE fk_usuario_id = '$idJugador' 
+          AND fk_partida_id = $idPartida
+    ";
+
+    mysqli_query($conn, $sql);
+}
+
+function determinarGanador(int $idPartida): void
+{
+    global $conn;
+
+    $sql = "
+        SELECT fk_usuario_id
+        FROM Jugadores
+        WHERE fk_partida_id = $idPartida
+        ORDER BY puntos_totales DESC
+        LIMIT 1
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $fila = mysqli_fetch_assoc($result);
+        $ganadorId = $fila['fk_usuario_id'];
+
+        $updateSql = "
+            UPDATE Partida
+            SET fk_ganador_id = $ganadorId
+            WHERE partida_id = $idPartida
+        ";
+
+        mysqli_query($conn, $updateSql);
+    }
+}
+
+function actualizarAdmin(int $idUsuario, string $nombre, string $email, DateTime $edad, string $contrasenia, string $idioma = 'es', string $tema = 'claro'): bool
+{
+    global $conn;
+
+    $fechaNacimiento = $edad->format('Y-m-d');
+    $hash = password_hash($contrasenia, PASSWORD_DEFAULT);
+
+    $query = "
+        UPDATE Usuario 
+        SET nombre='$nombre',
+            contrasena='$hash',
+            email='$email',
+            fecha_nacimiento='$fechaNacimiento',
+            preferencias_idioma='$idioma',
+            preferencias_tema='$tema'
+        WHERE usuario_id=$idUsuario
+    ";
+
+    return mysqli_query($conn, $query);
+}
+
+function ordenarJugadores(array $jugadores): array
+{
+    global $conn;
+
+    $jugadoresConInfo = [];
+
+    foreach ($jugadores as $jugador) {
+        $id = $jugador['jugador'];
+
+        $sql = "SELECT nombre, fecha_nacimiento FROM Usuario WHERE usuario_id = $id";
+        $result = mysqli_query($conn, $sql);
+        if ($result && mysqli_num_rows($result) > 0) {
+            $fila = mysqli_fetch_assoc($result);
+            $edad = new DateTime($fila['fecha_nacimiento']);
+            $jugadoresConInfo[] = [
+                "id" => (int)$id,
+                "nombre" => $fila['nombre'],
+                "edad" => $edad
+            ];
+        }
+    }
+
+    usort($jugadoresConInfo, function ($a, $b) {
+        return $b["edad"]->getTimestamp() <=> $a["edad"]->getTimestamp();
+    });
+
+    return array_column($jugadoresConInfo, "id");
+}
+
+function traerDinoCuarentena(int $idPartida, int $idUsuario): ?string
+{
+    global $conn;
+
+    $idPartida = (int)$idPartida;
+    $idUsuario = (int)$idUsuario;
+
+    $sql = "
+        SELECT fk_dino_nombre 
+        FROM Jugadas 
+        WHERE fk_partida_id = $idPartida 
+          AND fk_usuario_id = $idUsuario 
+          AND fk_recinto_nombre = 'Cuarentena'
+        ORDER BY jugada_id DESC
+        LIMIT 1
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $fila = mysqli_fetch_assoc($result);
+        return $fila['fk_dino_nombre'];
+    }
+
+    return null;
+}
+
+function traerRankingGlobal(): array
+{
+    global $conn;
+
+    $ranking = [];
+
+    $sql = "
+        SELECT 
+            u.usuario_id AS id,
+            u.nombre,
+            COUNT(DISTINCT j.fk_partida_id) AS partidas_jugadas,
+            SUM(j.puntos_totales) AS puntos_totales,
+            AVG(j.puntos_totales) AS promedio_puntos
+        FROM Usuario u
+        JOIN Jugadores j ON u.usuario_id = j.fk_usuario_id
+        WHERE u.activo = TRUE
+        GROUP BY u.usuario_id, u.nombre
+        ORDER BY puntos_totales DESC
+        LIMIT 10
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($fila = mysqli_fetch_assoc($result)) {
+            $ranking[] = [
+                "id" => (int)$fila['id'],
+                "nombre" => $fila['nombre'],
+                "partidas_jugadas" => (int)$fila['partidas_jugadas'],
+                "puntos_totales" => (int)$fila['puntos_totales'],
+                "promedio_puntos" => (float)$fila['promedio_puntos']
+            ];
+        }
+    }
+
+    return $ranking;
+}
+
+function revisarJugadorActivo(int $idUsuario): bool
+{
+    global $conn;
+
+    $query = "SELECT activo FROM Usuario WHERE usuario_id = $idUsuario";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return (bool)$row['activo'];
+    }
+
+    return false;
 }

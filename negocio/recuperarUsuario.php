@@ -2,7 +2,7 @@
 include_once "../datos/solicitudes.php";
 
 if (!isset($_GET['idUsuario'])) {
-    echo "<script>alert('Ocurrió un error inesperado'); window.location.href = '../index.html';</script>";
+    echo "<script>alert('Ocurrio un error inesperado'); window.location.href = '../index.html';</script>";
     return;
 }
 

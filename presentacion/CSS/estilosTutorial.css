@@ -1,0 +1,106 @@
+header {
+  background: transparent;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.logo-macrohard {
+  z-index: 10;
+  height: 10dvh;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.botones-diapositivas {
+  position: absolute;
+  bottom: 15dvh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+}
+
+.pizarron {
+  background-color: #2d4d32;
+  border: 12px solid #5e3c0b;
+  border-radius: 12px;
+  height: 60dvh;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  width: 95dvw;
+  color: white;
+  font-family: cursive;
+  font-size: 20px;
+  padding: 2.5rem 3rem;
+  margin: auto;
+  margin-top: 5vh;
+  background-size: 30px 30px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.pizarron p {
+  margin: 0;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+}
+
+.cuernitos {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  height: 15dvh;
+}
+
+@media (min-width: 993px) {
+
+  body {
+    background-image: url('../../recursos/img/fondoTutorial.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  .logo-macrohard {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    transform: none;
+    height: 10dvh;
+  }
+
+  .pizarron {
+    width: 60dvw;
+    height: 70dvh;
+    padding: 3rem 4rem;
+    position: absolute;
+    top: 7dvh;
+    left: 5%;
+  }
+
+  .pizarron p {
+    font-size: 1.2rem;
+  }
+
+  .botones-diapositivas {
+    bottom: 6dvh;
+  }
+
+  header {
+    justify-content: end;
+  }
+
+  .cuernitos {
+    display: none;
+  }
+
+}
