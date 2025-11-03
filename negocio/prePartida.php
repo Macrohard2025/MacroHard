@@ -86,7 +86,7 @@ function comenzarPartida($datos)
     $nombresUsuarios = ordenarJugadoresPorEdad($jugadores);
     $idsUsuarios = ordenarIdsPorEdad($jugadores);
 
-    session_destroy();
+    session_unset();
     echo "<script> localStorage.setItem('turnoActual', '1'); localStorage.setItem('rondaActual', '1'); localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "');  window.location.href = '../presentacion/HTML/Sala/partida.html'; </script>";
     return;
 }
@@ -110,7 +110,7 @@ function comenzarControl($datos)
     $nombresUsuarios = ordenarJugadoresPorEdad($jugadores);
     $idsUsuarios = ordenarIdsPorEdad($jugadores);
 
-    session_destroy();
+    session_unset();
     echo "<script> localStorage.setItem('idPartida', " . guardarPartida($partida) . "); localStorage.setItem('jugadorActual', '" . $nombresUsuarios[0] . "'); localStorage.setItem('nombresUsuarios', '" . json_encode($nombresUsuarios) . "'); localStorage.setItem('idJugadorActual', '" . $idsUsuarios[0] . "'); localStorage.setItem('idsUsuarios', '" . json_encode($idsUsuarios) . "'); window.location.href = '../presentacion/HTML/Sala/controlPartidas.html'; </script>";
     return;
 }
@@ -256,7 +256,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     }
 } else {
 
-    session_destroy();
+    session_unset();
     echo "<script> window.location.href = '../presentacion/HTML/Sala/menuSala.html'; alert('Accion no permitida.'); </script>";
     return;
 }
