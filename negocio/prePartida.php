@@ -145,6 +145,14 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     } else {
         $datos = $_SESSION["form_data"];
+        
+        $idNuevoJugador = traerIdUsuario($_POST["correoLogin2"]);
+        if (in_array($idNuevoJugador, $datos)) {
+            echo "<script> alert('Este usuario ya está en la sala. Ingrese otro.'); </script>";
+            pedirCredenciales(2);
+            return;
+        }
+        
         $datos["jugador2"] = traerIdUsuario($_POST["correoLogin2"]);
 
         if ($datos["numJugadores"] != "2") {
@@ -169,6 +177,14 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     } else {
         $datos = $_SESSION["form_data"];
+        
+        $idNuevoJugador = traerIdUsuario($_POST["correoLogin3"]);
+        if (in_array($idNuevoJugador, $datos)) {
+            echo "<script> alert('Este usuario ya está en la sala. Ingrese otro.'); </script>";
+            pedirCredenciales(3);
+            return;
+        }
+        
         $datos["jugador3"] = traerIdUsuario($_POST["correoLogin3"]);
 
         if ($datos["numJugadores"] != "3") {
@@ -192,8 +208,16 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     } else {
         $datos = $_SESSION["form_data"];
+        
+        $idNuevoJugador = traerIdUsuario($_POST["correoLogin4"]);
+        if (in_array($idNuevoJugador, $datos)) {
+            echo "<script> alert('Este usuario ya está en la sala. Ingrese otro.'); </script>";
+            pedirCredenciales(4);
+            return;
+        }
+        
         $datos["jugador4"] = traerIdUsuario($_POST["correoLogin4"]);
-
+        
         if ($datos["numJugadores"] != "4") {
             $_SESSION["form_data"] = $datos;
             pedirCredenciales(5);
@@ -214,7 +238,16 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
         return;
     } else {
         $datos = $_SESSION["form_data"];
+        
+        $idNuevoJugador = traerIdUsuario($_POST["correoLogin5"]);
+        if (in_array($idNuevoJugador, $datos)) {
+            echo "<script> alert('Este usuario ya está en la sala. Ingrese otro.'); </script>";
+            pedirCredenciales(5);
+            return;
+        }
+        
         $datos["jugador5"] = traerIdUsuario($_POST["correoLogin5"]);
+        
         if ($datos["modoJuego"] != "Control") {
             comenzarPartida($datos);
         } else {
